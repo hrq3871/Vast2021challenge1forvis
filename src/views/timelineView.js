@@ -14,13 +14,6 @@ const EVENT_GROUP = {
   kidnapping: 'Conflict',
 };
 
-const LANE_COLORS = {
-  Official: '#22c55e',
-  'POK Motive': '#ef4444',
-  Email: '#a78bfa',
-  Kidnapping: '#f59e0b',
-};
-
 function effectiveTimelineTopic(snapshot) {
   if (snapshot.topic !== 'all') return snapshot.topic;
   if (snapshot.activeView === 'official') return 'government_reception';
@@ -28,16 +21,28 @@ function effectiveTimelineTopic(snapshot) {
   return 'all';
 }
 
+function timelineTypeLabel(type) {
+  return String(type ?? 'event').replaceAll('_', ' ');
+}
+
+export function sortTimelineEvents(events) {
+  return [...events].sort((a, b) => {
+    const dateDelta = new Date(a.date).getTime() - new Date(b.date).getTime();
+    if (dateDelta !== 0) return dateDelta;
+    return String(a.label ?? a.id).localeCompare(String(b.label ?? b.id));
+  });
+}
+
 export function createTimelineView(container, state, bundle, indexes) {
   function render(snapshot) {
-    const events = filterEvents(
+    const events = sortTimelineEvents(filterEvents(
       bundle.events,
       {
         ...snapshot,
         topic: effectiveTimelineTopic(snapshot),
       },
       indexes,
-    );
+    ));
 
     container.innerHTML = `
       <div class="timeline-heading">
@@ -52,33 +57,9 @@ export function createTimelineView(container, state, bundle, indexes) {
 
     const scrollContainer = document.querySelector('#timeline-scroll');
 
-    // Group events by lane
-    const laneNames = ['Official', 'POK Motive', 'Email', 'Kidnapping'];
-    const laneForType = (type) => {
-      if (type === 'official_partnership' || type === 'government_reception' || type === 'ipo') return 'Official';
-      if (type === 'email_anomaly') return 'Email';
-      if (type === 'kidnapping') return 'Kidnapping';
-      return 'POK Motive';
-    };
-
-    const eventsByLane = new Map();
-    laneNames.forEach((lane) => eventsByLane.set(lane, []));
-    events.forEach((event) => {
-      const lane = laneForType(event.type);
-      eventsByLane.get(lane).push(event);
-    });
-
-    // Sort events by date in each lane
-    laneNames.forEach((lane) => {
-      eventsByLane.get(lane).sort((a, b) => new Date(a.date) - new Date(b.date));
-    });
-
-    // Build vertical timeline HTML
-    const timelineHTML = laneNames.map((lane) => {
-      const laneEvents = eventsByLane.get(lane);
-      const laneColor = LANE_COLORS[lane];
-
-      const eventsHTML = laneEvents.map((event) => {
+    const timelineHTML = events.length
+      ? events
+          .map((event) => {
         const isSelected = snapshot.selection?.id === event.id;
         const group = EVENT_GROUP[event.type];
         const dotColor = colorForGroup(group);
@@ -89,28 +70,21 @@ export function createTimelineView(container, state, bundle, indexes) {
                tabindex="0"
                role="button"
                aria-label="${event.label}">
-            <div class="timeline-event-dot" style="background-color: ${dotColor}"></div>
+            <div class="timeline-event-marker">
+              <div class="timeline-event-dot" style="background-color: ${dotColor}"></div>
+            </div>
+            <div class="timeline-event-date">${event.date}</div>
             <div class="timeline-event-card">
-              <div class="timeline-event-date">${event.date}</div>
               <div class="timeline-event-label">${event.label}</div>
+              <div class="timeline-event-type">${timelineTypeLabel(event.type)}</div>
             </div>
           </div>
         `;
-      }).join('');
+      })
+          .join('')
+      : '<div class="timeline-empty">No events</div>';
 
-      return `
-        <div class="timeline-lane" data-lane="${lane}">
-          <div class="timeline-lane-header" style="border-color: ${laneColor}">
-            <span class="timeline-lane-title" style="color: ${laneColor}">${lane}</span>
-          </div>
-          <div class="timeline-lane-events">
-            ${eventsHTML || '<div class="timeline-empty">No events</div>'}
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    scrollContainer.innerHTML = `<div class="timeline-lanes-grid">${timelineHTML}</div>`;
+    scrollContainer.innerHTML = `<div class="timeline-list">${timelineHTML}</div>`;
 
     // Add click handlers
     scrollContainer.querySelectorAll('.timeline-event-item').forEach((item) => {

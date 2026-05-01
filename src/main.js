@@ -1,7 +1,6 @@
 import './styles.css';
 import { loadTask3Bundle } from './dataLoader.js';
 import { createAppState } from './state.js';
-import { summarizeConfidence } from './utils/evidenceScoring.js';
 import { createEmailNetwork } from './views/emailNetwork.js';
 import { createEvidencePanel } from './views/evidencePanel.js';
 import { createHypothesisExplorer } from './views/hypothesisExplorer.js';
@@ -17,13 +16,6 @@ function renderShell() {
     <main id="main" class="page-workspace" tabindex="-1">
       <section class="workspace-shell" aria-label="Investigation workspace">
         <div class="main-workspace">
-          <section class="workspace-summary" aria-live="polite">
-            <div>
-              <p class="eyebrow">Current Lens</p>
-              <h2 id="workspace-title">Overview network</h2>
-            </div>
-            <div class="metrics-strip" id="metrics-strip"></div>
-          </section>
           <section class="analysis-panel graph-panel" id="graph-panel" aria-label="Relationship graph"></section>
           <section class="analysis-panel email-panel" id="email-panel" aria-label="Email network"></section>
           <section class="analysis-panel hypothesis-panel" id="hypothesis-panel" aria-label="Hypothesis explorer"></section>
@@ -35,33 +27,12 @@ function renderShell() {
   `;
 }
 
-function viewTitle(snapshot) {
-  if (snapshot.activeView === 'official') return 'Official GAStech-Government baseline';
-  if (snapshot.activeView === 'pok') return 'POK motive and personal bridge';
-  if (snapshot.activeView === 'email') return 'Anomalous email propagation';
-  if (snapshot.activeView === 'hypothesis') return 'Guided hypothesis comparison';
-  return 'Overview network';
-}
-
-function renderMetrics(container, bundle) {
-  const confidence = summarizeConfidence(bundle.edges);
-  container.innerHTML = `
-    <span><strong>${bundle.nodes.length}</strong> nodes</span>
-    <span><strong>${bundle.edges.length}</strong> relations</span>
-    <span><strong>${bundle.evidence.length}</strong> evidence items</span>
-    <span><strong>${confidence.confirmed}</strong> confirmed</span>
-    <span><strong>${confidence.hypothesis}</strong> hypothesis</span>
-  `;
-}
-
 function bindViewVisibility(state) {
   const graphPanel = document.querySelector('#graph-panel');
   const emailPanel = document.querySelector('#email-panel');
   const hypothesisPanel = document.querySelector('#hypothesis-panel');
-  const title = document.querySelector('#workspace-title');
 
   state.subscribe((snapshot) => {
-    title.textContent = viewTitle(snapshot);
     const showEmail = snapshot.activeView === 'email';
     const showHypothesis = snapshot.activeView === 'hypothesis';
     graphPanel.hidden = showEmail;
@@ -89,7 +60,6 @@ async function boot() {
     app.classList.remove('is-loading');
 
     renderTopBar(document.querySelector('#topbar'), state, bundle);
-    renderMetrics(document.querySelector('#metrics-strip'), bundle);
     bindViewVisibility(state);
 
     createRelationshipGraph(document.querySelector('#graph-panel'), state, bundle, indexes);

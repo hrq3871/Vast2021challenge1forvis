@@ -7,6 +7,7 @@ import {
   getNeighborNodeIds,
 } from '../src/utils/filters.js';
 import { filterEmails } from '../src/views/emailNetwork.js';
+import { sortTimelineEvents } from '../src/views/timelineView.js';
 import { rankEvidenceItems, summarizeConfidence } from '../src/utils/evidenceScoring.js';
 
 const sampleBundle = {
@@ -199,6 +200,25 @@ describe('Task 3 graph data logic', () => {
     });
 
     expect(emails.map((edge) => edge.id)).toEqual(['email_sanjorge']);
+  });
+
+  it('sorts timeline events globally by date instead of grouping by type first', () => {
+    const events = [
+      { id: 'event_late_official', date: '2014-01-20', type: 'official_partnership' },
+      { id: 'event_early_pok', date: '1997-01-01', type: 'pollution' },
+      { id: 'event_middle_email', date: '2014-01-13', type: 'email_anomaly' },
+    ];
+
+    expect(sortTimelineEvents(events).map((event) => event.id)).toEqual([
+      'event_early_pok',
+      'event_middle_email',
+      'event_late_official',
+    ]);
+    expect(events.map((event) => event.id)).toEqual([
+      'event_late_official',
+      'event_early_pok',
+      'event_middle_email',
+    ]);
   });
 
   it('returns evidence and first-hop neighbors for selected nodes or edges', () => {

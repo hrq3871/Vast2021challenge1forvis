@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import { filterRelationshipGraph, getNeighborNodeIds } from '../utils/filters.js';
 import { CONFIDENCE_STYLES, colorForGroup, relationLabel, shapeForNodeType } from '../utils/colors.js';
+import { summarizeConfidence } from '../utils/evidenceScoring.js';
 
 function endpointId(endpoint) {
   return typeof endpoint === 'object' ? endpoint.id : endpoint;
@@ -29,6 +30,50 @@ function centerLayout(nodes, width, height) {
     node.x += dx;
     node.y += dy;
   });
+}
+
+function graphBounds(nodes) {
+  return nodes.reduce(
+    (acc, node) => ({
+      minX: Math.min(acc.minX, node.x),
+      maxX: Math.max(acc.maxX, node.x),
+      minY: Math.min(acc.minY, node.y),
+      maxY: Math.max(acc.maxY, node.y),
+    }),
+    { minX: Infinity, maxX: -Infinity, minY: Infinity, maxY: -Infinity },
+  );
+}
+
+function fitTransform(nodes, width, height) {
+  const bounds = graphBounds(nodes);
+  if (!Number.isFinite(bounds.minX) || !Number.isFinite(bounds.minY)) return d3.zoomIdentity;
+
+  const padding = 112;
+  const graphWidth = Math.max(1, bounds.maxX - bounds.minX + padding * 2);
+  const graphHeight = Math.max(1, bounds.maxY - bounds.minY + padding * 2);
+  const scale = Math.min(1.05, Math.max(0.52, Math.min(width / graphWidth, height / graphHeight)));
+  const centerX = (bounds.minX + bounds.maxX) / 2;
+  const centerY = (bounds.minY + bounds.maxY) / 2;
+  const translateX = width / 2 - centerX * scale;
+  const translateY = height / 2 - centerY * scale;
+
+  return d3.zoomIdentity.translate(translateX, translateY).scale(scale);
+}
+
+function renderGraphStats(container, bundle) {
+  const confidence = summarizeConfidence(bundle.edges);
+  container.insertAdjacentHTML(
+    'afterbegin',
+    `
+      <div class="graph-stats" aria-label="Graph statistics">
+        <span><strong>${bundle.nodes.length}</strong> nodes</span>
+        <span><strong>${bundle.edges.length}</strong> relations</span>
+        <span><strong>${bundle.evidence.length}</strong> evidence</span>
+        <span><strong>${confidence.confirmed}</strong> confirmed</span>
+        <span><strong>${confidence.hypothesis}</strong> hypothesis</span>
+      </div>
+    `,
+  );
 }
 
 function effectiveTopic(snapshot) {
@@ -150,12 +195,13 @@ export function createRelationshipGraph(container, state, bundle, indexes) {
     const nodeLayer = zoomLayer.append('g').attr('class', 'node-layer');
     drawLegend(svg, height);
 
-    svg.call(
-      d3
-        .zoom()
-        .scaleExtent([0.45, 2.4])
-        .on('zoom', (event) => zoomLayer.attr('transform', event.transform)),
-    );
+    renderGraphStats(container, bundle);
+
+    const zoomBehavior = d3
+      .zoom()
+      .scaleExtent([0.42, 2.4])
+      .on('zoom', (event) => zoomLayer.attr('transform', event.transform));
+    svg.call(zoomBehavior);
 
     const nodes = graph.nodes.map((node) => ({ ...node }));
     const links = graph.edges.map((edge) => ({ ...edge, source: endpointId(edge.source), target: endpointId(edge.target) }));
@@ -274,6 +320,7 @@ export function createRelationshipGraph(container, state, bundle, indexes) {
     simulation.tick(180);
     centerLayout(nodes, width, height);
     updatePositions();
+    svg.call(zoomBehavior.transform, fitTransform(nodes, width, height));
   }
 
   const resizeObserver = new ResizeObserver(() => render(state.get()));

@@ -97,6 +97,34 @@ function selectionContext(snapshot, indexes) {
   };
 }
 
+function renderEvidenceModal(item) {
+  if (!item) return '';
+  return `
+    <div class="modal-backdrop" id="evidence-modal" role="presentation">
+      <article class="source-modal" role="dialog" aria-modal="true" aria-labelledby="source-modal-title">
+        <div class="source-modal__header">
+          <div>
+            <p class="eyebrow">Source Text</p>
+            <h2 id="source-modal-title">${escapeHtml(item.title)}</h2>
+            <p>${escapeHtml(item.source)}</p>
+          </div>
+          <button class="icon-button" id="close-source-modal" type="button" aria-label="Close source text">
+            ${iconSvg(X)}
+          </button>
+        </div>
+        <div class="source-modal__meta">
+          <span>${escapeHtml(item.date)}</span>
+          <span>${confidenceLabel(item.confidence)}</span>
+          <span>Bias: ${escapeHtml(item.biasWarning)}</span>
+        </div>
+        <div class="source-modal__body">
+          <p>${escapeHtml(item.fullText ?? item.text ?? item.snippet ?? 'No source text is available for this evidence item.')}</p>
+        </div>
+      </article>
+    </div>
+  `;
+}
+
 export function createEvidencePanel(container, state, bundle, indexes) {
   function render(snapshot) {
     const evidence = evidenceForCurrentState(snapshot, bundle, indexes);
@@ -130,7 +158,7 @@ export function createEvidencePanel(container, state, bundle, indexes) {
             ? evidence
                 .map(
                   (item) => `
-                    <article class="evidence-card confidence-${escapeHtml(item.confidence)}" role="listitem" tabindex="0">
+                    <article class="evidence-card confidence-${escapeHtml(item.confidence)}" role="button" tabindex="0" data-evidence-id="${escapeHtml(item.id)}">
                       <div class="evidence-icon">${iconSvg(FileText, { width: 17, height: 17 })}</div>
                       <div class="evidence-card__body">
                         <div class="evidence-card__topline">
@@ -173,6 +201,26 @@ export function createEvidencePanel(container, state, bundle, indexes) {
     container.querySelector('#close-detail')?.addEventListener('click', () => {
       state.clearSelection();
       if (snapshot.hypothesisId) state.setHypothesis(null);
+    });
+    container.querySelectorAll('[data-evidence-id]').forEach((card) => {
+      const openModal = () => {
+        const item = indexes.evidenceById.get(card.dataset.evidenceId);
+        container.insertAdjacentHTML('beforeend', renderEvidenceModal(item));
+        const modal = container.querySelector('#evidence-modal');
+        const close = container.querySelector('#close-source-modal');
+        close?.focus();
+        close?.addEventListener('click', () => modal?.remove());
+        modal?.addEventListener('click', (event) => {
+          if (event.target === modal) modal.remove();
+        });
+      };
+      card.addEventListener('click', openModal);
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openModal();
+        }
+      });
     });
   }
 
