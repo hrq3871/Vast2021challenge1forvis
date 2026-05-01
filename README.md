@@ -26,6 +26,52 @@ Plan document  = D:\HKUST\5005 Data visualization\project-vast2021\MC1\code\task
 
 Raw VAST files are intentionally not committed to GitHub. The local `RAW_DATA_ROOT` folder must exist if you need to regenerate data.
 
+## Local Data Placement
+
+After cloning this repository, other teammates should keep the code and raw data in this layout:
+
+```text
+D:\HKUST\5005 Data visualization\project-vast2021
+├─ Team8_The_GAStech_Files_Visualizing_the_Threads_Behind_the_Kidnappings.pptx
+└─ MC1
+   ├─ code
+   │  ├─ README.md
+   │  ├─ package.json
+   │  ├─ scripts
+   │  ├─ src
+   │  └─ public
+   └─ MC1
+      ├─ EmployeeRecords.xlsx
+      ├─ email headers.csv
+      ├─ GAStechKronos-org-chart.pdf
+      ├─ FACTBOOK-Kronos.docx
+      ├─ FACTBOOK-Tethys.docx
+      ├─ A Map of Kronos.jpg
+      ├─ AnswerSheet
+      ├─ HistoricalDocuments
+      │  ├─ 10 year historical document clean.docx
+      │  └─ 5 year report clean.docx
+      ├─ News Articles
+      ├─ resumes
+      ├─ task1_results
+      │  └─ readme.md
+      └─ task2_results
+         ├─ readme.md
+         └─ task2_bias
+            ├─ task2_source_entity_bias.csv
+            ├─ task2_source_event_bias.csv
+            └─ task2_source_place_bias.csv
+```
+
+Important naming rule:
+
+- Use `task1_results`, not `任务1完成后的结果`.
+- Use `task2_results`, not `任务2完成后的结果`.
+
+If a teammate only wants to run the web app, the committed `public/data/*.json` files are enough. They do not need raw data.
+
+If a teammate wants to regenerate data with `npm run data`, the raw data folder above must exist on their machine.
+
 ## First Run
 
 Open PowerShell:

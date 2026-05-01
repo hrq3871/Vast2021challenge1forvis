@@ -38,13 +38,13 @@
 
 | 数据 | 绝对路径 | 用途 |
 |---|---|---|
-| 任务 1 结果目录 | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\任务1完成后的结果` | source primary/derivative 结果与处理后的新闻 |
-| 任务 1 readme | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\任务1完成后的结果\readme.md` | 理解任务 1 输出字段 |
-| 任务 2 结果目录 | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\任务2完成后的结果` | 新闻偏见结果 |
-| 任务 2 readme | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\任务2完成后的结果\readme.md` | 理解偏见 CSV 字段 |
-| source/entity bias | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\任务2完成后的结果\task2_bias\task2_source_entity_bias.csv` | 人物/组织偏见权重 |
-| source/event bias | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\任务2完成后的结果\task2_bias\task2_source_event_bias.csv` | 事件框架强度 |
-| source/place bias | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\任务2完成后的结果\task2_bias\task2_source_place_bias.csv` | 地点偏见权重 |
+| 任务 1 结果目录 | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\task1_results` | source primary/derivative 结果与处理后的新闻 |
+| 任务 1 readme | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\task1_results\readme.md` | 理解任务 1 输出字段 |
+| 任务 2 结果目录 | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\task2_results` | 新闻偏见结果 |
+| 任务 2 readme | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\task2_results\readme.md` | 理解偏见 CSV 字段 |
+| source/entity bias | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\task2_results\task2_bias\task2_source_entity_bias.csv` | 人物/组织偏见权重 |
+| source/event bias | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\task2_results\task2_bias\task2_source_event_bias.csv` | 事件框架强度 |
+| source/place bias | `D:\HKUST\5005 Data visualization\project-vast2021\MC1\MC1\task2_results\task2_bias\task2_source_place_bias.csv` | 地点偏见权重 |
 
 ### 0.4 代码与中间产物绝对路径
 
