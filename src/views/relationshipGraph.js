@@ -3,6 +3,13 @@ import { filterRelationshipGraph, getNeighborNodeIds } from '../utils/filters.js
 import { CONFIDENCE_STYLES, colorForGroup, relationLabel, shapeForNodeType } from '../utils/colors.js';
 import { summarizeConfidence } from '../utils/evidenceScoring.js';
 
+export const NODE_SHAPE_LEGEND = [
+  { shape: 'circle', label: 'Person' },
+  { shape: 'rounded-rect', label: 'Organization' },
+  { shape: 'diamond', label: 'Event' },
+  { shape: 'hex', label: 'Topic' },
+];
+
 function endpointId(endpoint) {
   return typeof endpoint === 'object' ? endpoint.id : endpoint;
 }
@@ -105,8 +112,21 @@ function nodeShape(selection, node) {
   }
 }
 
+function legendShape(selection, shape) {
+  if (shape === 'rounded-rect') {
+    selection.append('rect').attr('x', -10).attr('y', -6).attr('width', 20).attr('height', 12).attr('rx', 3);
+  } else if (shape === 'diamond') {
+    selection.append('path').attr('d', 'M0,-9 L12,0 L0,9 L-12,0 Z');
+  } else if (shape === 'hex') {
+    selection.append('path').attr('d', 'M-10,-6 L0,-11 L10,-6 L10,6 L0,11 L-10,6 Z');
+  } else {
+    selection.append('circle').attr('r', 7);
+  }
+}
+
 function drawLegend(svg, height) {
-  const legend = svg.append('g').attr('class', 'graph-legend').attr('transform', `translate(24, ${height - 214})`);
+  const legendHeight = 278;
+  const legend = svg.append('g').attr('class', 'graph-legend').attr('transform', `translate(24, ${height - legendHeight - 24})`);
   const groupRows = [
     ['GAStech', 'GAStech'],
     ['POK', 'POK'],
@@ -115,7 +135,7 @@ function drawLegend(svg, height) {
     ['Conflict', 'Incident'],
   ];
 
-  legend.append('rect').attr('class', 'legend-box').attr('width', 150).attr('height', 190).attr('rx', 8);
+  legend.append('rect').attr('class', 'legend-box').attr('width', 168).attr('height', legendHeight).attr('rx', 8);
   legend.append('text').attr('class', 'legend-title').attr('x', 20).attr('y', 26).text('Legend');
   groupRows.forEach(([group, label], index) => {
     const y = 48 + index * 18;
@@ -146,6 +166,14 @@ function drawLegend(svg, height) {
       .attr('class', `legend-line ${CONFIDENCE_STYLES[confidence].className}`)
       .attr('stroke-dasharray', CONFIDENCE_STYLES[confidence].dasharray);
     legend.append('text').attr('x', 50).attr('y', y + 4).text(label);
+  });
+
+  legend.append('text').attr('class', 'legend-title legend-subtitle').attr('x', 20).attr('y', 204).text('Shape');
+  NODE_SHAPE_LEGEND.forEach(({ shape, label }, index) => {
+    const y = 226 + index * 16;
+    const row = legend.append('g').attr('class', 'legend-shape-row').attr('transform', `translate(30, ${y})`);
+    legendShape(row, shape);
+    row.append('text').attr('x', 20).attr('y', 4).text(label);
   });
 }
 

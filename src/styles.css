@@ -2251,8 +2251,21 @@ body {
   font-weight: 800;
 }
 
+.graph-legend .legend-subtitle {
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
 .graph-legend .legend-color-dot {
   stroke: none;
+}
+
+.graph-legend .legend-shape-row circle,
+.graph-legend .legend-shape-row rect,
+.graph-legend .legend-shape-row path {
+  fill: rgba(102, 112, 133, 0.1);
+  stroke: #667085;
+  stroke-width: 1.4;
 }
 
 .legend-line {

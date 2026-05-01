@@ -7,6 +7,7 @@ import {
   getNeighborNodeIds,
 } from '../src/utils/filters.js';
 import { filterEmails } from '../src/views/emailNetwork.js';
+import { NODE_SHAPE_LEGEND } from '../src/views/relationshipGraph.js';
 import { buildCurvedTimelineLayout, sortTimelineEvents } from '../src/views/timelineView.js';
 import { rankEvidenceItems, summarizeConfidence } from '../src/utils/evidenceScoring.js';
 
@@ -250,6 +251,15 @@ describe('Task 3 graph data logic', () => {
     expect(layout.events.every((event) => Number.isFinite(event.x) && Number.isFinite(event.y))).toBe(true);
     expect(layout.path).toMatch(/^M \d+ \d+ C /);
     expect(layout.width).toBeGreaterThan(900);
+  });
+
+  it('documents graph node shapes in the in-canvas legend', () => {
+    expect(NODE_SHAPE_LEGEND).toEqual([
+      { shape: 'circle', label: 'Person' },
+      { shape: 'rounded-rect', label: 'Organization' },
+      { shape: 'diamond', label: 'Event' },
+      { shape: 'hex', label: 'Topic' },
+    ]);
   });
 
   it('returns evidence and first-hop neighbors for selected nodes or edges', () => {
