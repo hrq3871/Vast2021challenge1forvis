@@ -2,9 +2,11 @@ import { describe, expect, it } from 'vitest';
 import { buildIndexes, validateBundle } from '../src/dataLoader.js';
 import {
   filterRelationshipGraph,
+  filterEvents,
   getEvidenceForSelection,
   getNeighborNodeIds,
 } from '../src/utils/filters.js';
+import { filterEmails } from '../src/views/emailNetwork.js';
 import { rankEvidenceItems, summarizeConfidence } from '../src/utils/evidenceScoring.js';
 
 const sampleBundle = {
@@ -138,6 +140,65 @@ describe('Task 3 graph data logic', () => {
 
     expect(pokGraph.edges.map((edge) => edge.id)).toEqual(['edge_isia_pok']);
     expect(pokGraph.nodes.map((node) => node.id).sort()).toEqual(['org_pok', 'person_isia_vann']);
+  });
+
+  it('searches timeline events through linked nodes and evidence text', () => {
+    const indexes = buildIndexes(sampleBundle);
+
+    const sanjorgeEvents = filterEvents(
+      sampleBundle.events,
+      {
+        topic: 'all',
+        search: 'Sanjorge',
+      },
+      indexes,
+    );
+    const evidenceEvents = filterEvents(
+      sampleBundle.events,
+      {
+        topic: 'all',
+        search: 'government reception',
+      },
+      indexes,
+    );
+
+    expect(sanjorgeEvents.map((event) => event.id)).toEqual(['event_kidnapping']);
+    expect(evidenceEvents.map((event) => event.id)).toEqual(['event_kidnapping']);
+  });
+
+  it('keeps keyword email search broader than the default email topic lens', () => {
+    const emailEdges = [
+      {
+        id: 'email_arise',
+        source: 'person_a',
+        sourceLabel: 'Ada Campo',
+        sourceEmail: 'Ada.Campo@gastech.com.kronos',
+        target: 'person_b',
+        targetLabel: 'Ingrid Barranco',
+        targetEmail: 'Ingrid.Barranco@gastech.com.kronos',
+        subject: 'ARISE planning',
+        topic: 'arise',
+      },
+      {
+        id: 'email_sanjorge',
+        source: 'person_sanjorge',
+        sourceLabel: 'Sten Sanjorge Jr.',
+        sourceEmail: 'Sten.Sanjorge Jr.@gastech.com.tethys',
+        target: 'person_c',
+        targetLabel: 'Orhan Strum',
+        targetEmail: 'Orhan.Strum@gastech.com.kronos',
+        subject: 'IPO briefing',
+        topic: 'ipo',
+      },
+    ];
+
+    const emails = filterEmails(emailEdges, {
+      activeView: 'email',
+      topic: 'all',
+      search: 'Sanjorge',
+    });
+
+    expect(emails.map((edge) => edge.id)).toEqual(['email_sanjorge']);
   });
 
   it('returns evidence and first-hop neighbors for selected nodes or edges', () => {

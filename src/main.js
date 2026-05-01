@@ -88,7 +88,7 @@ async function boot() {
     app.classList.remove('is-loading');
 
     renderTopBar(document.querySelector('#topbar'), state, bundle);
-    renderLeftRail(document.querySelector('#left-rail'), state);
+    renderLeftRail(document.querySelector('#left-rail'), state, bundle);
     renderMetrics(document.querySelector('#metrics-strip'), bundle);
     bindViewVisibility(state);
 

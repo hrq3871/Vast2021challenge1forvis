@@ -6,6 +6,10 @@ function endpointId(endpoint) {
   return typeof endpoint === 'object' ? endpoint.id : endpoint;
 }
 
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
 function effectiveTopic(snapshot) {
   if (snapshot.topic !== 'all') return snapshot.topic;
   if (snapshot.activeView === 'official') return 'official_partnership';
@@ -117,7 +121,6 @@ export function createRelationshipGraph(container, state, bundle, indexes) {
     const zoomLayer = svg.append('g').attr('class', 'zoom-layer');
     const linkLayer = zoomLayer.append('g').attr('class', 'link-layer');
     const nodeLayer = zoomLayer.append('g').attr('class', 'node-layer');
-    drawLegend(svg);
 
     svg.call(
       d3
@@ -223,7 +226,12 @@ export function createRelationshipGraph(container, state, bundle, indexes) {
       }
     });
 
-    simulation.on('tick', () => {
+    function updatePositions() {
+      nodes.forEach((item) => {
+        item.x = clamp(item.x, 76, width - 76);
+        item.y = clamp(item.y, 74, height - 82);
+      });
+
       link
         .attr('x1', (edge) => edge.source.x)
         .attr('y1', (edge) => edge.source.y)
@@ -231,7 +239,11 @@ export function createRelationshipGraph(container, state, bundle, indexes) {
         .attr('y2', (edge) => edge.target.y);
 
       node.attr('transform', (item) => `translate(${item.x},${item.y})`);
-    });
+    }
+
+    simulation.on('tick', updatePositions);
+    simulation.tick(80);
+    updatePositions();
   }
 
   const resizeObserver = new ResizeObserver(() => render(state.get()));

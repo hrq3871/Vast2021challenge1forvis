@@ -8,6 +8,26 @@ function normalizeText(value) {
   return String(value ?? '').trim().toLowerCase();
 }
 
+function evidenceSearchText(item) {
+  if (!item) return '';
+  return [
+    item.id,
+    item.title,
+    item.source,
+    item.sourceRole,
+    item.confidence,
+    item.biasWarning,
+    item.date,
+    item.snippet,
+    ...(item.tags ?? []),
+  ].join(' ');
+}
+
+function nodeSearchText(node) {
+  if (!node) return '';
+  return [node.id, node.label, node.type, node.group, node.role].join(' ');
+}
+
 function dateInRange(date, range) {
   if (!range?.[0] || !range?.[1] || !date) return true;
   const value = new Date(date).getTime();
@@ -26,11 +46,21 @@ function edgeMatchesSearch(edge, indexes, query) {
   const evidenceText = (edge.evidenceIds ?? [])
     .map((id) => indexes.evidenceById.get(id))
     .filter(Boolean)
-    .map((item) => `${item.title} ${item.source} ${item.snippet}`)
+    .map(evidenceSearchText)
     .join(' ');
 
   const haystack = normalizeText(
-    `${edge.id} ${edge.relation} ${edge.confidence} ${source?.label} ${target?.label} ${evidenceText}`,
+    [
+      edge.id,
+      edge.relation,
+      edge.confidence,
+      edge.date,
+      edge.narrative,
+      ...(edge.topics ?? []),
+      nodeSearchText(source),
+      nodeSearchText(target),
+      evidenceText,
+    ].join(' '),
   );
 
   return haystack.includes(search);
@@ -134,12 +164,40 @@ export function getEvidenceForSelection(selection, bundle, indexes) {
   return rankEvidenceItems([...deduped.values()]);
 }
 
-export function filterEvents(events, filters = {}) {
+function eventMatchesSearch(event, indexes, query) {
+  const search = normalizeText(query);
+  if (!search) return true;
+
+  const linkedNodeText = (event.nodeIds ?? [])
+    .map((id) => indexes?.nodeById?.get(id))
+    .filter(Boolean)
+    .map(nodeSearchText)
+    .join(' ');
+  const linkedEvidenceText = (event.evidenceIds ?? [])
+    .map((id) => indexes?.evidenceById?.get(id))
+    .filter(Boolean)
+    .map(evidenceSearchText)
+    .join(' ');
+  const haystack = normalizeText(
+    [
+      event.id,
+      event.label,
+      event.type,
+      event.date,
+      event.description,
+      linkedNodeText,
+      linkedEvidenceText,
+    ].join(' '),
+  );
+
+  return haystack.includes(search);
+}
+
+export function filterEvents(events, filters = {}, indexes = null) {
   return events.filter((event) => {
     const topicMatch = !filters.topic || filters.topic === 'all' || event.type === filters.topic;
     const timeMatch = dateInRange(event.date, filters.timeRange);
-    const search = normalizeText(filters.search);
-    const textMatch = !search || normalizeText(`${event.label} ${event.type}`).includes(search);
+    const textMatch = eventMatchesSearch(event, indexes, filters.search);
 
     return topicMatch && timeMatch && textMatch;
   });

@@ -1,8 +1,8 @@
 export const GROUP_COLORS = {
-  GAStech: '#38bdf8',
-  Government: '#22c55e',
+  GAStech: '#3b82f6',
+  Government: '#22a06b',
   POK: '#ef4444',
-  APA: '#a78bfa',
+  APA: '#8b5cf6',
   Conflict: '#f59e0b',
 };
 

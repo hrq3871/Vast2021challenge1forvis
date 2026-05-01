@@ -30,10 +30,14 @@ function effectiveTimelineTopic(snapshot) {
 
 export function createTimelineView(container, state, bundle, indexes) {
   function render(snapshot) {
-    const events = filterEvents(bundle.events, {
-      ...snapshot,
-      topic: effectiveTimelineTopic(snapshot),
-    });
+    const events = filterEvents(
+      bundle.events,
+      {
+        ...snapshot,
+        topic: effectiveTimelineTopic(snapshot),
+      },
+      indexes,
+    );
 
     container.innerHTML = `
       <div class="timeline-heading">

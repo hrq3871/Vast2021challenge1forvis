@@ -5,18 +5,34 @@ import { iconSvg } from '../utils/icons.js';
 function effectiveEmailTopic(snapshot) {
   if (snapshot.hypothesisId === 'h_apa_arise_weak_risk') return 'arise';
   if (snapshot.topic === 'arise' || snapshot.topic === 'ipo' || snapshot.topic === 'security') return snapshot.topic;
+  if (snapshot.search?.trim()) return 'all';
   if (snapshot.activeView === 'email') return 'arise';
   return 'all';
 }
 
-function filterEmails(emailEdges, snapshot) {
+export function filterEmails(emailEdges, snapshot) {
   const topic = effectiveEmailTopic(snapshot);
   const query = snapshot.search.trim().toLowerCase();
   return emailEdges
     .filter((edge) => topic === 'all' || edge.topic === topic)
     .filter((edge) => {
       if (!query) return true;
-      return `${edge.sourceLabel} ${edge.targetLabel} ${edge.subject}`.toLowerCase().includes(query);
+      return [
+        edge.id,
+        edge.source,
+        edge.sourceLabel,
+        edge.sourceEmail,
+        edge.target,
+        edge.targetLabel,
+        edge.targetEmail,
+        edge.subject,
+        edge.topic,
+        edge.date,
+        edge.datetime,
+      ]
+        .join(' ')
+        .toLowerCase()
+        .includes(query);
     })
     .slice(0, 90);
 }
