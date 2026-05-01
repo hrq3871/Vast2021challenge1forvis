@@ -7,7 +7,7 @@ import {
   getNeighborNodeIds,
 } from '../src/utils/filters.js';
 import { filterEmails } from '../src/views/emailNetwork.js';
-import { sortTimelineEvents } from '../src/views/timelineView.js';
+import { buildCurvedTimelineLayout, sortTimelineEvents } from '../src/views/timelineView.js';
 import { rankEvidenceItems, summarizeConfidence } from '../src/utils/evidenceScoring.js';
 
 const sampleBundle = {
@@ -219,6 +219,37 @@ describe('Task 3 graph data logic', () => {
       'event_early_pok',
       'event_middle_email',
     ]);
+  });
+
+  it('builds a horizontal curved timeline layout without mutating input events', () => {
+    const events = [
+      { id: 'event_late_official', label: 'Official reception', date: '2014-01-20', type: 'official_partnership' },
+      { id: 'event_early_pok', label: 'POK founded', date: '1997-01-01', type: 'pollution' },
+      { id: 'event_same_day_a', label: 'Alpha email', date: '2014-01-13', type: 'email_anomaly' },
+      { id: 'event_same_day_b', label: 'Beta email', date: '2014-01-13', type: 'email_anomaly' },
+    ];
+
+    const layout = buildCurvedTimelineLayout(events);
+
+    expect(layout.events.map((event) => event.id)).toEqual([
+      'event_early_pok',
+      'event_same_day_a',
+      'event_same_day_b',
+      'event_late_official',
+    ]);
+    expect(events.map((event) => event.id)).toEqual([
+      'event_late_official',
+      'event_early_pok',
+      'event_same_day_a',
+      'event_same_day_b',
+    ]);
+    expect(layout.events[0].x).toBeLessThan(layout.events[1].x);
+    expect(layout.events[1].x).toBeLessThan(layout.events[2].x);
+    expect(layout.events[1].date).toBe(layout.events[2].date);
+    expect(layout.events[1].side).not.toBe(layout.events[2].side);
+    expect(layout.events.every((event) => Number.isFinite(event.x) && Number.isFinite(event.y))).toBe(true);
+    expect(layout.path).toMatch(/^M \d+ \d+ C /);
+    expect(layout.width).toBeGreaterThan(900);
   });
 
   it('returns evidence and first-hop neighbors for selected nodes or edges', () => {

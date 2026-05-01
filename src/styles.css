@@ -2100,96 +2100,139 @@ body {
 }
 
 .timeline-scroll-container {
-  overflow: visible;
-  padding: 28px 40px 60px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 20px 40px 36px;
 }
 
-.timeline-list {
+.curved-timeline-stage {
   position: relative;
-  display: grid;
-  gap: 0;
-  max-width: 1080px;
+  min-width: 100%;
   margin: 0 auto;
 }
 
-.timeline-list::before {
-  content: "";
+.curved-timeline-svg {
   position: absolute;
-  top: 12px;
-  bottom: 12px;
-  left: 168px;
-  width: 1px;
-  background: #d9e0ea;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
-.timeline-event-item {
-  position: relative;
-  display: grid;
-  grid-template-columns: 168px 28px minmax(0, 1fr);
-  gap: 0;
-  min-height: 92px;
-  border: 0;
-  border-radius: 0;
-  padding: 0 0 24px;
-  background: transparent;
+.timeline-curve-shadow {
+  fill: none;
+  stroke: rgba(15, 23, 42, 0.06);
+  stroke-linecap: round;
+  stroke-width: 12;
 }
 
-.timeline-event-item:hover {
-  background: transparent;
+.timeline-curve-path {
+  fill: none;
+  stroke: #d7dee8;
+  stroke-linecap: round;
+  stroke-width: 2;
 }
 
-.timeline-event-item.is-selected {
-  border-color: transparent;
-  background: transparent;
+.timeline-event-connector {
+  stroke: #d7dee8;
+  stroke-dasharray: 2 4;
+  stroke-linecap: round;
+  stroke-width: 1.5;
 }
 
-.timeline-event-marker {
-  position: relative;
-  display: grid;
-  grid-column: 2;
-  justify-items: center;
-  padding-top: 4px;
+.timeline-event-connector.is-selected {
+  stroke: #2563eb;
+  stroke-dasharray: none;
+  stroke-width: 2;
+}
+
+.timeline-event-pulse {
+  fill: #ffffff;
+  opacity: 0.92;
+  stroke: #e6eaf0;
+  stroke-width: 1;
+}
+
+.timeline-event-pulse.is-selected {
+  fill: #eff6ff;
+  stroke: #2563eb;
+  stroke-width: 2;
 }
 
 .timeline-event-dot {
-  position: relative;
-  z-index: 1;
-  width: 12px;
-  height: 12px;
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px #d9e0ea;
+  stroke: #ffffff;
+  stroke-width: 3;
+  filter: drop-shadow(0 2px 5px rgba(15, 23, 42, 0.14));
 }
 
-.timeline-event-card {
-  grid-column: 3;
-  max-width: 720px;
-  border: 1px solid #eef1f5;
-  border-radius: 8px;
-  padding: 14px 16px;
+.timeline-event-dot.is-selected {
+  stroke: #2563eb;
+  stroke-width: 4;
+}
+
+.timeline-event-hit {
+  fill: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.timeline-event-label-block {
+  position: absolute;
+  display: grid;
+  gap: 5px;
+  width: 176px;
+  min-height: 78px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 10px 12px;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.timeline-event-label-block:hover,
+.timeline-event-label-block:focus-visible {
+  border-color: #d8dee8;
   background: #ffffff;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  outline: none;
+}
+
+.timeline-event-label-block.is-selected {
+  border-color: rgba(37, 99, 235, 0.28);
+  background: #eff6ff;
+}
+
+.timeline-event-label-block.is-above {
+  align-content: end;
+}
+
+.timeline-event-label-block.is-below {
+  align-content: start;
 }
 
 .timeline-event-date {
-  grid-column: 1;
-  padding: 2px 18px 0 0;
   color: #667085;
   font-size: 12px;
   font-weight: 700;
-  text-align: right;
+  line-height: 1;
 }
 
 .timeline-event-label {
+  display: block;
   color: #101828;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.28;
 }
 
 .timeline-event-type {
-  margin-top: 8px;
   color: #8a94a6;
   font-size: 12px;
+  line-height: 1;
   text-transform: capitalize;
 }
 
@@ -2296,30 +2339,15 @@ body {
   }
 
   .timeline-scroll-container {
-    padding: 20px 18px 36px;
+    padding: 18px 18px 32px;
   }
 
-  .timeline-list::before {
-    left: 8px;
+  .timeline-event-label-block {
+    width: 154px;
+    padding: 9px 10px;
   }
 
-  .timeline-event-item {
-    grid-template-columns: 28px minmax(0, 1fr);
-  }
-
-  .timeline-event-date {
-    grid-column: 2;
-    margin-bottom: 8px;
-    padding: 0;
-    text-align: left;
-  }
-
-  .timeline-event-marker {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-  }
-
-  .timeline-event-card {
-    grid-column: 2;
+  .timeline-event-label {
+    font-size: 12px;
   }
 }
