@@ -6,7 +6,7 @@ import { createEmailNetwork } from './views/emailNetwork.js';
 import { createEvidencePanel } from './views/evidencePanel.js';
 import { createHypothesisExplorer } from './views/hypothesisExplorer.js';
 import { createRelationshipGraph } from './views/relationshipGraph.js';
-import { renderLeftRail, renderTopBar } from './views/searchPanel.js';
+import { renderTopBar } from './views/searchPanel.js';
 import { createTimelineView } from './views/timelineView.js';
 
 const app = document.querySelector('#app');
@@ -14,23 +14,24 @@ const app = document.querySelector('#app');
 function renderShell() {
   app.innerHTML = `
     <header class="topbar" id="topbar"></header>
-    <div class="workspace-shell">
-      <nav class="left-rail" id="left-rail" aria-label="Analysis views"></nav>
-      <main id="main" class="main-workspace" tabindex="-1">
-        <section class="workspace-summary" aria-live="polite">
-          <div>
-            <p class="eyebrow">Current Lens</p>
-            <h2 id="workspace-title">Overview network</h2>
-          </div>
-          <div class="metrics-strip" id="metrics-strip"></div>
-        </section>
-        <section class="analysis-panel graph-panel" id="graph-panel" aria-label="Relationship graph"></section>
-        <section class="analysis-panel email-panel" id="email-panel" aria-label="Email network"></section>
-        <section class="analysis-panel hypothesis-panel" id="hypothesis-panel" aria-label="Hypothesis explorer"></section>
-      </main>
-      <aside class="evidence-panel" id="evidence-panel" aria-label="Evidence panel"></aside>
-    </div>
-    <footer class="timeline-panel" id="timeline-panel"></footer>
+    <main id="main" class="page-workspace" tabindex="-1">
+      <section class="workspace-shell" aria-label="Investigation workspace">
+        <div class="main-workspace">
+          <section class="workspace-summary" aria-live="polite">
+            <div>
+              <p class="eyebrow">Current Lens</p>
+              <h2 id="workspace-title">Overview network</h2>
+            </div>
+            <div class="metrics-strip" id="metrics-strip"></div>
+          </section>
+          <section class="analysis-panel graph-panel" id="graph-panel" aria-label="Relationship graph"></section>
+          <section class="analysis-panel email-panel" id="email-panel" aria-label="Email network"></section>
+          <section class="analysis-panel hypothesis-panel" id="hypothesis-panel" aria-label="Hypothesis explorer"></section>
+        </div>
+        <aside class="evidence-panel" id="evidence-panel" aria-label="Evidence panel"></aside>
+      </section>
+      <section class="timeline-panel" id="timeline-panel" aria-label="Evidence timeline"></section>
+    </main>
   `;
 }
 
@@ -88,7 +89,6 @@ async function boot() {
     app.classList.remove('is-loading');
 
     renderTopBar(document.querySelector('#topbar'), state, bundle);
-    renderLeftRail(document.querySelector('#left-rail'), state, bundle);
     renderMetrics(document.querySelector('#metrics-strip'), bundle);
     bindViewVisibility(state);
 

@@ -10,6 +10,27 @@ function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
 
+function centerLayout(nodes, width, height) {
+  const bounds = nodes.reduce(
+    (acc, node) => ({
+      minX: Math.min(acc.minX, node.x),
+      maxX: Math.max(acc.maxX, node.x),
+      minY: Math.min(acc.minY, node.y),
+      maxY: Math.max(acc.maxY, node.y),
+    }),
+    { minX: Infinity, maxX: -Infinity, minY: Infinity, maxY: -Infinity },
+  );
+
+  if (!Number.isFinite(bounds.minX) || !Number.isFinite(bounds.minY)) return;
+
+  const dx = width / 2 - (bounds.minX + bounds.maxX) / 2;
+  const dy = height / 2 - (bounds.minY + bounds.maxY) / 2;
+  nodes.forEach((node) => {
+    node.x += dx;
+    node.y += dy;
+  });
+}
+
 function effectiveTopic(snapshot) {
   if (snapshot.topic !== 'all') return snapshot.topic;
   if (snapshot.activeView === 'official') return 'official_partnership';
@@ -39,41 +60,47 @@ function nodeShape(selection, node) {
   }
 }
 
-function drawLegend(svg) {
-  const legend = svg.append('g').attr('class', 'graph-legend').attr('transform', 'translate(22, 22)');
-  const rows = [
-    ['circle', 'Person'],
-    ['rounded-rect', 'Organization'],
-    ['diamond', 'Event'],
-    ['hex', 'Topic'],
+function drawLegend(svg, height) {
+  const legend = svg.append('g').attr('class', 'graph-legend').attr('transform', `translate(24, ${height - 214})`);
+  const groupRows = [
+    ['GAStech', 'GAStech'],
+    ['POK', 'POK'],
+    ['Government', 'Government'],
+    ['APA', 'APA'],
+    ['Conflict', 'Incident'],
   ];
 
-  legend.append('text').attr('class', 'legend-title').attr('x', 0).attr('y', 0).text('Encoding');
-  rows.forEach(([shape, label], index) => {
-    const row = legend.append('g').attr('transform', `translate(0, ${24 + index * 24})`);
-    if (shape === 'circle') row.append('circle').attr('r', 7).attr('cx', 8).attr('cy', 0);
-    if (shape === 'rounded-rect') row.append('rect').attr('width', 16).attr('height', 12).attr('x', 0).attr('y', -6).attr('rx', 3);
-    if (shape === 'diamond') row.append('path').attr('d', 'M8,-8 L16,0 L8,8 L0,0 Z');
-    if (shape === 'hex') row.append('path').attr('d', 'M2,-6 L8,-10 L14,-6 L14,6 L8,10 L2,6 Z');
-    row.append('text').attr('x', 28).attr('y', 4).text(label);
+  legend.append('rect').attr('class', 'legend-box').attr('width', 150).attr('height', 190).attr('rx', 8);
+  legend.append('text').attr('class', 'legend-title').attr('x', 20).attr('y', 26).text('Legend');
+  groupRows.forEach(([group, label], index) => {
+    const y = 48 + index * 18;
+    const row = legend.append('g').attr('transform', `translate(20, ${y})`);
+    row
+      .append('circle')
+      .attr('class', 'legend-color-dot')
+      .attr('r', 5)
+      .attr('cx', 5)
+      .attr('cy', 0)
+      .style('fill', colorForGroup(group));
+    row.append('text').attr('x', 22).attr('y', 4).text(label);
   });
 
   const lineRows = [
-    ['confirmed', 'confirmed'],
-    ['probable', 'probable'],
-    ['hypothesis', 'hypothesis'],
+    ['confirmed', 'Confirmed'],
+    ['probable', 'Probable'],
+    ['hypothesis', 'Hypothesis'],
   ];
   lineRows.forEach(([confidence, label], index) => {
-    const y = 136 + index * 22;
+    const y = 132 + index * 18;
     legend
       .append('line')
-      .attr('x1', 0)
-      .attr('x2', 22)
+      .attr('x1', 20)
+      .attr('x2', 40)
       .attr('y1', y)
       .attr('y2', y)
       .attr('class', `legend-line ${CONFIDENCE_STYLES[confidence].className}`)
       .attr('stroke-dasharray', CONFIDENCE_STYLES[confidence].dasharray);
-    legend.append('text').attr('x', 28).attr('y', y + 4).text(label);
+    legend.append('text').attr('x', 50).attr('y', y + 4).text(label);
   });
 }
 
@@ -121,6 +148,7 @@ export function createRelationshipGraph(container, state, bundle, indexes) {
     const zoomLayer = svg.append('g').attr('class', 'zoom-layer');
     const linkLayer = zoomLayer.append('g').attr('class', 'link-layer');
     const nodeLayer = zoomLayer.append('g').attr('class', 'node-layer');
+    drawLegend(svg, height);
 
     svg.call(
       d3
@@ -242,7 +270,9 @@ export function createRelationshipGraph(container, state, bundle, indexes) {
     }
 
     simulation.on('tick', updatePositions);
-    simulation.tick(80);
+    simulation.stop();
+    simulation.tick(180);
+    centerLayout(nodes, width, height);
     updatePositions();
   }
 

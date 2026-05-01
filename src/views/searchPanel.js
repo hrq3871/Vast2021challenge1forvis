@@ -1,6 +1,14 @@
 import { Building2, LayoutGrid, Lightbulb, Mail, RotateCcw, Search, Users, X } from 'lucide';
 import { iconSvg } from '../utils/icons.js';
 
+const VIEWS = [
+  ['overview', 'Overview', LayoutGrid],
+  ['official', 'Official', Building2],
+  ['pok', 'POK Motive', Users],
+  ['email', 'Email Network', Mail],
+  ['hypothesis', 'Hypotheses', Lightbulb],
+];
+
 export function renderTopBar(container, state, bundle) {
   const topics = [
     ['all', 'All Topics'],
@@ -50,6 +58,16 @@ export function renderTopBar(container, state, bundle) {
         Reset
       </button>
     </div>
+    <nav class="view-tabs" aria-label="Analysis views">
+      ${VIEWS.map(
+        ([id, label, icon]) => `
+          <button class="view-tab" type="button" data-view="${id}" aria-pressed="false">
+            ${iconSvg(icon, { width: 16, height: 16 })}
+            <span>${label}</span>
+          </button>
+        `,
+      ).join('')}
+    </nav>
   `;
 
   const searchInput = container.querySelector('#global-search');
@@ -62,72 +80,14 @@ export function renderTopBar(container, state, bundle) {
   topicFilter.addEventListener('change', (event) => state.setTopic(event.target.value));
   hypothesisFilter.addEventListener('change', (event) => state.setHypothesis(event.target.value || null));
   container.querySelector('#reset-workbench').addEventListener('click', () => state.reset());
-
-  state.subscribe((snapshot) => {
-    if (document.activeElement !== searchInput) searchInput.value = snapshot.search;
-    topicFilter.value = snapshot.topic;
-    hypothesisFilter.value = snapshot.hypothesisId ?? '';
-  });
-}
-
-export function renderLeftRail(container, state, bundle) {
-  const views = [
-    ['overview', 'Overview', 'Network', LayoutGrid],
-    ['official', 'Official', 'Government', Building2],
-    ['pok', 'POK Motive', 'Activism', Users],
-    ['email', 'Email Network', 'Messages', Mail],
-    ['hypothesis', 'Hypotheses', 'Paths', Lightbulb],
-  ];
-
-  container.innerHTML = `
-    <div class="rail-section">
-      <div class="rail-section-title">Views</div>
-      <div class="rail-nav">
-        ${views
-          .map(
-            ([id, label, short, icon]) => `
-              <button class="rail-button" type="button" data-view="${id}" aria-pressed="false">
-                <span class="rail-icon">${iconSvg(icon, { width: 16, height: 16 })}</span>
-                <span>
-                  <strong>${label}</strong>
-                  <small>${short}</small>
-                </span>
-              </button>
-            `,
-          )
-          .join('')}
-      </div>
-    </div>
-    <div class="rail-section">
-      <div class="rail-section-title">Data Overview</div>
-      <div class="rail-stats">
-        <span><strong>${bundle.nodes.length}</strong>Nodes</span>
-        <span><strong>${bundle.edges.length}</strong>Relations</span>
-        <span><strong>${bundle.evidence.length}</strong>Evidence</span>
-        <span><strong>${bundle.events.length}</strong>Events</span>
-      </div>
-    </div>
-    <div class="rail-section rail-legend">
-      <div class="rail-section-title">Legend</div>
-      <div class="legend-list">
-        <span><i class="legend-dot legend-gastech"></i>GAStech</span>
-        <span><i class="legend-dot legend-government"></i>Government</span>
-        <span><i class="legend-dot legend-pok"></i>POK</span>
-        <span><i class="legend-dot legend-apa"></i>APA</span>
-      </div>
-      <div class="line-legend">
-        <span><i class="line-solid"></i>Confirmed</span>
-        <span><i class="line-dashed"></i>Probable</span>
-        <span><i class="line-dotted"></i>Hypothesis</span>
-      </div>
-    </div>
-  `;
-
   container.querySelectorAll('[data-view]').forEach((button) => {
     button.addEventListener('click', () => state.setActiveView(button.dataset.view));
   });
 
   state.subscribe((snapshot) => {
+    if (document.activeElement !== searchInput) searchInput.value = snapshot.search;
+    topicFilter.value = snapshot.topic;
+    hypothesisFilter.value = snapshot.hypothesisId ?? '';
     container.querySelectorAll('[data-view]').forEach((button) => {
       const active = button.dataset.view === snapshot.activeView;
       button.classList.toggle('is-active', active);
