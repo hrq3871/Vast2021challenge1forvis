@@ -1,0 +1,152 @@
+[
+  {
+    "id": "org_gastech",
+    "label": "GAStech",
+    "type": "organization",
+    "group": "GAStech",
+    "importance": 1.0
+  },
+  {
+    "id": "org_government",
+    "label": "Kronos Government",
+    "type": "organization",
+    "group": "Government",
+    "importance": 0.92
+  },
+  {
+    "id": "org_pok",
+    "label": "Protectors of Kronos",
+    "type": "organization",
+    "group": "POK",
+    "importance": 0.94
+  },
+  {
+    "id": "org_apa",
+    "label": "Asterian People's Army",
+    "type": "organization",
+    "group": "APA",
+    "importance": 0.72
+  },
+  {
+    "id": "dept_security",
+    "label": "GAStech Security",
+    "type": "organization",
+    "group": "GAStech",
+    "importance": 0.72
+  },
+  {
+    "id": "topic_ipo",
+    "label": "IPO Wealth",
+    "type": "topic",
+    "group": "GAStech",
+    "importance": 0.66
+  },
+  {
+    "id": "topic_arise",
+    "label": "Arise Magazine / Subject",
+    "type": "topic",
+    "group": "APA",
+    "importance": 0.55
+  },
+  {
+    "id": "topic_government_reception",
+    "label": "Government Reception",
+    "type": "event",
+    "group": "Government",
+    "importance": 0.75
+  },
+  {
+    "id": "event_kidnapping",
+    "label": "GAStech Kidnapping",
+    "type": "event",
+    "group": "Conflict",
+    "importance": 1.0
+  },
+  {
+    "id": "event_pollution",
+    "label": "Tiskele Water Contamination",
+    "type": "event",
+    "group": "POK",
+    "importance": 0.88
+  },
+  {
+    "id": "person_sanjorge",
+    "label": "Sten Sanjorge Jr.",
+    "type": "person",
+    "group": "GAStech",
+    "role": "President and CEO",
+    "importance": 0.96
+  },
+  {
+    "id": "person_isia_vann",
+    "label": "Isia Vann",
+    "type": "person",
+    "group": "GAStech",
+    "role": "Security / Perimeter Control",
+    "importance": 0.92
+  },
+  {
+    "id": "person_juliana_vann",
+    "label": "Juliana Vann",
+    "type": "person",
+    "group": "POK",
+    "role": "Pollution victim and POK symbol",
+    "importance": 0.78
+  },
+  {
+    "id": "person_mandor_vann",
+    "label": "Mandor Vann",
+    "type": "person",
+    "group": "POK",
+    "role": "POK political strategist",
+    "importance": 0.78
+  },
+  {
+    "id": "person_rachel_pantanal",
+    "label": "Rachel Pantanal",
+    "type": "person",
+    "group": "GAStech",
+    "role": "Assistant to CIO",
+    "importance": 0.45
+  },
+  {
+    "id": "person_ruscella_mies_haber",
+    "label": "Ruscella Mies Haber",
+    "type": "person",
+    "group": "GAStech",
+    "role": "Administration",
+    "importance": 0.54
+  },
+  {
+    "id": "person_inga_ferro",
+    "label": "Inga Ferro",
+    "type": "person",
+    "group": "GAStech",
+    "role": "Security",
+    "importance": 0.42
+  },
+  {
+    "id": "person_loreto_bodrogi",
+    "label": "Loreto Bodrogi",
+    "type": "person",
+    "group": "GAStech",
+    "role": "Security",
+    "importance": 0.5
+  },
+  {
+    "id": "person_hennie_osvaldo",
+    "label": "Hennie Osvaldo",
+    "type": "person",
+    "group": "GAStech",
+    "role": "Security",
+    "importance": 0.5
+  },
+  {
+    "id": "person_minke_mies",
+    "label": "Minke Mies",
+    "type": "person",
+    "group": "GAStech",
+    "role": "Security",
+    "importance": 0.5
+  }
+]
