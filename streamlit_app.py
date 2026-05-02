@@ -120,6 +120,91 @@ def render_streamlit_shell() -> None:
             padding: var(--streamlit-top-safe-area) 0 0;
           }
 
+          .deploy-top-actions {
+            position: fixed;
+            top: 8px;
+            right: 16px;
+            z-index: 100000;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            height: 34px;
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            border-radius: 999px;
+            padding: 3px 5px 3px 10px;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            backdrop-filter: blur(12px);
+            color: #111827;
+            font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+          }
+
+          .deploy-top-actions a,
+          .deploy-top-actions span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 26px;
+            border-radius: 999px;
+            color: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1;
+            text-decoration: none;
+            white-space: nowrap;
+          }
+
+          .deploy-top-actions__label {
+            padding: 0 8px 0 0;
+            color: #475467;
+            font-size: 12px !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+          }
+
+          .deploy-top-actions__link {
+            gap: 6px;
+            padding: 0 9px;
+            transition: background 140ms ease, color 140ms ease;
+          }
+
+          .deploy-top-actions__link:hover {
+            background: #eef2f7;
+            color: #0f172a;
+          }
+
+          .deploy-top-actions__icon {
+            width: 28px;
+            padding: 0;
+          }
+
+          .deploy-top-actions svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+          }
+
+          @media (max-width: 760px) {
+            .deploy-top-actions {
+              right: 8px;
+              gap: 4px;
+            }
+
+            .deploy-top-actions__label {
+              display: none !important;
+            }
+
+            .deploy-top-actions__link {
+              padding: 0 7px;
+              font-size: 12px;
+            }
+          }
+
           .stApp > header,
           [data-testid="stHeader"] {
             height: 0 !important;
@@ -147,6 +232,25 @@ def render_streamlit_shell() -> None:
             border: 0;
           }
         </style>
+        <div class="deploy-top-actions" aria-label="Project actions">
+          <span class="deploy-top-actions__label">VAST MC1</span>
+          <a class="deploy-top-actions__link" href="https://github.com/hrq3871/Vast2021challenge1forvis" target="_blank" rel="noreferrer">
+            Share
+          </a>
+          <a class="deploy-top-actions__link deploy-top-actions__icon" href="https://github.com/hrq3871/Vast2021challenge1forvis" target="_blank" rel="noreferrer" aria-label="Open GitHub repository">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1.2-3.7c4 0 8.2-2 8.2-8.6A6.7 6.7 0 0 0 20.1 1S18.6.5 15 2.8a16.4 16.4 0 0 0-6 0C5.4.5 3.9 1 3.9 1A6.7 6.7 0 0 0 2 5.7c0 6.6 4.2 8.6 8.2 8.6A4.8 4.8 0 0 0 9 18v4"></path>
+              <path d="M9 18c-4.5 2-5-2-7-2"></path>
+            </svg>
+          </a>
+          <span class="deploy-top-actions__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="5" r="1"></circle>
+              <circle cx="12" cy="12" r="1"></circle>
+              <circle cx="12" cy="19" r="1"></circle>
+            </svg>
+          </span>
+        </div>
         """,
         unsafe_allow_html=True,
     )
