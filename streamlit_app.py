@@ -11,7 +11,8 @@ import streamlit.components.v1 as components
 ROOT = Path(__file__).parent
 DIST_DIR = ROOT / "dist"
 DATA_DIR = ROOT / "public" / "data"
-APP_HEIGHT = 1040
+STREAMLIT_TOP_SAFE_AREA = 48
+APP_HEIGHT = 1040 + STREAMLIT_TOP_SAFE_AREA
 
 
 def _read_text(path: Path, *, encoding: str = "utf-8") -> str:
@@ -105,21 +106,40 @@ def render_streamlit_shell() -> None:
     st.markdown(
         """
         <style>
+          :root {
+            --streamlit-top-safe-area: 48px;
+          }
+
           .stApp {
             background: #f6f7fb;
           }
 
           .block-container {
             max-width: none;
-            padding: 0;
+            margin: 0;
+            padding: var(--streamlit-top-safe-area) 0 0;
+          }
+
+          .stApp > header,
+          [data-testid="stHeader"] {
+            height: 0 !important;
+            min-height: 0 !important;
+            background: transparent !important;
+            pointer-events: none !important;
+            visibility: hidden !important;
           }
 
           header,
           footer,
           [data-testid="stToolbar"],
+          [data-testid="stToolbarActions"],
           [data-testid="stDecoration"],
-          [data-testid="stStatusWidget"] {
-            display: none;
+          [data-testid="stStatusWidget"],
+          [data-testid="stMainMenu"] {
+            display: none !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            visibility: hidden !important;
           }
 
           iframe {
