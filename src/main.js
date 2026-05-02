@@ -70,7 +70,7 @@ async function boot() {
       if (event.key === 'Escape') state.clearSelection();
     });
 
-    state.setActiveView('overview');
+    state.setActiveView('pok');
   } catch (error) {
     console.error(error);
     app.classList.remove('is-loading');
@@ -84,4 +84,5 @@ async function boot() {
   }
 }
 
+// Initializing the investigation workbench...
 boot();

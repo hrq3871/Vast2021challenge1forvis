@@ -16,8 +16,6 @@ const EVENT_GROUP = {
 
 function effectiveTimelineTopic(snapshot) {
   if (snapshot.topic !== 'all') return snapshot.topic;
-  if (snapshot.activeView === 'official') return 'government_reception';
-  if (snapshot.activeView === 'pok') return 'pollution';
   return 'all';
 }
 

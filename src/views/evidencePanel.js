@@ -45,7 +45,7 @@ function evidenceForCurrentState(snapshot, bundle, indexes) {
     );
   }
 
-  return rankEvidenceItems(bundle.evidence).slice(0, 8);
+  return rankEvidenceItems(bundle.evidence);
 }
 
 function selectionTitle(snapshot, bundle, indexes) {
