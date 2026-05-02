@@ -145,9 +145,39 @@ npm audit
 
 Expected current result:
 
-- 9 tests pass.
+- 15 tests pass.
 - production build succeeds.
 - `npm audit` reports 0 vulnerabilities.
+
+## Streamlit Community Cloud Deployment
+
+This project keeps the current Vite/D3 interface and uses Streamlit only as the public hosting shell. The entrypoint is `streamlit_app.py`, which embeds the production Vite build and serves the checked-in JSON data to the existing frontend.
+
+Before deploying, make sure these files are committed:
+
+- `streamlit_app.py`
+- `requirements.txt`
+- `public/data/*.json`
+- `dist/index.html`
+- `dist/assets/*.js`
+- `dist/assets/*.css`
+
+Local preview:
+
+```powershell
+npm install
+npm run build
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
+
+Streamlit Cloud settings:
+
+- Repository: `hrq3871/Vast2021challenge1forvis`
+- Branch: `main`
+- Main file path: `streamlit_app.py`
+
+After deployment, Streamlit will give you a public `https://*.streamlit.app` URL.
 
 ## How To Use The App
 
@@ -214,7 +244,7 @@ tests/*.test.js                     regression tests
 Do not commit:
 
 - `node_modules/`
-- `dist/`
+- `dist/**/*.map`
 - local logs
 - raw VAST data under `MC1/`
 
