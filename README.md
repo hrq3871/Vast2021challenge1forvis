@@ -145,31 +145,9 @@ npm audit
 
 Expected current result:
 
-- 15 tests pass.
+- 9 tests pass.
 - production build succeeds.
 - `npm audit` reports 0 vulnerabilities.
-
-## Streamlit Deployment
-
-The repository includes a Streamlit wrapper at `streamlit_app.py`. It embeds the Vite production build and intercepts the app's `./data/*.json` fetches so the existing D3 interface can run inside Streamlit without a separate Vite server.
-
-Local Streamlit run:
-
-```powershell
-npm install
-npm run build
-pip install -r requirements.txt
-streamlit run streamlit_app.py
-```
-
-Streamlit Cloud settings:
-
-- Repository: this GitHub repository.
-- Branch: `main`.
-- Main file path: `streamlit_app.py`.
-- Python dependencies: `requirements.txt`.
-
-Deployment note: keep the built `dist/index.html`, `dist/assets/*.js`, and `dist/assets/*.css` files committed. They are needed because Streamlit Cloud installs Python dependencies but does not automatically run the Vite build.
 
 ## How To Use The App
 
@@ -236,7 +214,7 @@ tests/*.test.js                     regression tests
 Do not commit:
 
 - `node_modules/`
-- `dist/**/*.map`
+- `dist/`
 - local logs
 - raw VAST data under `MC1/`
 
