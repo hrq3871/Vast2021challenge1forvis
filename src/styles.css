@@ -1044,6 +1044,221 @@ button:active {
   font-weight: 800;
 }
 
+.four-org-stage {
+  display: grid;
+  grid-template-columns: minmax(520px, 1.35fr) repeat(3, minmax(280px, 1fr));
+  gap: 18px;
+  align-items: start;
+  min-width: 1400px;
+}
+
+.org-column,
+.external-org-panel {
+  min-width: 0;
+}
+
+.gastech-column .org-root {
+  width: 100%;
+  margin: 0 0 18px;
+}
+
+.gastech-column .department-grid {
+  grid-template-columns: 1fr;
+}
+
+.external-org-grid {
+  display: contents;
+}
+
+.external-org-panel {
+  border: 1px solid #dfe6ef;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
+  overflow: hidden;
+}
+
+.external-org-header {
+  display: grid;
+  gap: 14px;
+  min-height: 186px;
+  padding: 18px;
+  border-top: 5px solid #94a3b8;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.org-accent-pok .external-org-header {
+  border-top-color: #ef4444;
+}
+
+.org-accent-apa .external-org-header {
+  border-top-color: #8b5cf6;
+}
+
+.org-accent-government .external-org-header {
+  border-top-color: #22a06b;
+}
+
+.external-org-header h3 {
+  margin: 2px 0 6px;
+  color: #111827;
+  font-size: 19px;
+  line-height: 1.18;
+}
+
+.external-org-header span,
+.org-role-card em,
+.org-relation-card em,
+.org-objective-list {
+  color: #667085;
+  font-style: normal;
+}
+
+.org-metric-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.org-metric-strip b {
+  border: 1px solid #d7dee8;
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #ffffff;
+  color: #344054;
+  font-size: 11px;
+}
+
+.org-panel-section {
+  display: grid;
+  gap: 10px;
+  padding: 16px 18px;
+  border-top: 1px solid #eef1f5;
+}
+
+.org-panel-section h4 {
+  margin: 0;
+  color: #111827;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.org-role-grid,
+.org-relation-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.org-role-card,
+.org-relation-card {
+  width: 100%;
+  border: 1px solid #e4e9f1;
+  border-radius: 8px;
+  padding: 11px 12px;
+  background: #ffffff;
+  color: inherit;
+  text-align: left;
+}
+
+.org-role-card {
+  display: grid;
+  gap: 4px;
+  min-height: 94px;
+}
+
+.org-role-card strong,
+.org-relation-card strong {
+  color: #111827;
+  font-weight: 800;
+}
+
+.org-role-card span,
+.org-relation-card span {
+  color: #344054;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.org-role-card em,
+.org-relation-card em {
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.org-objective-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.42;
+}
+
+.org-relation-card {
+  display: grid;
+  gap: 5px;
+  border-left-width: 4px;
+}
+
+.org-relation-card.confidence-confirmed {
+  border-left-color: #22a06b;
+}
+
+.org-relation-card.confidence-probable {
+  border-left-color: #f59e0b;
+}
+
+.org-relation-card.confidence-hypothesis {
+  border-left-color: #8b5cf6;
+}
+
+.org-role-card:hover,
+.org-role-card.is-selected,
+.org-relation-card:hover,
+.org-relation-card.is-selected {
+  border-color: #93c5fd;
+  background: #eff6ff;
+}
+
+.org-role-card.is-search-hit,
+.org-relation-card.is-search-hit {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.14);
+}
+
+@media (max-width: 1400px) {
+  .four-org-stage {
+    grid-template-columns: minmax(500px, 1.1fr) minmax(300px, 0.9fr);
+    min-width: 980px;
+  }
+
+  .external-org-grid {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (max-width: 820px) {
+  .four-org-stage {
+    grid-template-columns: 1fr;
+    min-width: 0;
+  }
+
+  .external-org-grid {
+    display: grid;
+    grid-column: auto;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .external-org-header {
+    min-height: 0;
+  }
+}
+
 .sankey-canvas {
   height: calc(100% - 122px);
   min-height: 560px;

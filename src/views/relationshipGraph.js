@@ -213,6 +213,218 @@ function personNodeIdFromEmail(email) {
     .toLowerCase()}`;
 }
 
+function includesSearch(value, search) {
+  return Boolean(search) && String(value ?? '').toLowerCase().includes(search);
+}
+
+function evidenceTitle(bundle, evidenceId) {
+  return bundle.evidence.find((item) => item.id === evidenceId)?.title ?? evidenceId;
+}
+
+function makeRelationCard(edge, bundle, nodeById) {
+  if (!edge) {
+    return {
+      id: 'missing_relation',
+      label: 'Missing relation',
+      meta: 'Evidence gap',
+      confidence: 'hypothesis',
+      evidence: 'No matching edge found',
+    };
+  }
+
+  const source = nodeById.get(edge.source)?.label ?? edge.source;
+  const target = nodeById.get(edge.target)?.label ?? edge.target;
+
+  return {
+    id: edge.id,
+    label: `${source} -> ${target}`,
+    meta: relationLabel(edge.relation),
+    confidence: edge.confidence,
+    evidence: (edge.evidenceIds ?? []).map((id) => evidenceTitle(bundle, id)).join(' | '),
+  };
+}
+
+function orgRoleCard({ id, label, role, note, nodeId }) {
+  return { id, label, role, note, nodeId };
+}
+
+function renderRoleCards(roles, selectedEntityId, search) {
+  return roles
+    .map((role) => {
+      const text = [role.label, role.role, role.note].join(' ');
+      const matches = includesSearch(text, search);
+      const selected = role.nodeId && selectedEntityId === role.nodeId;
+      return `
+        <button class="org-role-card ${matches ? 'is-search-hit' : ''} ${selected ? 'is-selected' : ''}" type="button" ${
+          role.nodeId ? `data-node="${escapeHtml(role.nodeId)}"` : ''
+        }>
+          <strong>${escapeHtml(role.label)}</strong>
+          <span>${escapeHtml(role.role)}</span>
+          <em>${escapeHtml(role.note)}</em>
+        </button>
+      `;
+    })
+    .join('');
+}
+
+function renderRelationCards(relations, selectedEdgeId, search) {
+  return relations
+    .map((relation) => {
+      const text = [relation.label, relation.meta, relation.confidence, relation.evidence].join(' ');
+      const matches = includesSearch(text, search);
+      const selected = selectedEdgeId === relation.id;
+      return `
+        <button class="org-relation-card confidence-${escapeHtml(relation.confidence)} ${matches ? 'is-search-hit' : ''} ${
+          selected ? 'is-selected' : ''
+        }" type="button" data-edge="${escapeHtml(relation.id)}">
+          <span>${escapeHtml(relation.meta)}</span>
+          <strong>${escapeHtml(relation.label)}</strong>
+          <em>${escapeHtml(relation.confidence)}</em>
+        </button>
+      `;
+    })
+    .join('');
+}
+
+function buildExternalOrganizationPanels(bundle) {
+  const nodeById = new Map(bundle.nodes.map((node) => [node.id, node]));
+  const edgeById = new Map(bundle.edges.map((edge) => [edge.id, edge]));
+  const relation = (id) => {
+    const card = makeRelationCard(edgeById.get(id), bundle, nodeById);
+    return card.id === 'missing_relation' ? { ...card, id: `missing_${id}` } : card;
+  };
+
+  return [
+    {
+      id: 'pok',
+      title: 'Protectors of Kronos',
+      subtitle: 'Environmental activist network and kidnapping suspect',
+      accent: 'pok',
+      metrics: ['3 named people', '4 confirmed links'],
+      roles: [
+        orgRoleCard({
+          id: 'pok-org',
+          label: 'POK',
+          role: 'Activist organization',
+          note: 'Anti-GAStech grievance rooted in Tiskele contamination',
+          nodeId: 'org_pok',
+        }),
+        orgRoleCard({
+          id: 'mandor',
+          label: 'Mandor Vann',
+          role: 'Political strategist',
+          note: 'Government-experienced POK organizer',
+          nodeId: 'person_mandor_vann',
+        }),
+        orgRoleCard({
+          id: 'isia',
+          label: 'Isia Vann',
+          role: 'GAStech Security bridge',
+          note: 'Employee record plus Vann family POK history',
+          nodeId: 'person_isia_vann',
+        }),
+        orgRoleCard({
+          id: 'juliana',
+          label: 'Juliana Vann',
+          role: 'Symbolic victim',
+          note: 'Death becomes part of POK rallying narrative',
+          nodeId: 'person_juliana_vann',
+        }),
+      ],
+      objectives: [
+        'Hold GAStech accountable for downstream contamination',
+        'Pressure Kronos Government over GAStech partnership',
+        'Escalate attention around the kidnapping and ransom claim',
+      ],
+      relations: [
+        relation('edge_pok_gastech_conflict'),
+        relation('edge_pok_government_accountability'),
+        relation('edge_isia_pok_member'),
+        relation('edge_mandor_pok_strategy'),
+      ],
+    },
+    {
+      id: 'apa',
+      title: 'APA / Arise',
+      subtitle: 'External risk frame and weak email-linked hypothesis',
+      accent: 'apa',
+      metrics: ['0 named people', '3 hypothesis links'],
+      roles: [
+        orgRoleCard({
+          id: 'apa-org',
+          label: "Asterian People's Army",
+          role: 'External organization',
+          note: 'Connected to Arise publication in news evidence',
+          nodeId: 'org_apa',
+        }),
+        orgRoleCard({
+          id: 'arise',
+          label: 'Arise Magazine',
+          role: 'Publication / subject line',
+          note: 'Appears in news and GAStech Security email headers',
+          nodeId: 'topic_arise',
+        }),
+        orgRoleCard({
+          id: 'security-email',
+          label: 'GAStech Security recipients',
+          role: 'Email exposure point',
+          note: 'ARISE subject reaches security personnel',
+          nodeId: 'dept_security',
+        }),
+      ],
+      objectives: [
+        'Represent APA/Arise as an external risk signal',
+        'Keep APA-POK cooperation as hypothesis-strength only',
+        'Use email headers as weak transmission evidence',
+      ],
+      relations: [
+        relation('edge_apa_arise_publication'),
+        relation('edge_arise_gastech_security_email'),
+        relation('edge_apa_pok_regional_risk'),
+      ],
+    },
+    {
+      id: 'government',
+      title: 'Kronos Government',
+      subtitle: 'Official partner, reception host, and accountability target',
+      accent: 'government',
+      metrics: ['1 named official', '3 official links'],
+      roles: [
+        orgRoleCard({
+          id: 'gov-org',
+          label: 'Kronos Government',
+          role: 'State partner',
+          note: 'Long-running economic partnership with GAStech',
+          nodeId: 'org_government',
+        }),
+        orgRoleCard({
+          id: 'drymiau',
+          label: 'Rufus Drymiau',
+          role: 'Government spokesperson',
+          note: 'Announces reception and Sanjorge attendance in news',
+        }),
+        orgRoleCard({
+          id: 'reception',
+          label: 'Government Reception',
+          role: 'Official event',
+          note: 'Expected destination after GAStech meeting',
+          nodeId: 'topic_government_reception',
+        }),
+      ],
+      objectives: [
+        'Maintain state relationship with GAStech operations',
+        'Host executive reception on kidnapping day',
+        'Absorb POK accountability pressure tied to contamination',
+      ],
+      relations: [
+        relation('edge_gastech_government_partnership'),
+        relation('edge_sanjorge_government_reception'),
+        relation('edge_pok_government_accountability'),
+      ],
+    },
+  ];
+}
+
 function renderOrgChart(container, state, bundle, snapshot, expandedDepartments) {
   const employeesByDepartment = d3.group(bundle.employees ?? [], (employee) => employee.department || 'Unassigned');
   const departments = [...employeesByDepartment.entries()]
@@ -226,33 +438,28 @@ function renderOrgChart(container, state, bundle, snapshot, expandedDepartments)
       return order.indexOf(a.department) - order.indexOf(b.department);
     });
 
-  const externalPeople = [
-    { name: 'Mandor Vann', title: 'POK Political Strategist', email: 'external_pok_mv', role: 'POK' },
-    { name: 'Juliana Vann', title: 'POK Symbolic Victim', email: 'external_pok_jv', role: 'POK' },
-    { name: 'Rufus Drymiau', title: 'Government Spokesperson', email: 'external_gov_rd', role: 'Gov' },
-    { name: 'APA Ideologists', title: 'Arise Magazine Authors', email: 'external_apa_ar', role: 'APA' }
-  ];
-
   const selectedEmployee = snapshot.selection?.type === 'employee' ? snapshot.selection.id : null;
+  const selectedEntityId = snapshot.selection?.type === 'node' ? snapshot.selection.id : null;
+  const selectedEdgeId = snapshot.selection?.type === 'edge' ? snapshot.selection.id : null;
   const search = snapshot.search.trim().toLowerCase();
+  const externalPanels = buildExternalOrganizationPanels(bundle);
 
   container.innerHTML = `
     <div class="view-title-row org-title-row">
       <div>
-        <p class="eyebrow">Personnel Directory</p>
-        <h2>Workforce & External Entities</h2>
-        <p class="org-subtitle">Institutional hierarchy of GASTech alongside verified external key figures.</p>
+        <p class="eyebrow">Four-Organization Directory</p>
+        <h2>GAStech, POK, APA, and Government</h2>
+        <p class="org-subtitle">Complete GAStech workforce with evidence-backed roles and relationships for the three external organizations.</p>
       </div>
       <div class="org-actions">
         <button type="button" class="text-button" id="expand-org">${expandedDepartments.size ? 'Collapse All' : 'Expand All'}</button>
       </div>
     </div>
-    <div class="org-chart-stage">
-      <!-- GASTech Internal Section -->
-      <div class="org-section">
-        <div class="org-root internal-root">
+    <div class="org-chart-stage four-org-stage">
+      <section class="org-column gastech-column">
+        <div class="org-root internal-root" data-org="gastech">
           <strong>GAStech Corporate</strong>
-          <span>${bundle.employees.length} employees · ${departments.length} departments</span>
+          <span>${bundle.employees.length} employees - ${departments.length} departments</span>
         </div>
         <div class="department-grid">
           ${departments
@@ -293,27 +500,46 @@ function renderOrgChart(container, state, bundle, snapshot, expandedDepartments)
             })
             .join('')}
         </div>
-      </div>
+      </section>
 
-      <!-- External Entities Section -->
-      <div class="org-section external-section">
-        <div class="org-root external-root">
-          <strong>External Key Figures</strong>
-          <span>4 identified entities</span>
-        </div>
-        <div class="external-people-strip">
-          ${externalPeople.map(person => {
-            const matches = search && `${person.name} ${person.title}`.toLowerCase().includes(search);
-            return `
-              <div class="external-person-card ${matches ? 'is-search-hit' : ''}">
-                <div class="external-badge ${person.role.toLowerCase()}">${person.role}</div>
-                <strong>${escapeHtml(person.name)}</strong>
-                <span>${escapeHtml(person.title)}</span>
-              </div>
-            `;
-          }).join('')}
-        </div>
-      </div>
+      <section class="external-org-grid" aria-label="External organization roles and relationships">
+        ${externalPanels
+          .map(
+            (panel) => `
+              <article class="external-org-panel org-accent-${panel.accent}">
+                <div class="external-org-header">
+                  <div>
+                    <p class="eyebrow">${escapeHtml(panel.id.toUpperCase())}</p>
+                    <h3>${escapeHtml(panel.title)}</h3>
+                    <span>${escapeHtml(panel.subtitle)}</span>
+                  </div>
+                  <div class="org-metric-strip">
+                    ${panel.metrics.map((metric) => `<b>${escapeHtml(metric)}</b>`).join('')}
+                  </div>
+                </div>
+                <div class="org-panel-section">
+                  <h4>Roles</h4>
+                  <div class="org-role-grid">
+                    ${renderRoleCards(panel.roles, selectedEntityId, search)}
+                  </div>
+                </div>
+                <div class="org-panel-section">
+                  <h4>Goals / Objectives</h4>
+                  <ul class="org-objective-list">
+                    ${panel.objectives.map((objective) => `<li>${escapeHtml(objective)}</li>`).join('')}
+                  </ul>
+                </div>
+                <div class="org-panel-section">
+                  <h4>Evidence Links</h4>
+                  <div class="org-relation-grid">
+                    ${renderRelationCards(panel.relations, selectedEdgeId, search)}
+                  </div>
+                </div>
+              </article>
+            `,
+          )
+          .join('')}
+      </section>
     </div>
   `;
 
@@ -344,6 +570,12 @@ function renderOrgChart(container, state, bundle, snapshot, expandedDepartments)
       });
       state.setActiveView('email');
     });
+  });
+  container.querySelectorAll('[data-node]').forEach((button) => {
+    button.addEventListener('click', () => state.setSelection({ type: 'node', id: button.dataset.node }));
+  });
+  container.querySelectorAll('[data-edge]').forEach((button) => {
+    button.addEventListener('click', () => state.setSelection({ type: 'edge', id: button.dataset.edge }));
   });
 }
 
