@@ -1,4 +1,4 @@
-import { Building2, LayoutGrid, Lightbulb, Mail, RotateCcw, Search, Users, X } from 'lucide';
+import { Building2, LayoutGrid, Mail, RotateCcw, Search, Users, X } from 'lucide';
 import { iconSvg } from '../utils/icons.js';
 
 const VIEWS = [
@@ -6,7 +6,6 @@ const VIEWS = [
   ['official', 'Official', Building2],
   ['pok', 'POK Motive', Users],
   ['email', 'Email Network', Mail],
-  ['hypothesis', 'Hypotheses', Lightbulb],
 ];
 
 export function renderTopBar(container, state, bundle) {

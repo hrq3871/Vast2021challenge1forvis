@@ -55,10 +55,10 @@ function fitTransform(nodes, width, height) {
   const bounds = graphBounds(nodes);
   if (!Number.isFinite(bounds.minX) || !Number.isFinite(bounds.minY)) return d3.zoomIdentity;
 
-  const padding = 112;
+  const padding = 72;
   const graphWidth = Math.max(1, bounds.maxX - bounds.minX + padding * 2);
   const graphHeight = Math.max(1, bounds.maxY - bounds.minY + padding * 2);
-  const scale = Math.min(1.05, Math.max(0.52, Math.min(width / graphWidth, height / graphHeight)));
+  const scale = Math.min(1.28, Math.max(0.64, Math.min(width / graphWidth, height / graphHeight)));
   const centerX = (bounds.minX + bounds.maxX) / 2;
   const centerY = (bounds.minY + bounds.maxY) / 2;
   const translateX = width / 2 - centerX * scale;
@@ -177,14 +177,137 @@ function drawLegend(svg, height) {
   });
 }
 
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
+}
+
+function personNodeIdFromEmail(email) {
+  const local = String(email ?? '').split('@')[0] ?? '';
+  return `person_${local
+    .replace(/\s+jr\.?/i, '')
+    .replace(/[^a-z0-9]+/gi, '_')
+    .replace(/^_+|_+$/g, '')
+    .toLowerCase()}`;
+}
+
+function renderOrgChart(container, state, bundle, snapshot, expandedDepartments) {
+  const employeesByDepartment = d3.group(bundle.employees ?? [], (employee) => employee.department || 'Unassigned');
+  const departments = [...employeesByDepartment.entries()]
+    .map(([department, employees]) => ({
+      department,
+      employees: employees.sort((a, b) => a.title.localeCompare(b.title) || a.name.localeCompare(b.name)),
+      expanded: expandedDepartments.has(department),
+    }))
+    .sort((a, b) => {
+      const order = ['Executive', 'Administration', 'Security', 'Engineering', 'Information Technology', 'Facilities'];
+      return order.indexOf(a.department) - order.indexOf(b.department);
+    });
+  const selectedEmployee = snapshot.selection?.type === 'employee' ? snapshot.selection.id : null;
+  const search = snapshot.search.trim().toLowerCase();
+
+  container.innerHTML = `
+    <div class="view-title-row org-title-row">
+      <div>
+        <p class="eyebrow">Official Organization</p>
+        <h2>GAStech Organization Chart</h2>
+        <p class="org-subtitle">Showing all ${bundle.employees.length} employees. Expand departments for full rosters; click an employee to filter related email traffic.</p>
+      </div>
+      <button type="button" class="text-button" id="expand-org">${expandedDepartments.size ? 'Collapse All' : 'Expand All'}</button>
+    </div>
+    <div class="org-chart-stage">
+      <div class="org-root">
+        <strong>GAStech</strong>
+        <span>${bundle.employees.length} employees · ${departments.length} departments</span>
+      </div>
+      <div class="department-grid">
+        ${departments
+          .map(({ department, employees, expanded }) => {
+            const keyEmployees = expanded
+              ? employees
+              : employees.filter((employee) => /CEO|CFO|COO|CIO|Security|Manager|Vann|Sanjorge/i.test(`${employee.title} ${employee.name}`)).slice(0, 5);
+            return `
+              <section class="department-card ${expanded ? 'is-expanded' : ''}">
+                <button class="department-header" type="button" data-department="${escapeHtml(department)}" aria-expanded="${expanded}">
+                  <span>
+                    <strong>${escapeHtml(department)}</strong>
+                    <em>${employees.length} employees</em>
+                  </span>
+                  <b>${expanded ? 'Hide' : 'Expand'}</b>
+                </button>
+                <div class="employee-grid">
+                  ${keyEmployees
+                    .map((employee) => {
+                      const matches = search && `${employee.name} ${employee.title} ${employee.email} ${employee.department}`.toLowerCase().includes(search);
+                      return `
+                        <button class="employee-node ${selectedEmployee === employee.email ? 'is-selected' : ''} ${matches ? 'is-search-hit' : ''}" type="button" data-employee="${escapeHtml(employee.email)}">
+                          <span>${escapeHtml(employee.name)}</span>
+                          <small>${escapeHtml(employee.title)}</small>
+                          <em>${escapeHtml(employee.email)}</em>
+                        </button>
+                      `;
+                    })
+                    .join('')}
+                </div>
+                ${
+                  !expanded && employees.length > keyEmployees.length
+                    ? `<button class="org-more" type="button" data-department="${escapeHtml(department)}">+ ${employees.length - keyEmployees.length} more employees</button>`
+                    : ''
+                }
+              </section>
+            `;
+          })
+          .join('')}
+      </div>
+    </div>
+  `;
+
+  container.querySelector('#expand-org')?.addEventListener('click', () => {
+    if (expandedDepartments.size) expandedDepartments.clear();
+    else departments.forEach(({ department }) => expandedDepartments.add(department));
+    renderOrgChart(container, state, bundle, state.get(), expandedDepartments);
+  });
+  container.querySelectorAll('[data-department]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const department = button.dataset.department;
+      if (expandedDepartments.has(department)) expandedDepartments.delete(department);
+      else expandedDepartments.add(department);
+      renderOrgChart(container, state, bundle, state.get(), expandedDepartments);
+    });
+  });
+  container.querySelectorAll('[data-employee]').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const employee = bundle.employees.find((item) => item.email === button.dataset.employee);
+      state.setSelection({
+        type: 'employee',
+        id: employee.email,
+        nodeId: personNodeIdFromEmail(employee.email),
+        label: employee.name,
+        department: employee.department,
+        title: employee.title,
+      });
+      state.setActiveView('email');
+    });
+  });
+}
+
 export function createRelationshipGraph(container, state, bundle, indexes) {
   let simulation = null;
+  const expandedDepartments = new Set(['Executive', 'Security']);
 
   function render(snapshot) {
     if (simulation) simulation.stop();
+    if (snapshot.activeView === 'official') {
+      renderOrgChart(container, state, bundle, snapshot, expandedDepartments);
+      return;
+    }
 
     const width = Math.max(container.getBoundingClientRect().width || 760, 520);
-    const height = Math.max(container.getBoundingClientRect().height || 560, 440);
+    const height = Math.max(container.getBoundingClientRect().height || 520, 420);
     const graph = filterRelationshipGraph(bundle, indexes, {
       ...snapshot,
       topic: effectiveTopic(snapshot),
@@ -241,12 +364,12 @@ export function createRelationshipGraph(container, state, bundle, indexes) {
         d3
           .forceLink(links)
           .id((node) => node.id)
-          .distance((link) => (link.confidence === 'hypothesis' ? 180 : 140))
+          .distance((link) => (snapshot.activeView === 'pok' ? 172 : link.confidence === 'hypothesis' ? 172 : 132))
           .strength(0.65),
       )
-      .force('charge', d3.forceManyBody().strength(-540))
+      .force('charge', d3.forceManyBody().strength(snapshot.activeView === 'pok' ? -720 : -520))
       .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('collide', d3.forceCollide().radius((node) => (node.type === 'organization' ? 76 : 52)));
+      .force('collide', d3.forceCollide().radius((node) => (node.type === 'organization' ? 105 : 72)));
 
     const link = linkLayer
       .selectAll('line')

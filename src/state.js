@@ -38,7 +38,7 @@ export function createAppState(initialState = {}) {
       return () => subscribers.delete(callback);
     },
     setActiveView(activeView) {
-      update({ activeView, selection: null });
+      update({ activeView });
     },
     setSearch(search) {
       update({ search: search.trim() });
@@ -54,6 +54,9 @@ export function createAppState(initialState = {}) {
     },
     setSelection(selection) {
       update({ selection: selection ? { ...selection } : null });
+    },
+    patchSelection(patch) {
+      update({ selection: state.selection ? { ...state.selection, ...patch } : { ...patch } });
     },
     clearSelection() {
       update({ selection: null });

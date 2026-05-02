@@ -18,11 +18,13 @@ function renderShell() {
         <div class="main-workspace">
           <section class="analysis-panel graph-panel" id="graph-panel" aria-label="Relationship graph"></section>
           <section class="analysis-panel email-panel" id="email-panel" aria-label="Email network"></section>
-          <section class="analysis-panel hypothesis-panel" id="hypothesis-panel" aria-label="Hypothesis explorer"></section>
         </div>
         <aside class="evidence-panel" id="evidence-panel" aria-label="Evidence panel"></aside>
       </section>
-      <section class="timeline-panel" id="timeline-panel" aria-label="Evidence timeline"></section>
+      <section class="bottom-insights" aria-label="Timeline and hypotheses">
+        <section class="timeline-panel" id="timeline-panel" aria-label="Evidence timeline"></section>
+        <section class="hypothesis-panel" id="hypothesis-panel" aria-label="Hypothesis explorer"></section>
+      </section>
     </main>
   `;
 }
@@ -30,15 +32,11 @@ function renderShell() {
 function bindViewVisibility(state) {
   const graphPanel = document.querySelector('#graph-panel');
   const emailPanel = document.querySelector('#email-panel');
-  const hypothesisPanel = document.querySelector('#hypothesis-panel');
 
   state.subscribe((snapshot) => {
     const showEmail = snapshot.activeView === 'email';
-    const showHypothesis = snapshot.activeView === 'hypothesis';
     graphPanel.hidden = showEmail;
     emailPanel.hidden = !showEmail;
-    hypothesisPanel.hidden = !showHypothesis;
-    graphPanel.classList.toggle('with-hypothesis', showHypothesis);
   });
 }
 
@@ -53,7 +51,7 @@ async function boot() {
   `;
 
   try {
-    const { bundle, indexes } = await loadTask3Bundle('/data');
+    const { bundle, indexes } = await loadTask3Bundle('./data');
     const state = createAppState();
 
     renderShell();
@@ -74,6 +72,7 @@ async function boot() {
 
     state.setActiveView('overview');
   } catch (error) {
+    console.error(error);
     app.classList.remove('is-loading');
     app.innerHTML = `
       <main class="fatal-error" role="alert">
