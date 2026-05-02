@@ -54,7 +54,7 @@ export function buildCurvedTimelineLayout(events) {
   const height = 280;
   const centerY = 160;
   const amplitude = 20;
-  const width = Math.max(680, marginX * 2 + Math.max(0, sortedEvents.length - 1) * minStep);
+  const width = Math.max(920, marginX * 2 + Math.max(0, sortedEvents.length - 1) * minStep);
 
   const layoutEvents = sortedEvents.map((event, index) => {
     const x = marginX + index * minStep;

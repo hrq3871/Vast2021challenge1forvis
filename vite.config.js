@@ -8,4 +8,7 @@ export default defineConfig({
   build: {
     sourcemap: true,
   },
+  test: {
+    exclude: ['**/node_modules/**', '**/dist/**', 'repo-work/**'],
+  },
 });

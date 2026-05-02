@@ -12,6 +12,8 @@ import { buildCurvedTimelineLayout, sortTimelineEvents } from '../src/views/time
 import { rankEvidenceItems, summarizeConfidence } from '../src/utils/evidenceScoring.js';
 
 const sampleBundle = {
+  employees: [],
+  emailEdges: [],
   nodes: [
     { id: 'person_sanjorge', label: 'Sten Sanjorge Jr.', type: 'person', group: 'GAStech' },
     { id: 'org_gastech', label: 'GAStech', type: 'organization', group: 'GAStech' },
@@ -115,7 +117,7 @@ describe('Task 3 graph data logic', () => {
   });
 
   it('throws a readable error when a required bundle collection is missing', () => {
-    expect(() => validateBundle({ nodes: [] })).toThrow(/edges/);
+    expect(() => validateBundle({ employees: [], emailEdges: [], nodes: [] })).toThrow(/edges/);
   });
 
   it('filters graph by hypothesis, topic, time range, and full-text search', () => {

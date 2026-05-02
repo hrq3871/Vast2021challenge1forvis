@@ -350,6 +350,16 @@ function renderOrgChart(container, state, bundle, snapshot, expandedDepartments)
 export function createRelationshipGraph(container, state, bundle, indexes) {
   let simulation = null;
   const expandedDepartments = new Set(['Executive', 'Security']);
+  let lastObservedSize = null;
+  let resizeFrame = 0;
+
+  function currentContainerSize() {
+    const rect = container.getBoundingClientRect();
+    return {
+      width: Math.round(rect.width),
+      height: Math.round(rect.height),
+    };
+  }
 
   function render(snapshot) {
     if (simulation) simulation.stop();
@@ -532,8 +542,24 @@ export function createRelationshipGraph(container, state, bundle, indexes) {
     svg.call(zoomBehavior.transform, fitTransform(nodes, width, height));
   }
 
-  const resizeObserver = new ResizeObserver(() => render(state.get()));
-  resizeObserver.observe(container);
   state.subscribe(render);
   render(state.get());
+
+  lastObservedSize = currentContainerSize();
+  const resizeObserver = new ResizeObserver((entries) => {
+    const rect = entries[0]?.contentRect;
+    const nextSize = rect
+      ? { width: Math.round(rect.width), height: Math.round(rect.height) }
+      : currentContainerSize();
+
+    if (lastObservedSize?.width === nextSize.width && lastObservedSize?.height === nextSize.height) return;
+
+    lastObservedSize = nextSize;
+    if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => {
+      resizeFrame = 0;
+      render(state.get());
+    });
+  });
+  resizeObserver.observe(container);
 }

@@ -1,120 +1,119 @@
-[
-  {
-    "id": "h_sanjorge_target",
-    "title": "Sanjorge as target / motive anchor",
-    "confidence": "probable",
-    "summary": "Sanjorge is a high-value target because he connects GAStech leadership, IPO wealth, and the government reception route on the kidnapping day.",
-    "nodeIds": [
-      "person_sanjorge",
-      "org_gastech",
-      "org_government",
-      "topic_ipo",
-      "topic_government_reception",
-      "event_kidnapping",
-      "org_pok"
-    ],
-    "edgeIds": [
-      "edge_sanjorge_gastech_ceo",
-      "edge_sanjorge_government_reception",
-      "edge_sanjorge_ipo_motive",
-      "edge_sanjorge_kidnapping_target",
-      "edge_gastech_government_partnership",
-      "edge_pok_gastech_conflict"
-    ],
-    "eventIds": [
-      "event_2014_01_13_ipo",
-      "event_2014_01_19_reception",
-      "event_2014_01_20_kidnapping",
-      "event_2014_01_21_ransom"
-    ],
-    "evidenceIds": [
-      "ev_employee_sanjorge_ceo",
-      "ev_sanjorge_escaped_kidnapping",
-      "ev_leadership_missing_ipo",
-      "ev_gastech_government_partnership",
-      "ev_pok_ransom",
-      "ev_ipo_email_perception"
-    ],
-    "walkthrough": [
-      "Search kidnapping and open the 2014-01-20/21 timeline events.",
-      "Click Sanjorge to highlight CEO, IPO, reception, and kidnapping context.",
-      "Compare news and email evidence in the evidence panel."
-    ]
-  },
-  {
-    "id": "h_isia_personal_bridge",
-    "title": "Isia Vann as personal bridge",
-    "confidence": "confirmed",
-    "summary": "Isia Vann is both a GAStech Security employee and a documented POK-linked Vann family member, making him the strongest personal bridge in the data.",
-    "nodeIds": [
-      "person_isia_vann",
-      "dept_security",
-      "org_gastech",
-      "org_pok",
-      "person_juliana_vann",
-      "person_mandor_vann",
-      "event_pollution"
-    ],
-    "edgeIds": [
-      "edge_isia_gastech_security",
-      "edge_security_gastech",
-      "edge_isia_pok_member",
-      "edge_isia_juliana_family",
-      "edge_isia_mandor_family",
-      "edge_mandor_pok_strategy",
-      "edge_pok_gastech_conflict"
-    ],
-    "eventIds": [
-      "event_1997_pok_origin",
-      "event_1998_juliana",
-      "event_2009_isia"
-    ],
-    "evidenceIds": [
-      "ev_employee_isia_security",
-      "ev_isia_vann_pok_family",
-      "ev_juliana_vann_death",
-      "ev_mandor_vann_pok_strategy",
-      "ev_pok_origin_1997"
-    ],
-    "walkthrough": [
-      "Open Unofficial Ties and filter Security.",
-      "Click Isia Vann to show employment and POK family evidence together.",
-      "Use the timeline to move from Juliana Vann to the 2009 Isia profile."
-    ]
-  },
-  {
-    "id": "h_apa_arise_weak_risk",
-    "title": "APA / Arise as weak external risk",
-    "confidence": "hypothesis",
-    "summary": "APA is connected to Arise in news and Arise appears in GAStech email headers, but no source proves APA worked with POK or GAStech insiders.",
-    "nodeIds": [
-      "org_apa",
-      "topic_arise",
-      "dept_security",
-      "org_pok",
-      "event_kidnapping",
-      "person_isia_vann"
-    ],
-    "edgeIds": [
-      "edge_apa_arise_publication",
-      "edge_arise_gastech_security_email",
-      "edge_isia_arise_suspicion",
-      "edge_apa_pok_regional_risk",
-      "edge_isia_gastech_security"
-    ],
-    "eventIds": [
-      "event_2014_01_13_arise",
-      "event_2014_01_21_ransom"
-    ],
-    "evidenceIds": [
-      "ev_apa_arise_publication",
-      "ev_arise_email_forward",
-      "ev_pok_apa_kidnapping_risk"
-    ],
-    "walkthrough": [
-      "Open Email Network and switch to ARISE only.",
-      "Click the Arise topic and compare its email evidence with APA news.",
-      "Keep this path labeled as hypothesis, not confirmed cooperation."
-    ]
-  }
+﻿[
+    {
+        "id":  "h_sanjorge_target",
+        "title":  "Sanjorge as target / motive anchor",
+        "confidence":  "probable",
+        "summary":  "Sanjorge is a high-value target because he connects GAStech leadership, IPO wealth, and the government reception route on the kidnapping day.",
+        "nodeIds":  [
+                        "person_sanjorge",
+                        "org_gastech",
+                        "org_government",
+                        "topic_ipo",
+                        "topic_government_reception",
+                        "event_kidnapping",
+                        "org_pok"
+                    ],
+        "edgeIds":  [
+                        "edge_sanjorge_gastech_ceo",
+                        "edge_sanjorge_government_reception",
+                        "edge_sanjorge_ipo_motive",
+                        "edge_sanjorge_kidnapping_target",
+                        "edge_gastech_government_partnership",
+                        "edge_pok_gastech_conflict"
+                    ],
+        "eventIds":  [
+                         "event_2014_01_13_ipo",
+                         "event_2014_01_19_reception",
+                         "event_2014_01_20_kidnapping",
+                         "event_2014_01_21_ransom"
+                     ],
+        "evidenceIds":  [
+                            "ev_employee_sanjorge_ceo",
+                            "ev_sanjorge_escaped_kidnapping",
+                            "ev_leadership_missing_ipo",
+                            "ev_gastech_government_partnership",
+                            "ev_pok_ransom",
+                            "ev_ipo_email_perception"
+                        ],
+        "walkthrough":  [
+                            "Search kidnapping and open the 2014-01-20/21 timeline events.",
+                            "Click Sanjorge to highlight CEO, IPO, reception, and kidnapping context.",
+                            "Compare news and email evidence in the evidence panel."
+                        ]
+    },
+    {
+        "id":  "h_isia_personal_bridge",
+        "title":  "Isia Vann as personal bridge",
+        "confidence":  "confirmed",
+        "summary":  "Isia Vann is both a GAStech Security employee and a documented POK-linked Vann family member, making him the strongest personal bridge in the data.",
+        "nodeIds":  [
+                        "person_isia_vann",
+                        "dept_security",
+                        "org_gastech",
+                        "org_pok",
+                        "person_juliana_vann",
+                        "person_mandor_vann",
+                        "event_pollution"
+                    ],
+        "edgeIds":  [
+                        "edge_isia_gastech_security",
+                        "edge_security_gastech",
+                        "edge_isia_pok_member",
+                        "edge_isia_juliana_family",
+                        "edge_isia_mandor_family",
+                        "edge_mandor_pok_strategy",
+                        "edge_pok_gastech_conflict"
+                    ],
+        "eventIds":  [
+                         "event_1997_pok_origin",
+                         "event_1998_juliana",
+                         "event_2009_isia"
+                     ],
+        "evidenceIds":  [
+                            "ev_employee_isia_security",
+                            "ev_isia_vann_pok_family",
+                            "ev_juliana_vann_death",
+                            "ev_mandor_vann_pok_strategy",
+                            "ev_pok_origin_1997"
+                        ],
+        "walkthrough":  [
+                            "Open Unofficial Ties and filter Security.",
+                            "Click Isia Vann to show employment and POK family evidence together.",
+                            "Use the timeline to move from Juliana Vann to the 2009 Isia profile."
+                        ]
+    },
+    {
+        "id":  "h_apa_arise_weak_risk",
+        "title":  "APA / Arise as weak external risk",
+        "confidence":  "hypothesis",
+        "summary":  "APA is connected to Arise in news and Arise appears in GAStech email headers, but no source proves APA worked with POK or GAStech insiders.",
+        "nodeIds":  [
+                        "org_apa",
+                        "topic_arise",
+                        "dept_security",
+                        "org_pok",
+                        "event_kidnapping",
+                        "person_isia_vann"
+                    ],
+        "edgeIds":  [
+                        "edge_apa_arise_publication",
+                        "edge_arise_gastech_security_email",
+                        "edge_apa_pok_regional_risk",
+                        "edge_isia_gastech_security"
+                    ],
+        "eventIds":  [
+                         "event_2014_01_13_arise",
+                         "event_2014_01_21_ransom"
+                     ],
+        "evidenceIds":  [
+                            "ev_apa_arise_publication",
+                            "ev_arise_email_forward",
+                            "ev_pok_apa_kidnapping_risk"
+                        ],
+        "walkthrough":  [
+                            "Open Email Network and switch to ARISE only.",
+                            "Click the Arise topic and compare its email evidence with APA news.",
+                            "Keep this path labeled as hypothesis, not confirmed cooperation."
+                        ]
+    }
 ]

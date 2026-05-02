@@ -1,217 +1,217 @@
-[
-  {
-    "id": "ev_gastech_government_partnership",
-    "title": "GAStech and Kronos Celebrate Partnership",
-    "source": "News Articles/Kronos Star/174.txt",
-    "date": "2014-01-19",
-    "confidence": "confirmed",
-    "sourceRole": "news",
-    "biasWarning": "low",
-    "topics": [
-      "government_reception",
-      "official_partnership"
-    ],
-    "snippet": "ABILA, Kronos Local GAStech executives Ingrid Barranco, Ada Campo-Corrente, Orhan Strum, and Willem Vasco-Pais will attend a reception with government officials tomorrow following a business meeting at their headquarters building. Government spokesman Rufus Drymiau informed The Star that Sten Sanjorge Jr., President and CEO of GAStech, has traveled from Tethys to attend the events. The reception, hosted by Presiden"
-  },
-  {
-    "id": "ev_sanjorge_escaped_kidnapping",
-    "title": "GAStech's Sanjorge Escapes Kidnapping at GAStech HQ",
-    "source": "News Articles/International News/689.txt",
-    "date": "2014-01-21",
-    "confidence": "confirmed",
-    "sourceRole": "news",
-    "biasWarning": "low",
-    "topics": [
-      "kidnapping",
-      "sanjorge"
-    ],
-    "snippet": "ABILA, Kronos According to a press conference held at GAStech headquarters in Centrum, Tethys this morning, GAStech's President and CEO, Sten Sanjorge Jr. returned safely to Tethys after a reported kidnapping event his company's headquarters building in Abila yesterday. Sanjorge, who had been attending a corporate meeting, was in transit from the GAStech building to the capitol when the kidnapping took place. Sanjor"
-  },
-  {
-    "id": "ev_leadership_missing_ipo",
-    "title": "GASTECH LEADERSHIP CONFIRMED MISSING",
-    "source": "News Articles/The Abila Post/713.txt",
-    "date": "2014-01-20",
-    "confidence": "confirmed",
-    "sourceRole": "news",
-    "biasWarning": "medium",
-    "topics": [
-      "kidnapping",
-      "ipo",
-      "government_reception"
-    ],
-    "snippet": "ABILA, Kronos Miriam Avila, an administrative assistant at GAStech International, has confirmed that members of the GAStech leadership are in fact missing. The group was expected to arrive at the Government reception following this morning's meeting at GAStech - Kronos headquarters, but never showed up. Ms. Avila denied that any GAStech employee has been abducted. She also denied that they had simply skipped town wit"
-  },
-  {
-    "id": "ev_pok_ransom",
-    "title": "ON SCENE BLOG",
-    "source": "News Articles/Modern Rubicon/106.txt",
-    "date": "2014-01-21",
-    "confidence": "probable",
-    "sourceRole": "news",
-    "biasWarning": "high",
-    "topics": [
-      "kidnapping",
-      "ransom",
-      "pok_motive"
-    ],
-    "snippet": "SOURCE: Modern Rubicon TITLE: ON SCENE BLOG PUBLISHED: 21 January 2014 1245 - I REDEEM DEMANDS FROM POK - the protections of Kronos has freed a supporting responsibility of declaration of the kidnapping of employs you of GAStech that they demand I redeem $20 million."
-  },
-  {
-    "id": "ev_pok_origin_1997",
-    "title": "POK grassroots origin and anti-GAStech grievance",
-    "source": "HistoricalDocuments/5 year report clean.docx",
-    "date": "1997-01-01",
-    "confidence": "confirmed",
-    "sourceRole": "historical_document",
-    "biasWarning": "none",
-    "topics": [
-      "pollution",
-      "pok_motive"
-    ],
-    "snippet": "The Protectors of Kronos (POK) is a political activist movement that began as a small group of seven citizens concerned about contamination from drilling at the Tiskele Bend gas fields. Today the POK has grown under the charismatic leadership of Elian Karel to loosely organized group with an estimated membership of 200-300 people."
-  },
-  {
-    "id": "ev_pok_founders_waste_pipe",
-    "title": "POK founders and GAStech waste discharge discovery",
-    "source": "HistoricalDocuments/10 year historical document clean.docx",
-    "date": "1997-01-01",
-    "confidence": "confirmed",
-    "sourceRole": "historical_document",
-    "biasWarning": "none",
-    "topics": [
-      "pollution",
-      "pok_motive"
-    ],
-    "snippet": "In the meantime, Jeroen Karel and Valentine Mies had been conducting research and found a GAStech waste discharge pipe from the gas drilling operation was spilling raw waste into water that fed the Tiskele River, about 25 km upstream from Elodis. They brought their discovery to Bodrogi, who had just returned with Osvaldo from their attempts at resolution in Abila."
-  },
-  {
-    "id": "ev_juliana_vann_death",
-    "title": "Juliana Vann becomes a POK rallying symbol",
-    "source": "HistoricalDocuments/10 year historical document clean.docx",
-    "date": "1998-08-18",
-    "confidence": "confirmed",
-    "sourceRole": "historical_document",
-    "biasWarning": "none",
-    "topics": [
-      "personal_bridge",
-      "pok_motive"
-    ],
-    "snippet": "Up to this point, the POK had primarily used statistics about health issues and names of toxins in their agenda, and then on August 18 1998 ten-year old Juliana Vann, daughter of Lemual and Neske Vann, died of leukemia associated with benzene toxicity."
-  },
-  {
-    "id": "ev_isia_vann_pok_family",
-    "title": "Isia Vann family relationship and POK forceful approach",
-    "source": "HistoricalDocuments/5 year report clean.docx",
-    "date": "2009-01-01",
-    "confidence": "confirmed",
-    "sourceRole": "historical_document",
-    "biasWarning": "none",
-    "topics": [
-      "personal_bridge",
-      "pok_motive"
-    ],
-    "snippet": "Isia Vann, an Elodis native, is the older brother of Juliana Vann, the 10-year-old girl who died in 1998 after an illness related to drinking contaminated water from the Tiskele River, and nephew to Mandor Vann. Isia is one of several POK members who advocate for a more forceful approach to gaining attention to the plight of people living downstream of Tiskele Bend. He has been arrested several times for civil disobedience and trespassing during POK rallies."
-  },
-  {
-    "id": "ev_mandor_vann_pok_strategy",
-    "title": "Mandor Vann as POK political strategist",
-    "source": "HistoricalDocuments/5 year report clean.docx",
-    "date": "2009-01-01",
-    "confidence": "confirmed",
-    "sourceRole": "historical_document",
-    "biasWarning": "none",
-    "topics": [
-      "personal_bridge",
-      "pok_motive"
-    ],
-    "snippet": "Mandor Vann, uncle to Isia and Juliana Vann, has been with the POK since retiring from the Kronos military in 2004. Vann, who was an enlisted linguist, spent much of his military career serving at the Kronosian embassies in Tethys and Asteria. As the POK member with the most experience in government, Vann has become the group’s top political strategist. POK members have great respect for Vann and describe him as intense, intelligent, organized, and ambitious."
-  },
-  {
-    "id": "ev_employee_isia_security",
-    "title": "Employee record places Isia Vann in GAStech Security",
-    "source": "EmployeeRecords.xlsx",
-    "date": "2007-12-14",
-    "confidence": "confirmed",
-    "sourceRole": "employee_record",
-    "biasWarning": "none",
-    "topics": [
-      "employment",
-      "personal_bridge",
-      "security"
-    ],
-    "snippet": "Isia Vann works in Security as Perimeter Control; military service: ArmedForcesOfKronos."
-  },
-  {
-    "id": "ev_employee_sanjorge_ceo",
-    "title": "Sanjorge identified as GAStech President and CEO",
-    "source": "News Articles/International News/689.txt",
-    "date": "2014-01-21",
-    "confidence": "confirmed",
-    "sourceRole": "news",
-    "biasWarning": "low",
-    "topics": [
-      "employment",
-      "sanjorge"
-    ],
-    "snippet": "Sten Sanjorge Jr. is identified as President and CEO in the kidnapping coverage."
-  },
-  {
-    "id": "ev_apa_arise_publication",
-    "title": "Multi-Country Task Force Formed",
-    "source": "News Articles/World Source/775.txt",
-    "date": "2013-10-22",
-    "confidence": "confirmed",
-    "sourceRole": "news",
-    "biasWarning": "low",
-    "topics": [
-      "apa",
-      "arise"
-    ],
-    "snippet": "SOURCE: World Source TITLE: Multi-Country Task Force Formed PUBLISHED: 2013/10/22 Interpol has announced the formation of a new multi-country task force to combat the increasingly wide distribution of the drug methyldimethyl cathinone (MDMC). Heading the task force is Senior Inspector Robert Loblaw, a veteran officer who led the very successful Tethys Counterdrug Team. \"These designer drugs have certain clues as to"
-  },
-  {
-    "id": "ev_pok_apa_kidnapping_risk",
-    "title": "GASTech Employees Kidnapped in Kronos",
-    "source": "News Articles/International Times/167.txt",
-    "date": "2014-01-21",
-    "confidence": "probable",
-    "sourceRole": "news",
-    "biasWarning": "medium",
-    "topics": [
-      "apa",
-      "arise",
-      "kidnapping"
-    ],
-    "snippet": "SOURCE: International Times TITLE: GASTech Employees Kidnapped in Kronos PUBLISHED: 21 January 2014 1405 Fourteen employees feared kidnapped in Kronos by a radical environmental terrorist group during a corporate gathering. Fourteen employees, including possibly five executive officers, are feared kidnapped yesterday by the \"Protectors of Kronos\". Reported missing includes: GAStech President and CEO Sten Sanjorge J"
-  },
-  {
-    "id": "ev_arise_email_forward",
-    "title": "ARISE subject spreads into GAStech Security email",
-    "source": "email headers.csv",
-    "date": "2014-01-13",
-    "confidence": "hypothesis",
-    "sourceRole": "email_header",
-    "biasWarning": "none",
-    "topics": [
-      "arise",
-      "email_anomaly",
-      "security"
-    ],
-    "snippet": "row 552: Rachel Pantanal -> Ruscella Mies Haber at 2014-01-12T13:22; row 553: Rachel Pantanal -> Ruscella Mies Haber at 2014-01-12T13:22; row 634: Ruscella Mies Haber -> Inga Ferro at 2014-01-13T16:48; row 634: Ruscella Mies Haber -> Loreto Bodrogi at 2014-01-13T16:48; row 634: Ruscella Mies Haber -> Isia Vann at 2014-01-13T16:48; row 634: Ruscella Mies Haber -> Hennie Osvaldo at 2014-01-13T16:48; row 634: Ruscella Mies Haber -> Minke Mies at 2014-01-13T16:48; row 660: Loreto Bodrogi -> Inga Ferro at 2014-01-13T19:28; row 660: Loreto Bodrogi -> Loreto Bodrogi at 2014-01-13T19:28"
-  },
-  {
-    "id": "ev_ipo_email_perception",
-    "title": "Executive email thread manages IPO perception",
-    "source": "email headers.csv",
-    "date": "2014-01-13",
-    "confidence": "probable",
-    "sourceRole": "email_header",
-    "biasWarning": "none",
-    "topics": [
-      "ipo",
-      "sanjorge"
-    ],
-    "snippet": "row 12: Sten Sanjorge Jr. -> Orhan Strum at 2014-01-06T11:53; row 12: Sten Sanjorge Jr. -> Willem Vasco-Pais at 2014-01-06T11:53; row 27: Willem Vasco-Pais -> Orhan Strum at 2014-01-06T12:56; row 27: Willem Vasco-Pais -> Willem Vasco-Pais at 2014-01-06T12:56; row 29: Orhan Strum -> Orhan Strum at 2014-01-06T13:05; row 29: Orhan Strum -> Willem Vasco-Pais at 2014-01-06T13:05; row 49: Willem Vasco-Pais -> Orhan Strum at 2014-01-06T14:19; row 49: Willem Vasco-Pais -> Willem Vasco-Pais at 2014-01-06T14:19"
-  }
+﻿[
+    {
+        "id":  "ev_gastech_government_partnership",
+        "title":  "GAStech and Kronos Celebrate Partnership",
+        "source":  "News Articles/Kronos Star/174.txt",
+        "date":  "2014-01-19",
+        "confidence":  "confirmed",
+        "sourceRole":  "news",
+        "biasWarning":  "low",
+        "topics":  [
+                       "government_reception",
+                       "official_partnership"
+                   ],
+        "snippet":  "ABILA, Kronos Local GAStech executives Ingrid Barranco, Ada Campo-Corrente, Orhan Strum, and Willem Vasco-Pais will attend a reception with government officials tomorrow following a business meeting at their headquarters building. Government spokesman Rufus Drymiau informed The Star that Sten Sanjorge Jr., President and CEO of GAStech, has traveled from Tethys to attend the events. The reception, hosted by Presiden"
+    },
+    {
+        "id":  "ev_sanjorge_escaped_kidnapping",
+        "title":  "GAStech\u0027s Sanjorge Escapes Kidnapping at GAStech HQ",
+        "source":  "News Articles/International News/689.txt",
+        "date":  "2014-01-21",
+        "confidence":  "confirmed",
+        "sourceRole":  "news",
+        "biasWarning":  "low",
+        "topics":  [
+                       "kidnapping",
+                       "sanjorge"
+                   ],
+        "snippet":  "ABILA, Kronos According to a press conference held at GAStech headquarters in Centrum, Tethys this morning, GAStech\u0027s President and CEO, Sten Sanjorge Jr. returned safely to Tethys after a reported kidnapping event his company\u0027s headquarters building in Abila yesterday. Sanjorge, who had been attending a corporate meeting, was in transit from the GAStech building to the capitol when the kidnapping took place. Sanjor"
+    },
+    {
+        "id":  "ev_leadership_missing_ipo",
+        "title":  "GASTECH LEADERSHIP CONFIRMED MISSING",
+        "source":  "News Articles/The Abila Post/713.txt",
+        "date":  "2014-01-20",
+        "confidence":  "confirmed",
+        "sourceRole":  "news",
+        "biasWarning":  "medium",
+        "topics":  [
+                       "kidnapping",
+                       "ipo",
+                       "government_reception"
+                   ],
+        "snippet":  "ABILA, Kronos Miriam Avila, an administrative assistant at GAStech International, has confirmed that members of the GAStech leadership are in fact missing. The group was expected to arrive at the Government reception following this morning\u0027s meeting at GAStech - Kronos headquarters, but never showed up. Ms. Avila denied that any GAStech employee has been abducted. She also denied that they had simply skipped town wit"
+    },
+    {
+        "id":  "ev_pok_ransom",
+        "title":  "ON SCENE BLOG",
+        "source":  "News Articles/Modern Rubicon/106.txt",
+        "date":  "2014-01-21",
+        "confidence":  "probable",
+        "sourceRole":  "news",
+        "biasWarning":  "high",
+        "topics":  [
+                       "kidnapping",
+                       "ransom",
+                       "pok_motive"
+                   ],
+        "snippet":  "SOURCE: Modern Rubicon TITLE: ON SCENE BLOG PUBLISHED: 21 January 2014 1245 - I REDEEM DEMANDS FROM POK - the protections of Kronos has freed a supporting responsibility of declaration of the kidnapping of employs you of GAStech that they demand I redeem $20 million."
+    },
+    {
+        "id":  "ev_pok_origin_1997",
+        "title":  "POK grassroots origin and anti-GAStech grievance",
+        "source":  "HistoricalDocuments/5 year report clean.docx",
+        "date":  "1997-01-01",
+        "confidence":  "confirmed",
+        "sourceRole":  "historical_document",
+        "biasWarning":  "none",
+        "topics":  [
+                       "pollution",
+                       "pok_motive"
+                   ],
+        "snippet":  "The Protectors of Kronos (POK) is a political activist movement that began as a small group of seven citizens concerned about contamination from drilling at the Tiskele Bend gas fields. Today the POK has grown under the charismatic leadership of Elian Karel to loosely organized group with an estimated membership of 200-300 people."
+    },
+    {
+        "id":  "ev_pok_founders_waste_pipe",
+        "title":  "POK founders and GAStech waste discharge discovery",
+        "source":  "HistoricalDocuments/10 year historical document clean.docx",
+        "date":  "1997-01-01",
+        "confidence":  "confirmed",
+        "sourceRole":  "historical_document",
+        "biasWarning":  "none",
+        "topics":  [
+                       "pollution",
+                       "pok_motive"
+                   ],
+        "snippet":  "In the meantime, Jeroen Karel and Valentine Mies had been conducting research and found a GAStech waste discharge pipe from the gas drilling operation was spilling raw waste into water that fed the Tiskele River, about 25 km upstream from Elodis. They brought their discovery to Bodrogi, who had just returned with Osvaldo from their attempts at resolution in Abila."
+    },
+    {
+        "id":  "ev_juliana_vann_death",
+        "title":  "Juliana Vann becomes a POK rallying symbol",
+        "source":  "HistoricalDocuments/10 year historical document clean.docx",
+        "date":  "1998-08-18",
+        "confidence":  "confirmed",
+        "sourceRole":  "historical_document",
+        "biasWarning":  "none",
+        "topics":  [
+                       "personal_bridge",
+                       "pok_motive"
+                   ],
+        "snippet":  "Up to this point, the POK had primarily used statistics about health issues and names of toxins in their agenda, and then on August 18 1998 ten-year old Juliana Vann, daughter of Lemual and Neske Vann, died of leukemia associated with benzene toxicity."
+    },
+    {
+        "id":  "ev_isia_vann_pok_family",
+        "title":  "Isia Vann family relationship and POK forceful approach",
+        "source":  "HistoricalDocuments/5 year report clean.docx",
+        "date":  "2009-01-01",
+        "confidence":  "confirmed",
+        "sourceRole":  "historical_document",
+        "biasWarning":  "none",
+        "topics":  [
+                       "personal_bridge",
+                       "pok_motive"
+                   ],
+        "snippet":  "Isia Vann, an Elodis native, is the older brother of Juliana Vann, the 10-year-old girl who died in 1998 after an illness related to drinking contaminated water from the Tiskele River, and nephew to Mandor Vann. Isia is one of several POK members who advocate for a more forceful approach to gaining attention to the plight of people living downstream of Tiskele Bend. He has been arrested several times for civil disobedience and trespassing during POK rallies."
+    },
+    {
+        "id":  "ev_mandor_vann_pok_strategy",
+        "title":  "Mandor Vann as POK political strategist",
+        "source":  "HistoricalDocuments/5 year report clean.docx",
+        "date":  "2009-01-01",
+        "confidence":  "confirmed",
+        "sourceRole":  "historical_document",
+        "biasWarning":  "none",
+        "topics":  [
+                       "personal_bridge",
+                       "pok_motive"
+                   ],
+        "snippet":  "Mandor Vann, uncle to Isia and Juliana Vann, has been with the POK since retiring from the Kronos military in 2004. Vann, who was an enlisted linguist, spent much of his military career serving at the Kronosian embassies in Tethys and Asteria. As the POK member with the most experience in government, Vann has become the group鈥檚 top political strategist. POK members have great respect for Vann and describe him as intense, intelligent, organized, and ambitious."
+    },
+    {
+        "id":  "ev_employee_isia_security",
+        "title":  "Employee record places Isia Vann in GAStech Security",
+        "source":  "EmployeeRecords.xlsx",
+        "date":  "2007-12-14",
+        "confidence":  "confirmed",
+        "sourceRole":  "employee_record",
+        "biasWarning":  "none",
+        "topics":  [
+                       "employment",
+                       "personal_bridge",
+                       "security"
+                   ],
+        "snippet":  "Isia Vann works in Security as Perimeter Control; military service: ArmedForcesOfKronos."
+    },
+    {
+        "id":  "ev_employee_sanjorge_ceo",
+        "title":  "Sanjorge identified as GAStech President and CEO",
+        "source":  "News Articles/International News/689.txt",
+        "date":  "2014-01-21",
+        "confidence":  "confirmed",
+        "sourceRole":  "news",
+        "biasWarning":  "low",
+        "topics":  [
+                       "employment",
+                       "sanjorge"
+                   ],
+        "snippet":  "Sten Sanjorge Jr. is identified as President and CEO in the kidnapping coverage."
+    },
+    {
+        "id":  "ev_apa_arise_publication",
+        "title":  "Multi-Country Task Force Formed",
+        "source":  "News Articles/World Source/775.txt",
+        "date":  "2013-10-22",
+        "confidence":  "confirmed",
+        "sourceRole":  "news",
+        "biasWarning":  "low",
+        "topics":  [
+                       "apa",
+                       "arise"
+                   ],
+        "snippet":  "SOURCE: World Source TITLE: Multi-Country Task Force Formed PUBLISHED: 2013/10/22 Interpol has announced the formation of a new multi-country task force to combat the increasingly wide distribution of the drug methyldimethyl cathinone (MDMC). Heading the task force is Senior Inspector Robert Loblaw, a veteran officer who led the very successful Tethys Counterdrug Team. \"These designer drugs have certain clues as to"
+    },
+    {
+        "id":  "ev_pok_apa_kidnapping_risk",
+        "title":  "GASTech Employees Kidnapped in Kronos",
+        "source":  "News Articles/International Times/167.txt",
+        "date":  "2014-01-21",
+        "confidence":  "probable",
+        "sourceRole":  "news",
+        "biasWarning":  "medium",
+        "topics":  [
+                       "apa",
+                       "arise",
+                       "kidnapping"
+                   ],
+        "snippet":  "SOURCE: International Times TITLE: GASTech Employees Kidnapped in Kronos PUBLISHED: 21 January 2014 1405 Fourteen employees feared kidnapped in Kronos by a radical environmental terrorist group during a corporate gathering. Fourteen employees, including possibly five executive officers, are feared kidnapped yesterday by the \"Protectors of Kronos\". Reported missing includes: GAStech President and CEO Sten Sanjorge J"
+    },
+    {
+        "id":  "ev_arise_email_forward",
+        "title":  "ARISE subject spreads into GAStech Security email",
+        "source":  "email headers.csv",
+        "date":  "2014-01-13",
+        "confidence":  "hypothesis",
+        "sourceRole":  "email_header",
+        "biasWarning":  "none",
+        "topics":  [
+                       "arise",
+                       "email_anomaly",
+                       "security"
+                   ],
+        "snippet":  "row 552: Rachel Pantanal -\u003e Ruscella Mies Haber at 2014-01-12T13:22; row 553: Rachel Pantanal -\u003e Ruscella Mies Haber at 2014-01-12T13:22; row 634: Ruscella Mies Haber -\u003e Inga Ferro at 2014-01-13T16:48; row 634: Ruscella Mies Haber -\u003e Loreto Bodrogi at 2014-01-13T16:48; row 634: Ruscella Mies Haber -\u003e Isia Vann at 2014-01-13T16:48; row 634: Ruscella Mies Haber -\u003e Hennie Osvaldo at 2014-01-13T16:48; row 634: Ruscella Mies Haber -\u003e Minke Mies at 2014-01-13T16:48; row 660: Loreto Bodrogi -\u003e Inga Ferro at 2014-01-13T19:28; row 660: Loreto Bodrogi -\u003e Loreto Bodrogi at 2014-01-13T19:28"
+    },
+    {
+        "id":  "ev_ipo_email_perception",
+        "title":  "Executive email thread manages IPO perception",
+        "source":  "email headers.csv",
+        "date":  "2014-01-13",
+        "confidence":  "probable",
+        "sourceRole":  "email_header",
+        "biasWarning":  "none",
+        "topics":  [
+                       "ipo",
+                       "sanjorge"
+                   ],
+        "snippet":  "row 12: Sten Sanjorge Jr. -\u003e Orhan Strum at 2014-01-06T11:53; row 12: Sten Sanjorge Jr. -\u003e Willem Vasco-Pais at 2014-01-06T11:53; row 27: Willem Vasco-Pais -\u003e Orhan Strum at 2014-01-06T12:56; row 27: Willem Vasco-Pais -\u003e Willem Vasco-Pais at 2014-01-06T12:56; row 29: Orhan Strum -\u003e Orhan Strum at 2014-01-06T13:05; row 29: Orhan Strum -\u003e Willem Vasco-Pais at 2014-01-06T13:05; row 49: Willem Vasco-Pais -\u003e Orhan Strum at 2014-01-06T14:19; row 49: Willem Vasco-Pais -\u003e Willem Vasco-Pais at 2014-01-06T14:19"
+    }
 ]

@@ -1,129 +1,129 @@
-[
-  {
-    "id": "event_1994_partnership",
-    "label": "GAStech-Kronos partnership becomes state economic baseline",
-    "date": "1994-01-01",
-    "type": "official_partnership",
-    "evidenceIds": [
-      "ev_gastech_government_partnership"
-    ],
-    "nodeIds": [
-      "org_gastech",
-      "org_government"
-    ]
-  },
-  {
-    "id": "event_1997_pok_origin",
-    "label": "POK forms around Tiskele water contamination",
-    "date": "1997-01-01",
-    "type": "pollution",
-    "evidenceIds": [
-      "ev_pok_origin_1997",
-      "ev_pok_founders_waste_pipe"
-    ],
-    "nodeIds": [
-      "org_pok",
-      "org_gastech",
-      "event_pollution"
-    ]
-  },
-  {
-    "id": "event_1998_juliana",
-    "label": "Juliana Vann dies and becomes a POK symbol",
-    "date": "1998-08-18",
-    "type": "personal_bridge",
-    "evidenceIds": [
-      "ev_juliana_vann_death"
-    ],
-    "nodeIds": [
-      "person_juliana_vann",
-      "org_pok"
-    ]
-  },
-  {
-    "id": "event_2009_isia",
-    "label": "Isia Vann profile links GAStech Security to POK family history",
-    "date": "2009-01-01",
-    "type": "personal_bridge",
-    "evidenceIds": [
-      "ev_isia_vann_pok_family",
-      "ev_employee_isia_security"
-    ],
-    "nodeIds": [
-      "person_isia_vann",
-      "org_pok",
-      "dept_security"
-    ]
-  },
-  {
-    "id": "event_2014_01_13_arise",
-    "label": "ARISE subject spreads into Security email recipients",
-    "date": "2014-01-13",
-    "type": "email_anomaly",
-    "evidenceIds": [
-      "ev_arise_email_forward"
-    ],
-    "nodeIds": [
-      "topic_arise",
-      "dept_security"
-    ]
-  },
-  {
-    "id": "event_2014_01_13_ipo",
-    "label": "Executive thread manages perceptions about the IPO",
-    "date": "2014-01-13",
-    "type": "ipo",
-    "evidenceIds": [
-      "ev_ipo_email_perception"
-    ],
-    "nodeIds": [
-      "person_sanjorge",
-      "topic_ipo"
-    ]
-  },
-  {
-    "id": "event_2014_01_19_reception",
-    "label": "Government reception announced for GAStech executives",
-    "date": "2014-01-19",
-    "type": "government_reception",
-    "evidenceIds": [
-      "ev_gastech_government_partnership"
-    ],
-    "nodeIds": [
-      "person_sanjorge",
-      "org_government",
-      "topic_government_reception"
-    ]
-  },
-  {
-    "id": "event_2014_01_20_kidnapping",
-    "label": "GAStech leadership confirmed missing after meeting",
-    "date": "2014-01-20",
-    "type": "kidnapping",
-    "evidenceIds": [
-      "ev_leadership_missing_ipo"
-    ],
-    "nodeIds": [
-      "event_kidnapping",
-      "person_sanjorge",
-      "org_gastech"
-    ]
-  },
-  {
-    "id": "event_2014_01_21_ransom",
-    "label": "POK ransom claim and Sanjorge escape coverage appear",
-    "date": "2014-01-21",
-    "type": "kidnapping",
-    "evidenceIds": [
-      "ev_sanjorge_escaped_kidnapping",
-      "ev_pok_ransom",
-      "ev_pok_apa_kidnapping_risk"
-    ],
-    "nodeIds": [
-      "event_kidnapping",
-      "person_sanjorge",
-      "org_pok",
-      "org_apa"
-    ]
-  }
+﻿[
+    {
+        "id":  "event_1994_partnership",
+        "label":  "GAStech-Kronos partnership becomes state economic baseline",
+        "date":  "1994-01-01",
+        "type":  "official_partnership",
+        "evidenceIds":  [
+                            "ev_gastech_government_partnership"
+                        ],
+        "nodeIds":  [
+                        "org_gastech",
+                        "org_government"
+                    ]
+    },
+    {
+        "id":  "event_1997_pok_origin",
+        "label":  "POK forms around Tiskele water contamination",
+        "date":  "1997-01-01",
+        "type":  "pollution",
+        "evidenceIds":  [
+                            "ev_pok_origin_1997",
+                            "ev_pok_founders_waste_pipe"
+                        ],
+        "nodeIds":  [
+                        "org_pok",
+                        "org_gastech",
+                        "event_pollution"
+                    ]
+    },
+    {
+        "id":  "event_1998_juliana",
+        "label":  "Juliana Vann dies and becomes a POK symbol",
+        "date":  "1998-08-18",
+        "type":  "personal_bridge",
+        "evidenceIds":  [
+                            "ev_juliana_vann_death"
+                        ],
+        "nodeIds":  [
+                        "person_juliana_vann",
+                        "org_pok"
+                    ]
+    },
+    {
+        "id":  "event_2009_isia",
+        "label":  "Isia Vann profile links GAStech Security to POK family history",
+        "date":  "2009-01-01",
+        "type":  "personal_bridge",
+        "evidenceIds":  [
+                            "ev_isia_vann_pok_family",
+                            "ev_employee_isia_security"
+                        ],
+        "nodeIds":  [
+                        "person_isia_vann",
+                        "org_pok",
+                        "dept_security"
+                    ]
+    },
+    {
+        "id":  "event_2014_01_13_arise",
+        "label":  "ARISE subject spreads into Security email recipients",
+        "date":  "2014-01-13",
+        "type":  "email_anomaly",
+        "evidenceIds":  [
+                            "ev_arise_email_forward"
+                        ],
+        "nodeIds":  [
+                        "topic_arise",
+                        "dept_security"
+                    ]
+    },
+    {
+        "id":  "event_2014_01_13_ipo",
+        "label":  "Executive thread manages perceptions about the IPO",
+        "date":  "2014-01-13",
+        "type":  "ipo",
+        "evidenceIds":  [
+                            "ev_ipo_email_perception"
+                        ],
+        "nodeIds":  [
+                        "person_sanjorge",
+                        "topic_ipo"
+                    ]
+    },
+    {
+        "id":  "event_2014_01_19_reception",
+        "label":  "Government reception announced for GAStech executives",
+        "date":  "2014-01-19",
+        "type":  "government_reception",
+        "evidenceIds":  [
+                            "ev_gastech_government_partnership"
+                        ],
+        "nodeIds":  [
+                        "person_sanjorge",
+                        "org_government",
+                        "topic_government_reception"
+                    ]
+    },
+    {
+        "id":  "event_2014_01_20_kidnapping",
+        "label":  "GAStech leadership confirmed missing after meeting",
+        "date":  "2014-01-20",
+        "type":  "kidnapping",
+        "evidenceIds":  [
+                            "ev_leadership_missing_ipo"
+                        ],
+        "nodeIds":  [
+                        "event_kidnapping",
+                        "person_sanjorge",
+                        "org_gastech"
+                    ]
+    },
+    {
+        "id":  "event_2014_01_21_ransom",
+        "label":  "POK ransom claim and Sanjorge escape coverage appear",
+        "date":  "2014-01-21",
+        "type":  "kidnapping",
+        "evidenceIds":  [
+                            "ev_sanjorge_escaped_kidnapping",
+                            "ev_pok_ransom",
+                            "ev_pok_apa_kidnapping_risk"
+                        ],
+        "nodeIds":  [
+                        "event_kidnapping",
+                        "person_sanjorge",
+                        "org_pok",
+                        "org_apa"
+                    ]
+    }
 ]
