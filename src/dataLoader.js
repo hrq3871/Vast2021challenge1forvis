@@ -1,4 +1,4 @@
-const REQUIRED_COLLECTIONS = ['nodes', 'edges', 'events', 'evidence', 'hypotheses'];
+const REQUIRED_COLLECTIONS = ['employees', 'emailEdges', 'nodes', 'edges', 'events', 'evidence', 'hypotheses'];
 
 export function validateBundle(bundle) {
   if (!bundle || typeof bundle !== 'object') {
@@ -42,14 +42,62 @@ export function buildIndexes(bundle) {
   };
 }
 
-export async function loadTask3Bundle(basePath = '/data') {
-  const response = await fetch(`${basePath}/task3_bundle.json`);
+async function fetchJson(path) {
+  const response = await fetch(path);
 
   if (!response.ok) {
-    throw new Error(`Unable to load Task 3 data bundle: HTTP ${response.status}`);
+    throw new Error(`Unable to load ${path}: HTTP ${response.status}`);
   }
 
-  const bundle = await response.json();
+  return response.json();
+}
+
+async function loadSplitBundle(basePath) {
+  const [employees, emailEdges, nodes, edges, events, evidence, hypotheses] = await Promise.all([
+    fetchJson(`${basePath}/employees.json`),
+    fetchJson(`${basePath}/email_edges.json`),
+    fetchJson(`${basePath}/relationship_nodes.json`),
+    fetchJson(`${basePath}/relationship_edges.json`),
+    fetchJson(`${basePath}/timeline_events.json`),
+    fetchJson(`${basePath}/evidence_items.json`),
+    fetchJson(`${basePath}/hypotheses.json`),
+  ]);
+
+  return {
+    metadata: { source: 'split-json' },
+    employees,
+    emailEdges,
+    nodes,
+    edges,
+    events,
+    evidence,
+    hypotheses,
+  };
+}
+
+function normalizeBundle(bundle) {
+  return {
+    ...bundle,
+    employees: bundle.employees ?? [],
+    emailEdges: bundle.emailEdges ?? bundle.email_edges ?? [],
+    nodes: bundle.nodes ?? [],
+    edges: bundle.edges ?? [],
+    events: bundle.events ?? [],
+    evidence: bundle.evidence ?? [],
+    hypotheses: bundle.hypotheses ?? [],
+  };
+}
+
+export async function loadTask3Bundle(basePath = './data') {
+  let bundle;
+
+  try {
+    bundle = await fetchJson(`${basePath}/task3_bundle.json`);
+  } catch (error) {
+    bundle = await loadSplitBundle(basePath);
+  }
+
+  bundle = normalizeBundle(bundle);
   const indexes = buildIndexes(bundle);
 
   return { bundle, indexes };

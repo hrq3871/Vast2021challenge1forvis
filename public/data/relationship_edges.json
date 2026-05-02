@@ -5,15 +5,9 @@
     "target": "org_government",
     "relation": "official_partnership",
     "confidence": "confirmed",
-    "evidenceIds": [
-      "ev_gastech_government_partnership"
-    ],
-    "topics": [
-      "official_partnership",
-      "government_reception"
-    ],
-    "date": "2014-01-19",
-    "narrative": "GAStech and Kronos state celebrate a long-running operating partnership."
+    "evidenceIds": ["ev_gastech_government_partnership"],
+    "topics": ["official_partnership", "government_reception"],
+    "date": "2014-01-19"
   },
   {
     "id": "edge_sanjorge_gastech_ceo",
@@ -21,13 +15,8 @@
     "target": "org_gastech",
     "relation": "leadership",
     "confidence": "confirmed",
-    "evidenceIds": [
-      "ev_employee_sanjorge_ceo"
-    ],
-    "topics": [
-      "employment",
-      "sanjorge"
-    ],
+    "evidenceIds": ["ev_employee_sanjorge_ceo"],
+    "topics": ["employment", "sanjorge"],
     "date": "2014-01-21"
   },
   {
@@ -36,14 +25,8 @@
     "target": "topic_government_reception",
     "relation": "expected_at_government_reception",
     "confidence": "confirmed",
-    "evidenceIds": [
-      "ev_sanjorge_escaped_kidnapping",
-      "ev_gastech_government_partnership"
-    ],
-    "topics": [
-      "government_reception",
-      "sanjorge"
-    ],
+    "evidenceIds": ["ev_sanjorge_escaped_kidnapping", "ev_gastech_government_partnership"],
+    "topics": ["government_reception", "sanjorge"],
     "date": "2014-01-20"
   },
   {
@@ -52,14 +35,8 @@
     "target": "topic_ipo",
     "relation": "financial_motive_anchor",
     "confidence": "probable",
-    "evidenceIds": [
-      "ev_leadership_missing_ipo",
-      "ev_ipo_email_perception"
-    ],
-    "topics": [
-      "ipo",
-      "sanjorge"
-    ],
+    "evidenceIds": ["ev_leadership_missing_ipo", "ev_ipo_email_perception"],
+    "topics": ["ipo", "sanjorge"],
     "date": "2014-01-20"
   },
   {
@@ -68,16 +45,8 @@
     "target": "event_kidnapping",
     "relation": "escaped_kidnapping_target_context",
     "confidence": "probable",
-    "evidenceIds": [
-      "ev_sanjorge_escaped_kidnapping",
-      "ev_leadership_missing_ipo",
-      "ev_pok_ransom"
-    ],
-    "topics": [
-      "kidnapping",
-      "sanjorge",
-      "ransom"
-    ],
+    "evidenceIds": ["ev_sanjorge_escaped_kidnapping", "ev_leadership_missing_ipo", "ev_pok_ransom"],
+    "topics": ["kidnapping", "sanjorge", "ransom"],
     "date": "2014-01-21"
   },
   {
@@ -86,16 +55,8 @@
     "target": "org_gastech",
     "relation": "conflict",
     "confidence": "confirmed",
-    "evidenceIds": [
-      "ev_pok_origin_1997",
-      "ev_pok_founders_waste_pipe",
-      "ev_pok_ransom"
-    ],
-    "topics": [
-      "pollution",
-      "pok_motive",
-      "kidnapping"
-    ],
+    "evidenceIds": ["ev_pok_origin_1997", "ev_pok_founders_waste_pipe", "ev_pok_ransom"],
+    "topics": ["pollution", "pok_motive", "kidnapping"],
     "date": "1997-01-01"
   },
   {
@@ -104,45 +65,19 @@
     "target": "org_government",
     "relation": "government_accountability_conflict",
     "confidence": "confirmed",
-    "evidenceIds": [
-      "ev_pok_origin_1997"
-    ],
-    "topics": [
-      "pok_motive",
-      "official_partnership"
-    ],
+    "evidenceIds": ["ev_pok_origin_1997"],
+    "topics": ["pok_motive", "official_partnership"],
     "date": "2004-01-01"
   },
   {
-    "id": "edge_isia_gastech_security",
+    "id": "edge_isia_gastech_employment",
     "source": "person_isia_vann",
-    "target": "dept_security",
+    "target": "org_gastech",
     "relation": "employment",
     "confidence": "confirmed",
-    "evidenceIds": [
-      "ev_employee_isia_security"
-    ],
-    "topics": [
-      "employment",
-      "personal_bridge",
-      "security"
-    ],
+    "evidenceIds": ["ev_employee_isia_security"],
+    "topics": ["employment", "personal_bridge", "security"],
     "date": "2007-12-14"
-  },
-  {
-    "id": "edge_security_gastech",
-    "source": "dept_security",
-    "target": "org_gastech",
-    "relation": "department_membership",
-    "confidence": "confirmed",
-    "evidenceIds": [
-      "ev_employee_isia_security"
-    ],
-    "topics": [
-      "employment",
-      "security"
-    ],
-    "date": "2007-01-01"
   },
   {
     "id": "edge_isia_pok_member",
@@ -150,15 +85,8 @@
     "target": "org_pok",
     "relation": "personal_bridge",
     "confidence": "confirmed",
-    "evidenceIds": [
-      "ev_isia_vann_pok_family",
-      "ev_employee_isia_security"
-    ],
-    "topics": [
-      "personal_bridge",
-      "pok_motive",
-      "security"
-    ],
+    "evidenceIds": ["ev_isia_vann_pok_family", "ev_employee_isia_security"],
+    "topics": ["personal_bridge", "pok_motive", "security"],
     "date": "2009-01-01"
   },
   {
@@ -167,14 +95,18 @@
     "target": "person_juliana_vann",
     "relation": "sibling",
     "confidence": "confirmed",
-    "evidenceIds": [
-      "ev_isia_vann_pok_family",
-      "ev_juliana_vann_death"
-    ],
-    "topics": [
-      "personal_bridge",
-      "pok_motive"
-    ],
+    "evidenceIds": ["ev_isia_vann_pok_family", "ev_juliana_vann_death"],
+    "topics": ["personal_bridge", "pok_motive"],
+    "date": "1998-08-18"
+  },
+  {
+    "id": "edge_juliana_pok_symbol",
+    "source": "person_juliana_vann",
+    "target": "org_pok",
+    "relation": "symbolic_figure",
+    "confidence": "confirmed",
+    "evidenceIds": ["ev_juliana_vann_death"],
+    "topics": ["pok_motive", "pollution"],
     "date": "1998-08-18"
   },
   {
@@ -183,14 +115,8 @@
     "target": "person_mandor_vann",
     "relation": "nephew_uncle",
     "confidence": "confirmed",
-    "evidenceIds": [
-      "ev_isia_vann_pok_family",
-      "ev_mandor_vann_pok_strategy"
-    ],
-    "topics": [
-      "personal_bridge",
-      "pok_motive"
-    ],
+    "evidenceIds": ["ev_isia_vann_pok_family", "ev_mandor_vann_pok_strategy"],
+    "topics": ["personal_bridge", "pok_motive"],
     "date": "2009-01-01"
   },
   {
@@ -199,45 +125,38 @@
     "target": "org_pok",
     "relation": "political_strategy",
     "confidence": "confirmed",
-    "evidenceIds": [
-      "ev_mandor_vann_pok_strategy"
-    ],
-    "topics": [
-      "personal_bridge",
-      "pok_motive"
-    ],
-    "date": "2009-01-01"
+    "evidenceIds": ["ev_mandor_vann_pok_strategy"],
+    "topics": ["personal_bridge", "pok_motive"],
+    "date": "2014-01-21"
+  },
+  {
+    "id": "edge_isia_arise_suspicion",
+    "source": "person_isia_vann",
+    "target": "topic_arise",
+    "relation": "suspicious_email_recipient",
+    "confidence": "hypothesis",
+    "evidenceIds": ["ev_arise_email_forward"],
+    "topics": ["arise", "personal_bridge", "security"],
+    "date": "2014-01-13"
   },
   {
     "id": "edge_apa_arise_publication",
     "source": "org_apa",
     "target": "topic_arise",
     "relation": "publishes_arise",
-    "confidence": "hypothesis",
-    "evidenceIds": [
-      "ev_apa_arise_publication"
-    ],
-    "topics": [
-      "apa",
-      "arise"
-    ],
-    "date": "2013-10-22",
-    "narrative": "The publication is confirmed, but its relevance to the GAStech kidnapping is only a weak bridge."
+    "confidence": "confirmed",
+    "evidenceIds": ["ev_apa_arise_publication"],
+    "topics": ["apa", "arise"],
+    "date": "2013-10-22"
   },
   {
-    "id": "edge_arise_gastech_security_email",
+    "id": "edge_arise_gastech_email",
     "source": "topic_arise",
-    "target": "dept_security",
-    "relation": "email_subject_reaches_security",
+    "target": "org_gastech",
+    "relation": "email_subject_reaches_company",
     "confidence": "hypothesis",
-    "evidenceIds": [
-      "ev_arise_email_forward"
-    ],
-    "topics": [
-      "arise",
-      "email_anomaly",
-      "security"
-    ],
+    "evidenceIds": ["ev_arise_email_forward"],
+    "topics": ["arise", "email_anomaly", "security"],
     "date": "2014-01-13"
   },
   {
@@ -246,15 +165,8 @@
     "target": "org_pok",
     "relation": "shared_regional_risk_frame",
     "confidence": "hypothesis",
-    "evidenceIds": [
-      "ev_pok_apa_kidnapping_risk"
-    ],
-    "topics": [
-      "apa",
-      "arise",
-      "kidnapping",
-      "pok_motive"
-    ],
+    "evidenceIds": ["ev_pok_apa_kidnapping_risk"],
+    "topics": ["apa", "arise", "kidnapping", "pok_motive"],
     "date": "2014-01-21"
   }
 ]

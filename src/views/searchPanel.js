@@ -1,12 +1,10 @@
-import { Building2, LayoutGrid, Lightbulb, Mail, RotateCcw, Search, Users, X } from 'lucide';
+import { Building2, LayoutGrid, Mail, RotateCcw, Search, Users, X } from 'lucide';
 import { iconSvg } from '../utils/icons.js';
 
 const VIEWS = [
-  ['overview', 'Overview', LayoutGrid],
-  ['official', 'Official', Building2],
-  ['pok', 'POK Motive', Users],
+  ['pok', 'Relations', Users],
+  ['official', 'Org Chart', Building2],
   ['email', 'Email Network', Mail],
-  ['hypothesis', 'Hypotheses', Lightbulb],
 ];
 
 export function renderTopBar(container, state, bundle) {
@@ -28,8 +26,8 @@ export function renderTopBar(container, state, bundle) {
       <div class="brand-mark" aria-hidden="true">V</div>
       <div class="brand-block">
         <p class="eyebrow">VAST 2021 MC1 - Task 3</p>
-        <h1>GAStech Investigation Workbench</h1>
-        <p>Kronos incident relationship analysis</p>
+        <h1>Kronos Multi-Organizational Relationship Workbench</h1>
+        <p>Analyzing links between GASTech, POK, APA, and Government</p>
       </div>
     </div>
     <div class="topbar-controls">

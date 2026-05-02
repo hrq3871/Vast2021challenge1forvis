@@ -154,6 +154,8 @@ export function getEvidenceForSelection(selection, bundle, indexes) {
   } else if (selection.type === 'evidence') {
     const item = indexes.evidenceById.get(selection.id);
     evidence = item ? [item] : [];
+  } else if (selection.type === 'employee') {
+    evidence = evidenceForNode(selection.nodeId ?? selection.id, bundle, indexes);
   } else {
     evidence = evidenceForNode(selection.id, bundle, indexes);
   }

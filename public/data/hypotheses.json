@@ -98,6 +98,7 @@
     "edgeIds": [
       "edge_apa_arise_publication",
       "edge_arise_gastech_security_email",
+      "edge_isia_arise_suspicion",
       "edge_apa_pok_regional_risk",
       "edge_isia_gastech_security"
     ],

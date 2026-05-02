@@ -1,13 +1,31 @@
 import * as d3 from 'd3';
-import { Mail, RadioTower } from 'lucide';
+import { Mail, RadioTower, X } from 'lucide';
 import { iconSvg } from '../utils/icons.js';
 
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
+}
+
+function topicLabel(topic) {
+  return topic === 'all' ? 'All Email' : topic.toUpperCase();
+}
+
 function effectiveEmailTopic(snapshot) {
-  if (snapshot.hypothesisId === 'h_apa_arise_weak_risk') return 'arise';
   if (snapshot.topic === 'arise' || snapshot.topic === 'ipo' || snapshot.topic === 'security') return snapshot.topic;
-  if (snapshot.search?.trim()) return 'all';
-  if (snapshot.activeView === 'email') return 'arise';
   return 'all';
+}
+
+function employeeMatches(edge, selection) {
+  if (selection?.type !== 'employee') return true;
+  const needles = [selection.id, selection.nodeId, selection.label].filter(Boolean).map((item) => String(item).toLowerCase());
+  const haystack = [edge.source, edge.target, edge.sourceEmail, edge.targetEmail, edge.sourceLabel, edge.targetLabel]
+    .join(' ')
+    .toLowerCase();
+  return needles.some((needle) => haystack.includes(needle));
 }
 
 export function filterEmails(emailEdges, snapshot) {
@@ -15,6 +33,7 @@ export function filterEmails(emailEdges, snapshot) {
   const query = snapshot.search.trim().toLowerCase();
   return emailEdges
     .filter((edge) => topic === 'all' || edge.topic === topic)
+    .filter((edge) => employeeMatches(edge, snapshot.selection))
     .filter((edge) => {
       if (!query) return true;
       return [
@@ -33,40 +52,127 @@ export function filterEmails(emailEdges, snapshot) {
         .join(' ')
         .toLowerCase()
         .includes(query);
+    });
+}
+
+function aggregateEdges(emails) {
+  const groups = d3.rollups(
+    emails,
+    (rows) => rows,
+    (edge) => `${edge.source}|${edge.target}|${edge.topic}`,
+  );
+  return groups
+    .map(([key, rows]) => {
+      const [source, target, topic] = key.split('|');
+      const first = rows[0];
+      return {
+        id: key,
+        source,
+        target,
+        topic,
+        sourceLabel: first.sourceLabel,
+        targetLabel: first.targetLabel,
+        value: rows.length,
+        emails: rows.sort((a, b) => a.datetime.localeCompare(b.datetime)),
+      };
     })
-    .slice(0, 90);
+    .sort((a, b) => b.value - a.value);
+}
+
+function buildSideNodes(aggregates, side) {
+  const idKey = side === 'source' ? 'source' : 'target';
+  const labelKey = side === 'source' ? 'sourceLabel' : 'targetLabel';
+  return d3
+    .rollups(
+      aggregates,
+      (rows) => d3.sum(rows, (item) => item.value),
+      (item) => item[idKey],
+    )
+    .map(([id, value]) => {
+      const row = aggregates.find((item) => item[idKey] === id);
+      return { id, label: row[labelKey], value };
+    })
+    .sort((a, b) => b.value - a.value || a.label.localeCompare(b.label));
+}
+
+function renderEmailModal(container, aggregate) {
+  container.insertAdjacentHTML(
+    'beforeend',
+    `
+      <div class="modal-backdrop" id="email-modal" role="presentation">
+        <article class="source-modal email-source-modal" role="dialog" aria-modal="true" aria-labelledby="email-modal-title">
+          <div class="source-modal__header">
+            <div>
+              <p class="eyebrow">Email Evidence</p>
+              <h2 id="email-modal-title">${escapeHtml(aggregate.sourceLabel)} to ${escapeHtml(aggregate.targetLabel)}</h2>
+              <p>${aggregate.value} message path${aggregate.value === 1 ? '' : 's'} - ${escapeHtml(topicLabel(aggregate.topic))}</p>
+            </div>
+            <button class="icon-button" id="close-email-modal" type="button" aria-label="Close email evidence">${iconSvg(X)}</button>
+          </div>
+          <div class="email-evidence-list">
+            ${aggregate.emails
+              .map(
+                (email) => `
+                  <article class="email-evidence-card">
+                    <div>
+                      <strong>${escapeHtml(email.subject)}</strong>
+                      <span>${escapeHtml(email.datetime)} - row ${escapeHtml(email.rowNumber)}</span>
+                    </div>
+                    <p><b>From</b> ${escapeHtml(email.sourceLabel)} &lt;${escapeHtml(email.sourceEmail)}&gt;</p>
+                    <p><b>To</b> ${escapeHtml(email.targetLabel)} &lt;${escapeHtml(email.targetEmail)}&gt;</p>
+                    <p><b>Entities</b> ${escapeHtml(email.sourceLabel)}, ${escapeHtml(email.targetLabel)}, GAStech - <b>Topic</b> ${escapeHtml(email.topic)}</p>
+                  </article>
+                `,
+              )
+              .join('')}
+          </div>
+        </article>
+      </div>
+    `,
+  );
+  const modal = container.querySelector('#email-modal');
+  const close = container.querySelector('#close-email-modal');
+  close?.focus();
+  close?.addEventListener('click', () => modal?.remove());
+  modal?.addEventListener('click', (event) => {
+    if (event.target === modal) modal.remove();
+  });
 }
 
 export function createEmailNetwork(container, state, bundle) {
   function render(snapshot) {
     const emails = filterEmails(bundle.emailEdges, snapshot);
-    const width = Math.max(container.getBoundingClientRect().width || 860, 560);
-    const height = 330;
-    const participants = Array.from(
-      new Map(
-        emails
-          .flatMap((edge) => [
-            [edge.source, edge.sourceLabel],
-            [edge.target, edge.targetLabel],
-          ])
-          .map(([id, label]) => [id, { id, label }]),
-      ).values(),
-    ).sort((a, b) => a.label.localeCompare(b.label));
+    const aggregates = aggregateEdges(emails);
+    const width = Math.max(container.getBoundingClientRect().width || 980, 900);
+    const height = Math.max(container.getBoundingClientRect().height || 280, 240) - 70;
+    const sourceNodes = buildSideNodes(aggregates, 'source').slice(0, 6);
+    const targetNodes = buildSideNodes(aggregates, 'target').slice(0, 6);
+    const sourceIds = new Set(sourceNodes.map((item) => item.id));
+    const targetIds = new Set(targetNodes.map((item) => item.id));
+    const visibleAggregates = aggregates.filter((item) => sourceIds.has(item.source) && targetIds.has(item.target));
+    const maxValue = d3.max(visibleAggregates, (item) => item.value) ?? 1;
+    const selectedEmployee = snapshot.selection?.type === 'employee' ? snapshot.selection : null;
 
     container.innerHTML = `
       <div class="view-title-row">
         <div>
-          <p class="eyebrow">Internal Email Header Network</p>
-          <h2>${iconSvg(Mail, { width: 18, height: 18 })} Anomalous Message Propagation</h2>
+          <p class="eyebrow">Full Email Sankey</p>
+          <h2>${iconSvg(Mail, { width: 18, height: 18 })} Message Flow by Sender and Recipient</h2>
+          <p class="email-context">${selectedEmployee ? `Filtered by employee: ${escapeHtml(selectedEmployee.label)}` : `Showing full anomalous email flow before topic filtering.`}</p>
         </div>
         <div class="segmented" role="group" aria-label="Email topic">
-          <button type="button" data-email-topic="arise">ARISE</button>
-          <button type="button" data-email-topic="ipo">IPO</button>
-          <button type="button" data-email-topic="security">Security</button>
+          ${['all', 'arise', 'ipo', 'security']
+            .map((topic) => `<button type="button" data-email-topic="${topic}">${topicLabel(topic)}</button>`)
+            .join('')}
         </div>
       </div>
-      <div class="email-canvas"></div>
-      <div class="email-summary" aria-live="polite"></div>
+      <div class="email-canvas sankey-canvas"></div>
+      <div class="email-summary">
+        <div class="signal-chip" style="padding: 2px 8px; font-size: 11px;">
+          ${iconSvg(RadioTower, { width: 14, height: 14 })}
+          ${emails.length} msg - ${visibleAggregates.length} paths
+        </div>
+      </div>
     `;
 
     container.querySelectorAll('[data-email-topic]').forEach((button) => {
@@ -75,107 +181,96 @@ export function createEmailNetwork(container, state, bundle) {
     });
 
     const canvas = container.querySelector('.email-canvas');
-
-    if (!emails.length) {
+    if (!visibleAggregates.length) {
       canvas.innerHTML = `
         <div class="empty-state">
-          <h3>No anomalous emails match current filters</h3>
-          <p>Clear search or switch to ARISE, IPO, or Security topic.</p>
+          <h3>No emails match current filters</h3>
+          <p>Clear search, switch topic, or close the selected employee filter.</p>
         </div>
       `;
       return;
     }
 
-    const x = d3
-      .scalePoint()
-      .domain(participants.map((item) => item.id))
-      .range([48, width - 48])
-      .padding(0.6);
-    const y = height - 78;
-    const maxDistance = Math.max(1, participants.length - 1);
+    const top = 16;
+    const bottom = Math.max(top + 1, height - 20);
+    const ySource = d3.scalePoint().domain(sourceNodes.map((item) => item.id)).range([top, bottom]).padding(0.45);
+    const yTarget = d3.scalePoint().domain(targetNodes.map((item) => item.id)).range([top, bottom]).padding(0.45);
+    const stroke = d3.scaleSqrt().domain([1, maxValue]).range([2.5, 22]);
+    const x1 = 190;
+    const x2 = width - 210;
 
     const svg = d3
       .select(canvas)
       .append('svg')
-      .attr('class', 'email-svg')
+      .attr('class', 'email-svg sankey-svg')
       .attr('viewBox', [0, 0, width, height].join(' '))
       .attr('role', 'img')
-      .attr('aria-label', 'Arc diagram of anomalous GAStech email headers.');
+      .attr('aria-label', 'Sankey-style full email flow grouped by sender and recipient.');
 
     svg
       .append('g')
-      .attr('class', 'email-arcs')
+      .attr('class', 'sankey-links')
       .selectAll('path')
-      .data(emails)
+      .data(visibleAggregates)
       .join('path')
-      .attr('class', (edge) => `email-arc email-${edge.topic}`)
+      .attr('class', (edge) => `sankey-link email-${edge.topic} ${selectedEmployee && (edge.source === selectedEmployee.nodeId || edge.target === selectedEmployee.nodeId) ? 'is-selected-employee' : ''}`)
       .attr('d', (edge) => {
-        const x1 = x(edge.source);
-        const x2 = x(edge.target);
-        const distance = Math.abs(participants.findIndex((item) => item.id === edge.source) - participants.findIndex((item) => item.id === edge.target));
-        const lift = 28 + (distance / maxDistance) * 140;
-        return `M${x1},${y} C${x1},${y - lift} ${x2},${y - lift} ${x2},${y}`;
+        const sy = ySource(edge.source);
+        const ty = yTarget(edge.target);
+        const mid = width / 2;
+        return `M${x1},${sy} C${mid - 120},${sy} ${mid + 120},${ty} ${x2},${ty}`;
       })
+      .attr('stroke-width', (edge) => stroke(edge.value))
       .attr('tabindex', 0)
       .attr('role', 'button')
-      .attr('aria-label', (edge) => `${edge.subject}: ${edge.sourceLabel} to ${edge.targetLabel}`)
+      .attr('aria-label', (edge) => `${edge.value} emails from ${edge.sourceLabel} to ${edge.targetLabel}`)
       .on('click keydown', (event, edge) => {
         if (event.type === 'keydown' && event.key !== 'Enter') return;
-        state.setSelection({
-          type: 'evidence',
-          id: edge.topic === 'arise' ? 'ev_arise_email_forward' : edge.topic === 'ipo' ? 'ev_ipo_email_perception' : 'ev_employee_isia_security',
-        });
+        renderEmailModal(container, edge);
       })
       .append('title')
-      .text((edge) => `${edge.datetime} - ${edge.sourceLabel} -> ${edge.targetLabel} - ${edge.subject}`);
+      .text((edge) => `${edge.value} emails - ${edge.sourceLabel} -> ${edge.targetLabel}`);
 
-    const node = svg
-      .append('g')
-      .attr('class', 'email-participants')
-      .selectAll('g')
-      .data(participants)
-      .join('g')
-      .attr('transform', (item) => `translate(${x(item.id)}, ${y})`);
+    const drawNode = (selection, x, side) => {
+      selection
+        .append('rect')
+        .attr('x', side === 'source' ? -188 : 8)
+        .attr('y', -12)
+        .attr('width', 180)
+        .attr('height', 24)
+        .attr('rx', 4);
+      selection
+        .append('text')
+        .attr('x', side === 'source' ? -98 : 98)
+        .attr('y', 4)
+        .attr('text-anchor', 'middle')
+        .text((item) => `${item.label} (${item.value})`);
+    };
 
-    node.append('circle').attr('r', 8);
-    node
-      .append('text')
-      .attr('transform', 'rotate(-40)')
-      .attr('x', 13)
-      .attr('y', 5)
-      .text((item) => item.label);
-
-    container.querySelector('.email-summary').innerHTML = `
-      <div class="signal-chip">
-        ${iconSvg(RadioTower, { width: 16, height: 16 })}
-        Showing ${emails.length} anomalous edges across ${participants.length} participants.
-      </div>
-      <div class="mini-table" role="table" aria-label="Email evidence rows">
-        ${emails
-          .slice(0, 8)
-          .map(
-            (edge) => `
-              <button type="button" class="mini-row" data-topic="${edge.topic}">
-                <span>${edge.date}</span>
-                <strong>${edge.sourceLabel}</strong>
-                <span>${edge.targetLabel}</span>
-                <span>${edge.subject}</span>
-              </button>
-            `,
-          )
-          .join('')}
-      </div>
-    `;
-
-    container.querySelectorAll('.mini-row').forEach((row) => {
-      row.addEventListener('click', () => {
-        const topic = row.dataset.topic;
-        state.setSelection({
-          type: 'evidence',
-          id: topic === 'arise' ? 'ev_arise_email_forward' : topic === 'ipo' ? 'ev_ipo_email_perception' : 'ev_employee_isia_security',
-        });
-      });
-    });
+    drawNode(
+      svg
+        .append('g')
+        .attr('class', 'sankey-nodes sankey-sources')
+        .selectAll('g')
+        .data(sourceNodes)
+        .join('g')
+        .attr('class', (item) => (selectedEmployee?.nodeId === item.id ? 'is-selected-employee' : ''))
+        .attr('transform', (item) => `translate(${x1},${ySource(item.id)})`),
+      x1,
+      'source',
+    );
+    drawNode(
+      svg
+        .append('g')
+        .attr('class', 'sankey-nodes sankey-targets')
+        .selectAll('g')
+        .data(targetNodes)
+        .join('g')
+        .attr('class', (item) => (selectedEmployee?.nodeId === item.id ? 'is-selected-employee' : ''))
+        .attr('transform', (item) => `translate(${x2},${yTarget(item.id)})`),
+      x2,
+      'target',
+    );
   }
 
   state.subscribe(render);

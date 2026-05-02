@@ -16,8 +16,6 @@ const EVENT_GROUP = {
 
 function effectiveTimelineTopic(snapshot) {
   if (snapshot.topic !== 'all') return snapshot.topic;
-  if (snapshot.activeView === 'official') return 'government_reception';
-  if (snapshot.activeView === 'pok') return 'pollution';
   return 'all';
 }
 
@@ -26,7 +24,7 @@ function timelineTypeLabel(type) {
 }
 
 function clampLabelY(y, height) {
-  return Math.max(24, Math.min(height - 98, y));
+  return Math.max(10, Math.min(height - 76, y));
 }
 
 function curvedPath(points) {
@@ -51,19 +49,19 @@ export function sortTimelineEvents(events) {
 
 export function buildCurvedTimelineLayout(events) {
   const sortedEvents = sortTimelineEvents(events);
-  const marginX = 104;
-  const minStep = 184;
-  const height = 360;
-  const centerY = 178;
-  const amplitude = 42;
-  const width = Math.max(1040, marginX * 2 + Math.max(0, sortedEvents.length - 1) * minStep);
+  const marginX = 70;
+  const minStep = 118;
+  const height = 280;
+  const centerY = 160;
+  const amplitude = 20;
+  const width = Math.max(680, marginX * 2 + Math.max(0, sortedEvents.length - 1) * minStep);
 
   const layoutEvents = sortedEvents.map((event, index) => {
     const x = marginX + index * minStep;
     const wave = sortedEvents.length <= 1 ? 0 : Math.sin((index / (sortedEvents.length - 1)) * Math.PI * 2);
     const y = Math.round(centerY + wave * amplitude);
     const side = index % 2 === 0 ? -1 : 1;
-    const labelY = clampLabelY(y + side * 118, height);
+    const labelY = side < 0 ? clampLabelY(y + side * 125, height) : clampLabelY(y + side * 65, height);
 
     return {
       ...event,
@@ -72,7 +70,7 @@ export function buildCurvedTimelineLayout(events) {
       side,
       labelX: x,
       labelY,
-      connectorEndY: side < 0 ? labelY + 74 : labelY,
+      connectorEndY: side < 0 ? labelY + 95 : labelY + 2,
       color: colorForGroup(EVENT_GROUP[event.type]),
     };
   });

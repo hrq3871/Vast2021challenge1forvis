@@ -21,8 +21,8 @@ export function createHypothesisExplorer(container, state, bundle, indexes) {
     container.innerHTML = `
       <div class="view-title-row">
         <div>
-          <p class="eyebrow">Guided Analysis Paths</p>
-          <h2>How to Find the Task 3 Relationships</h2>
+          <p class="eyebrow">Guided Paths</p>
+          <h2>Hypotheses</h2>
         </div>
       </div>
       <div class="hypothesis-grid">
@@ -47,7 +47,7 @@ export function createHypothesisExplorer(container, state, bundle, indexes) {
           })
           .join('')}
       </div>
-      <div class="walkthrough-panel"></div>
+      <div class="walkthrough-panel compact-walkthrough"></div>
     `;
 
     container.querySelectorAll('[data-hypothesis]').forEach((button) => {

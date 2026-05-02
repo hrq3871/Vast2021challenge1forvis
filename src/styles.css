@@ -226,9 +226,9 @@ button:active {
   display: grid;
   grid-template-columns: 158px minmax(0, 1fr) 360px;
   gap: 12px;
-  height: calc(100dvh - 236px);
-  min-height: 560px;
-  padding: 12px;
+  height: calc(100dvh - 200px);
+  min-height: 520px;
+  padding: 8px;
 }
 
 .left-rail,
@@ -276,10 +276,10 @@ button:active {
 .main-workspace {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  gap: 10px;
+  gap: 8px;
   min-width: 0;
   border-radius: var(--radius-md);
-  padding: 12px;
+  padding: 8px;
 }
 
 .workspace-summary {
@@ -425,7 +425,7 @@ button:active {
   gap: 12px;
   align-items: center;
   justify-content: space-between;
-  padding: 14px;
+  padding: 4px 14px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -493,25 +493,25 @@ button:active {
 
 .timeline-panel {
   min-height: 200px;
-  max-height: 300px;
-  margin: 0 12px 12px;
+  max-height: 260px;
+  margin: 0 12px 8px;
   overflow: hidden;
   border-radius: var(--radius-md);
 }
 
 .timeline-heading {
-  height: 54px;
-  padding: 8px 12px;
+  height: 40px;
+  padding: 4px 12px;
 }
 
 .timeline-heading h2 {
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .timeline-scroll-container {
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 8px 12px 12px;
+  padding: 4px 12px 8px;
 }
 
 .timeline-lanes-grid {
@@ -596,12 +596,12 @@ button:active {
 }
 
 .email-panel {
-  overflow: auto;
+  overflow: hidden;
 }
 
 .email-canvas {
-  height: 330px;
-  min-height: 280px;
+  height: 200px;
+  min-height: 180px;
 }
 
 .email-arc {
@@ -688,19 +688,19 @@ button:active {
 
 .hypothesis-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  padding: 14px;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  padding: 10px 14px;
 }
 
 .hypothesis-card {
   display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 10px;
+  grid-template-columns: 34px 1fr;
+  gap: 9px;
   align-items: start;
-  min-height: 152px;
+  min-height: 74px;
   border-radius: var(--radius-md);
-  padding: 14px;
+  padding: 10px;
   text-align: left;
 }
 
@@ -712,8 +712,8 @@ button:active {
 .hypothesis-card__icon {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 32px;
+  height: 32px;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   color: var(--accent-info);
@@ -722,12 +722,13 @@ button:active {
 
 .hypothesis-card__body {
   display: grid;
-  gap: 8px;
+  gap: 4px;
 }
 
 .hypothesis-card__body span {
   color: var(--muted);
-  line-height: 1.45;
+  line-height: 1.32;
+  font-size: 12px;
 }
 
 .hypothesis-meta {
@@ -736,17 +737,18 @@ button:active {
 }
 
 .walkthrough-panel {
-  margin: 0 14px 14px;
+  margin: 0 14px 12px;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 14px;
+  padding: 10px 12px;
   background: rgba(8, 11, 16, 0.36);
 }
 
 .walkthrough-panel ol {
-  margin: 10px 0 14px 22px;
+  margin: 8px 0 10px 18px;
   color: #d8e4f7;
-  line-height: 1.55;
+  line-height: 1.35;
+  font-size: 12px;
 }
 
 .adjacency-strip {
@@ -883,6 +885,283 @@ button:active {
 
   .timeline-panel {
     height: auto;
+  }
+}
+
+/* Task revision: full org chart, readable full-email Sankey, and search evidence highlighting. */
+.workspace-shell {
+  height: min(720px, calc(100dvh - 160px));
+  min-height: 600px;
+}
+
+.analysis-panel {
+  overflow: auto;
+}
+
+.org-title-row p.org-subtitle,
+.email-context {
+  margin: 8px 0 0;
+  color: #667085;
+  font-size: 13px;
+}
+
+.org-chart-stage {
+  min-height: calc(100% - 90px);
+  padding: 26px 32px 42px;
+  background:
+    linear-gradient(#f1f4f8 1px, transparent 1px),
+    linear-gradient(90deg, #f1f4f8 1px, transparent 1px),
+    #ffffff;
+  background-size: 36px 36px;
+}
+
+.org-root {
+  display: grid;
+  gap: 4px;
+  width: min(360px, 100%);
+  margin: 0 auto 28px;
+  border: 1px solid #d7e0ea;
+  border-radius: 8px;
+  padding: 18px 20px;
+  background: #0f172a;
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.18);
+}
+
+.org-root strong {
+  font-size: 22px;
+}
+
+.org-root span {
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+.department-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.department-card {
+  border: 1px solid #dfe6ef;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+.department-card.is-expanded {
+  grid-row: span 2;
+}
+
+.department-header,
+.org-more {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.department-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 72px;
+  border-bottom: 1px solid #eef1f5;
+  padding: 14px 16px;
+}
+
+.department-header span {
+  display: grid;
+  gap: 4px;
+}
+
+.department-header strong {
+  color: #111827;
+  font-size: 16px;
+}
+
+.department-header em,
+.employee-node em,
+.employee-node small {
+  color: #667085;
+  font-style: normal;
+}
+
+.department-header b {
+  color: #155eef;
+  font-size: 12px;
+}
+
+.employee-grid {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+}
+
+.employee-node {
+  display: grid;
+  gap: 4px;
+  min-height: 76px;
+  border: 1px solid #eef1f5;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #ffffff;
+  color: inherit;
+  text-align: left;
+}
+
+.employee-node span {
+  color: #111827;
+  font-weight: 800;
+}
+
+.employee-node em {
+  overflow: hidden;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.employee-node:hover,
+.employee-node.is-selected {
+  border-color: #93c5fd;
+  background: #eff6ff;
+}
+
+.employee-node.is-search-hit {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.14);
+}
+
+.org-more {
+  min-height: 44px;
+  border-top: 1px solid #eef1f5;
+  padding: 0 16px;
+  color: #155eef;
+  font-weight: 800;
+}
+
+.sankey-canvas {
+  height: calc(100% - 122px);
+  min-height: 560px;
+  overflow: auto;
+  padding: 6px 10px 0;
+  background:
+    linear-gradient(#f1f4f8 1px, transparent 1px),
+    linear-gradient(90deg, #f1f4f8 1px, transparent 1px),
+    #ffffff;
+  background-size: 36px 36px;
+}
+
+.sankey-svg {
+  min-width: 980px;
+  min-height: 560px;
+}
+
+.sankey-link {
+  fill: none;
+  stroke-linecap: round;
+  stroke-opacity: 0.34;
+  cursor: pointer;
+  mix-blend-mode: multiply;
+}
+
+.sankey-link:hover,
+.sankey-link:focus-visible,
+.sankey-link.is-selected-employee {
+  stroke-opacity: 0.82;
+  outline: none;
+}
+
+.sankey-nodes rect {
+  fill: #ffffff;
+  stroke: #d7dee8;
+  stroke-width: 1.5;
+}
+
+.sankey-nodes text {
+  fill: #344054;
+  font-size: 12px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-linejoin: round;
+  stroke-width: 4px;
+}
+
+.sankey-nodes .is-selected-employee rect {
+  fill: #eff6ff;
+  stroke: #2563eb;
+  stroke-width: 2.5;
+}
+
+.email-source-modal {
+  width: min(880px, 100%);
+}
+
+.email-evidence-list {
+  display: grid;
+  gap: 12px;
+  overflow: auto;
+  padding: 18px 22px 24px;
+}
+
+.email-evidence-card {
+  display: grid;
+  gap: 8px;
+  border: 1px solid #eef1f5;
+  border-radius: 8px;
+  padding: 14px;
+  background: #ffffff;
+}
+
+.email-evidence-card div {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.email-evidence-card strong {
+  color: #111827;
+}
+
+.email-evidence-card span,
+.email-evidence-card p {
+  margin: 0;
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+mark {
+  border-radius: 3px;
+  padding: 0 2px;
+  color: #7a2e0e;
+  background: #fef08a;
+}
+
+@media (max-width: 1180px) {
+  .workspace-shell {
+    height: auto;
+    min-height: 0;
+  }
+
+  .department-grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .department-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .org-chart-stage {
+    padding: 20px 18px 32px;
   }
 }
 
@@ -1702,10 +1981,10 @@ body {
 
 .workspace-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 408px;
+  grid-template-columns: minmax(0, 1fr) 390px;
   gap: 0;
-  height: 720px;
-  min-height: 720px;
+  height: 610px;
+  min-height: 610px;
   padding: 0;
   border-bottom: 1px solid #e6eaf0;
 }
@@ -2085,24 +2364,38 @@ body {
   white-space: pre-wrap;
 }
 
-.timeline-panel {
+.bottom-insights {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(360px, 0.75fr);
+  min-height: 330px;
+  border-bottom: 1px solid #e6eaf0;
+}
+
+.timeline-panel,
+.bottom-insights .hypothesis-panel {
   min-height: 0;
   max-height: none;
   margin: 0;
-  border-bottom: 1px solid #e6eaf0;
+  border-bottom: 0;
+}
+
+.bottom-insights .hypothesis-panel {
+  overflow: hidden;
+  border-left: 1px solid #e6eaf0;
+  background: #ffffff;
 }
 
 .timeline-heading {
   height: auto;
-  min-height: 72px;
+  min-height: 58px;
   border-bottom: 1px solid #e6eaf0;
-  padding: 18px 36px;
+  padding: 12px 24px;
 }
 
 .timeline-scroll-container {
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 20px 40px 36px;
+  padding: 10px 24px 18px;
 }
 
 .curved-timeline-stage {
@@ -2181,11 +2474,11 @@ body {
   position: absolute;
   display: grid;
   gap: 5px;
-  width: 176px;
-  min-height: 78px;
+  width: 150px;
+  min-height: 62px;
   border: 1px solid transparent;
   border-radius: 0;
-  padding: 10px 12px;
+  padding: 8px 10px;
   background: transparent;
   color: inherit;
   text-align: left;
@@ -2208,6 +2501,7 @@ body {
 
 .timeline-event-label-block.is-above {
   align-content: end;
+  padding-bottom: 12px;
 }
 
 .timeline-event-label-block.is-below {
@@ -2216,7 +2510,7 @@ body {
 
 .timeline-event-date {
   color: #667085;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   line-height: 1;
 }
@@ -2224,14 +2518,14 @@ body {
 .timeline-event-label {
   display: block;
   color: #101828;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1.28;
 }
 
 .timeline-event-type {
   color: #8a94a6;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1;
   text-transform: capitalize;
 }
@@ -2362,5 +2656,638 @@ body {
 
   .timeline-event-label {
     font-size: 12px;
+  }
+}
+
+/* Final task-specific overrides kept last so the revised canvases win the cascade. */
+.workspace-shell {
+  height: min(720px, calc(100dvh - 160px));
+  min-height: 600px;
+}
+
+.analysis-panel {
+  overflow: auto;
+}
+
+.sankey-canvas {
+  height: calc(100% - 122px);
+  min-height: 560px;
+}
+
+.sankey-svg {
+  min-width: 980px;
+  min-height: 560px;
+}
+
+@media (max-width: 1180px) {
+  .workspace-shell {
+    height: auto;
+    min-height: 0;
+  }
+}
+
+/* Layout polish: bottom hypotheses, compact timeline, and unclipped email Sankey labels. */
+.workspace-shell {
+  grid-template-columns: minmax(0, 1fr) 390px;
+  height: min(610px, calc(100dvh - 150px));
+  min-height: 540px;
+}
+
+.bottom-insights {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(360px, 0.75fr);
+  min-height: 330px;
+  border-top: 1px solid #e6eaf0;
+  border-bottom: 1px solid #e6eaf0;
+  background: #ffffff;
+}
+
+.bottom-insights .timeline-panel,
+.bottom-insights .hypothesis-panel {
+  min-height: 0;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  border: 0;
+}
+
+.bottom-insights .hypothesis-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+  border-left: 1px solid #e6eaf0;
+}
+
+.bottom-insights .hypothesis-panel .view-title-row,
+.bottom-insights .timeline-heading {
+  min-height: 56px;
+  padding: 12px 20px;
+}
+
+.bottom-insights .hypothesis-grid {
+  grid-template-columns: 1fr;
+  gap: 8px;
+  overflow: auto;
+  padding: 10px 14px;
+}
+
+.bottom-insights .hypothesis-card {
+  grid-template-columns: 34px minmax(0, 1fr);
+  min-height: 70px;
+  padding: 10px;
+}
+
+.bottom-insights .hypothesis-card__icon {
+  width: 32px;
+  height: 32px;
+}
+
+.bottom-insights .hypothesis-card__body {
+  gap: 4px;
+  min-width: 0;
+}
+
+.bottom-insights .hypothesis-card__body strong {
+  overflow: hidden;
+  color: #111827;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bottom-insights .hypothesis-card__body span {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.3;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.bottom-insights .hypothesis-meta {
+  display: none;
+}
+
+.bottom-insights .walkthrough-panel {
+  max-height: 116px;
+  margin: 0;
+  overflow: auto;
+  border-width: 1px 0 0;
+  border-radius: 0;
+  padding: 10px 14px;
+  background: #f8fafc;
+}
+
+.bottom-insights .walkthrough-panel h3 {
+  font-size: 14px;
+}
+
+.bottom-insights .walkthrough-panel ol {
+  margin: 6px 0 8px 18px;
+  color: #475467;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.bottom-insights .adjacency-strip {
+  display: none;
+}
+
+.timeline-scroll-container {
+  padding: 8px 20px 14px;
+}
+
+.timeline-event-label-block {
+  width: 150px;
+  min-height: 62px;
+  padding: 8px 10px;
+}
+
+.sankey-nodes text {
+  font-size: 11px;
+}
+
+.sankey-nodes rect {
+  fill: rgba(255, 255, 255, 0.96);
+}
+
+.graph-panel:not([hidden]) {
+  min-height: 0;
+}
+
+.graph-empty {
+  min-height: 100%;
+}
+
+@media (max-width: 1180px) {
+  .workspace-shell,
+  .bottom-insights {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .bottom-insights .hypothesis-panel {
+    border-left: 0;
+    border-top: 1px solid #e6eaf0;
+  }
+}
+
+@media (max-width: 820px) {
+  .bottom-insights .hypothesis-panel {
+    min-height: 360px;
+    height: auto;
+  }
+}
+
+/* Compact workspace pass: keep tabs small and prevent the main view from covering bottom panels. */
+.topbar {
+  position: static;
+  display: grid;
+  grid-template-columns: minmax(250px, 0.62fr) minmax(460px, 1fr);
+  grid-template-areas:
+    "title controls"
+    "tabs tabs";
+  gap: 8px 18px;
+  min-height: 0;
+  padding: 10px 22px 8px;
+  border-bottom: 1px solid #e6eaf0;
+}
+
+.topbar-title {
+  align-items: center;
+}
+
+.brand-block .eyebrow {
+  margin-bottom: 2px;
+  font-size: 10px;
+}
+
+.brand-block h1 {
+  font-size: 22px;
+  line-height: 1.08;
+}
+
+.brand-block p:not(.eyebrow) {
+  display: none;
+}
+
+.topbar-controls {
+  grid-template-columns: minmax(220px, 1fr) 132px minmax(190px, 0.72fr) 92px;
+  gap: 8px;
+}
+
+.search-field,
+.compact-select,
+.command-button {
+  min-height: 36px;
+}
+
+.search-field input,
+.compact-select select {
+  font-size: 13px;
+}
+
+.compact-select span {
+  font-size: 11px;
+}
+
+.view-tabs {
+  width: auto;
+  padding: 3px;
+}
+
+.view-tab {
+  min-height: 34px;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+.page-workspace {
+  display: grid;
+  grid-template-rows: minmax(420px, calc(100dvh - 418px)) 306px;
+  min-height: 726px;
+  overflow: visible;
+}
+
+.workspace-shell {
+  grid-template-columns: minmax(0, 1fr) 370px;
+  height: auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.main-workspace,
+.analysis-panel,
+.graph-panel,
+.email-panel {
+  height: 100%;
+  min-height: 0;
+}
+
+.relationship-svg {
+  height: 100%;
+  min-height: 0;
+}
+
+.evidence-panel {
+  height: 100%;
+  min-height: 0;
+}
+
+.panel-header {
+  min-height: 132px;
+  padding: 20px 22px 18px;
+}
+
+.detail-title h2 {
+  font-size: 20px;
+}
+
+.related-heading {
+  padding: 12px 22px 10px;
+}
+
+.evidence-list {
+  padding: 12px 14px;
+}
+
+.bottom-insights {
+  grid-template-columns: minmax(0, 1.35fr) minmax(330px, 0.65fr);
+  min-height: 0;
+  height: 306px;
+  overflow: hidden;
+}
+
+.bottom-insights .timeline-panel,
+.bottom-insights .hypothesis-panel {
+  height: 306px;
+}
+
+.bottom-insights .hypothesis-panel .view-title-row,
+.bottom-insights .timeline-heading {
+  min-height: 48px;
+  padding: 9px 16px;
+}
+
+.timeline-scroll-container {
+  height: 258px;
+  padding: 4px 16px 10px;
+}
+
+.curved-timeline-stage {
+  transform: translateY(-10px);
+}
+
+.bottom-insights .hypothesis-grid {
+  max-height: 168px;
+  padding: 8px 12px;
+}
+
+.bottom-insights .walkthrough-panel {
+  max-height: 90px;
+  padding: 8px 12px;
+}
+
+.graph-stats {
+  top: 10px;
+  right: 12px;
+}
+
+.graph-stats span {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.graph-legend {
+  transform: translate(16px, 180px) scale(0.86);
+  transform-origin: left top;
+}
+
+@media (max-width: 1180px) {
+  .topbar {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "controls"
+      "tabs";
+  }
+
+  .topbar-controls {
+    grid-template-columns: 1fr 132px minmax(180px, 0.75fr) 92px;
+  }
+
+  .page-workspace {
+    display: block;
+    min-height: 0;
+  }
+
+  .workspace-shell,
+  .bottom-insights {
+    height: auto;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 820px) {
+  .topbar {
+    padding: 10px 12px;
+  }
+
+  .topbar-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .page-workspace {
+    display: block;
+  }
+
+  .workspace-shell {
+    overflow: visible;
+  }
+
+  .bottom-insights {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .bottom-insights .timeline-panel,
+  .bottom-insights .hypothesis-panel {
+    height: auto;
+  }
+}
+
+/* Expanded evidence layout: right-side vertical evidence rail, timeline then horizontal hypotheses on the left. */
+.page-workspace {
+  display: grid;
+  grid-template-columns: minmax(760px, 1fr) minmax(440px, 30vw);
+  grid-template-rows: minmax(660px, calc(100dvh - 650px)) 410px 220px;
+  min-height: 1290px;
+  overflow: visible;
+  background: #ffffff;
+}
+
+.workspace-shell {
+  display: contents;
+}
+
+.main-workspace {
+  grid-column: 1;
+  grid-row: 1;
+  height: auto;
+  min-height: 500px;
+  overflow: hidden;
+  border-right: 1px solid #e6eaf0;
+  border-bottom: 1px solid #e6eaf0;
+}
+
+.evidence-panel {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  height: auto;
+  min-height: 0;
+  border-left: 1px solid #e6eaf0;
+  background: #ffffff;
+}
+
+.panel-header {
+  min-height: 150px;
+  padding: 22px 26px 18px;
+}
+
+.detail-title h2 {
+  font-size: 22px;
+}
+
+.evidence-list {
+  gap: 12px;
+  padding: 16px 18px;
+}
+
+.evidence-card {
+  min-height: 118px;
+  padding: 15px;
+}
+
+.bottom-insights {
+  display: contents;
+}
+
+.bottom-insights .timeline-panel {
+  grid-column: 1;
+  grid-row: 2;
+  height: 410px;
+  min-height: 0;
+  overflow: visible;
+  border-right: 1px solid #e6eaf0;
+  border-bottom: 1px solid #e6eaf0;
+}
+
+.bottom-insights .hypothesis-panel {
+  grid-column: 1;
+  grid-row: 3;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 220px;
+  min-height: 0;
+  overflow: hidden;
+  border-right: 1px solid #e6eaf0;
+  border-bottom: 1px solid #e6eaf0;
+  border-left: 0;
+  background: #ffffff;
+}
+
+.bottom-insights .timeline-heading,
+.bottom-insights .hypothesis-panel .view-title-row {
+  min-height: 46px;
+  padding: 9px 20px;
+}
+
+.timeline-scroll-container {
+  height: 360px;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 0 16px 34px;
+}
+
+.curved-timeline-stage {
+  overflow: visible;
+  margin-bottom: 28px;
+}
+
+.curved-timeline-stage {
+  transform: none;
+}
+
+.bottom-insights .hypothesis-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 10px;
+  max-height: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 16px 12px;
+}
+
+.bottom-insights .hypothesis-card {
+  grid-template-columns: 36px minmax(0, 1fr);
+  min-width: 220px;
+  min-height: 108px;
+  align-content: start;
+}
+
+.bottom-insights .hypothesis-card__body strong {
+  white-space: normal;
+}
+
+.bottom-insights .hypothesis-card__body span {
+  -webkit-line-clamp: 3;
+}
+
+.bottom-insights .walkthrough-panel {
+  display: none;
+}
+
+.analysis-panel,
+.graph-panel,
+.email-panel {
+  height: 100%;
+  min-height: 0;
+}
+
+.sankey-canvas {
+  height: calc(100% - 112px);
+  min-height: 420px;
+}
+
+.timeline-panel {
+  max-height: none;
+}
+
+/* Timeline fit pass: reduce horizontal span so the full curve is visible more often. */
+.timeline-event-label-block {
+  width: 132px;
+  min-height: 70px;
+  padding: 7px 8px;
+}
+
+.timeline-event-label {
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.timeline-event-type,
+.timeline-event-date {
+  font-size: 10px;
+}
+
+.email-panel .view-title-row {
+  min-height: 72px;
+  padding: 10px 16px;
+}
+
+.email-panel .view-title-row h2 {
+  font-size: 17px;
+}
+
+.email-context {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.email-panel .segmented button {
+  min-height: 30px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.sankey-canvas {
+  height: calc(100% - 100px);
+  min-height: 480px;
+  overflow: hidden;
+  padding: 0 8px;
+}
+
+.sankey-svg {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.email-summary {
+  padding: 0 12px 4px;
+  margin-top: -10px;
+}
+
+.email-summary .signal-chip {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+@media (max-width: 1180px) {
+  .page-workspace {
+    display: block;
+    min-height: 0;
+  }
+
+  .workspace-shell {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .main-workspace,
+  .evidence-panel,
+  .bottom-insights .timeline-panel,
+  .bottom-insights .hypothesis-panel {
+    grid-column: auto;
+    grid-row: auto;
+    height: auto;
+    min-height: 420px;
+    border-right: 0;
+  }
+
+  .bottom-insights {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }

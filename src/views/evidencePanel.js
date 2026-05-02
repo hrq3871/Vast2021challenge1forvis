@@ -13,6 +13,27 @@ function escapeHtml(value) {
 }
 
 function evidenceForCurrentState(snapshot, bundle, indexes) {
+  const query = snapshot.search.trim().toLowerCase();
+  if (query) {
+    return rankEvidenceItems(
+      bundle.evidence.filter((item) =>
+        [
+          item.id,
+          item.title,
+          item.source,
+          item.date,
+          item.snippet,
+          item.fullText,
+          item.text,
+          ...(item.tags ?? []),
+        ]
+          .join(' ')
+          .toLowerCase()
+          .includes(query),
+      ),
+    );
+  }
+
   if (snapshot.selection) {
     return getEvidenceForSelection(snapshot.selection, bundle, indexes);
   }
@@ -24,7 +45,7 @@ function evidenceForCurrentState(snapshot, bundle, indexes) {
     );
   }
 
-  return rankEvidenceItems(bundle.evidence).slice(0, 8);
+  return rankEvidenceItems(bundle.evidence);
 }
 
 function selectionTitle(snapshot, bundle, indexes) {
@@ -44,6 +65,26 @@ function selectionTitle(snapshot, bundle, indexes) {
 }
 
 function selectionContext(snapshot, indexes) {
+  if (snapshot.search.trim()) {
+    return {
+      eyebrow: 'Search Results',
+      title: `Evidence Inbox: "${snapshot.search.trim()}"`,
+      subtitle: `Evidence cards and source text are filtered and highlighted for ${snapshot.search.trim()}.`,
+      badges: ['live search'],
+      canClose: false,
+    };
+  }
+
+  if (snapshot.selection?.type === 'employee') {
+    return {
+      eyebrow: 'Selected Employee',
+      title: snapshot.selection.label ?? 'Selected employee',
+      subtitle: `${snapshot.selection.title ?? 'Employee'} · ${snapshot.selection.department ?? 'GAStech'}`,
+      badges: ['email linked', snapshot.selection.department].filter(Boolean),
+      canClose: true,
+    };
+  }
+
   if (snapshot.selection?.type === 'node') {
     const node = indexes.nodeById.get(snapshot.selection.id);
     return {
@@ -97,7 +138,15 @@ function selectionContext(snapshot, indexes) {
   };
 }
 
-function renderEvidenceModal(item) {
+function highlight(value, query) {
+  const text = escapeHtml(value);
+  const needle = query.trim();
+  if (!needle) return text;
+  const escapedNeedle = needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(`(${escapedNeedle})`, 'gi'), '<mark>$1</mark>');
+}
+
+function renderEvidenceModal(item, query = '') {
   if (!item) return '';
   return `
     <div class="modal-backdrop" id="evidence-modal" role="presentation">
@@ -105,7 +154,7 @@ function renderEvidenceModal(item) {
         <div class="source-modal__header">
           <div>
             <p class="eyebrow">Source Text</p>
-            <h2 id="source-modal-title">${escapeHtml(item.title)}</h2>
+            <h2 id="source-modal-title">${highlight(item.title, query)}</h2>
             <p>${escapeHtml(item.source)}</p>
           </div>
           <button class="icon-button" id="close-source-modal" type="button" aria-label="Close source text">
@@ -118,7 +167,7 @@ function renderEvidenceModal(item) {
           <span>Bias: ${escapeHtml(item.biasWarning)}</span>
         </div>
         <div class="source-modal__body">
-          <p>${escapeHtml(item.fullText ?? item.text ?? item.snippet ?? 'No source text is available for this evidence item.')}</p>
+          <p>${highlight(item.fullText ?? item.text ?? item.snippet ?? 'No source text is available for this evidence item.', query)}</p>
         </div>
       </article>
     </div>
@@ -129,6 +178,7 @@ export function createEvidencePanel(container, state, bundle, indexes) {
   function render(snapshot) {
     const evidence = evidenceForCurrentState(snapshot, bundle, indexes);
     const context = selectionContext(snapshot, indexes);
+    const query = snapshot.search.trim();
 
     container.innerHTML = `
       <div class="panel-header">
@@ -164,8 +214,8 @@ export function createEvidencePanel(container, state, bundle, indexes) {
                         <div class="evidence-card__topline">
                           <span>${escapeHtml(item.source)}</span>
                         </div>
-                        <h3>${escapeHtml(item.title)}</h3>
-                        <p>${escapeHtml(item.snippet)}</p>
+                        <h3>${highlight(item.title, query)}</h3>
+                        <p>${highlight(item.snippet, query)}</p>
                         <div class="evidence-meta">
                           <span class="status-pill status-${escapeHtml(item.confidence)}">${confidenceLabel(item.confidence)}</span>
                           <span>${escapeHtml(item.date)}</span>
@@ -205,7 +255,7 @@ export function createEvidencePanel(container, state, bundle, indexes) {
     container.querySelectorAll('[data-evidence-id]').forEach((card) => {
       const openModal = () => {
         const item = indexes.evidenceById.get(card.dataset.evidenceId);
-        container.insertAdjacentHTML('beforeend', renderEvidenceModal(item));
+        container.insertAdjacentHTML('beforeend', renderEvidenceModal(item, query));
         const modal = container.querySelector('#evidence-modal');
         const close = container.querySelector('#close-source-modal');
         close?.focus();
