@@ -1,5 +1,13 @@
 node_modules/
-dist/
+__pycache__/
+dist/*
+!dist/
+!dist/index.html
+!dist/assets/
+dist/assets/*
+!dist/assets/*.css
+!dist/assets/*.js
+dist/**/*.map
 .npm-cache/
 *.log
 
