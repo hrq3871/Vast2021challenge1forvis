@@ -1,0 +1,88 @@
+source,place,mentions,pos_words,neg_words,bias_score
+All News Today,Abila,12,1,0,1
+All News Today,Kronos,18,1,0,1
+All News Today,Tethys,1,0,0,0
+Athena Speaks,Abila,23,0,29,-29
+Athena Speaks,Kronos,25,0,31,-31
+Athena Speaks,Tethys,3,0,4,-4
+Central Bulletin,Abila,19,0,24,-24
+Central Bulletin,Kronos,21,0,30,-30
+Central Bulletin,Tethys,3,0,7,-7
+Centrum Sentinel,Abila,9,0,7,-7
+Centrum Sentinel,Kronos,7,0,5,-5
+Centrum Sentinel,Tethys,36,0,11,-11
+Daily Pegasus,Abila,20,6,0,6
+Daily Pegasus,Kronos,26,8,1,7
+Daily Pegasus,Tethys,2,1,1,0
+Everyday News,Abila,7,1,18,-17
+Everyday News,Kronos,12,4,20,-16
+Everyday News,Tethys,8,4,17,-13
+Homeland Illumination,Abila,30,4,8,-4
+Homeland Illumination,Kronos,35,4,7,-3
+Homeland Illumination,Tethys,6,0,4,-4
+International News,Abila,20,11,21,-10
+International News,Kronos,20,11,21,-10
+International News,Tethys,2,1,4,-3
+International Times,Abila,7,0,18,-18
+International Times,Kronos,10,3,19,-16
+International Times,Tethys,7,3,17,-14
+Kronos Star,Abila,35,23,29,-6
+Kronos Star,Kronos,62,23,41,-18
+Kronos Star,Tethys,10,4,12,-8
+Modern Rubicon,Abila,14,1,8,-7
+Modern Rubicon,Kronos,13,1,11,-10
+Modern Rubicon,Tethys,4,0,5,-5
+News Desk,Abila,23,0,23,-23
+News Desk,Kronos,25,0,25,-25
+News Desk,Tethys,3,0,6,-6
+News Online Today,Abila,81,12,38,-26
+News Online Today,Kronos,101,12,48,-36
+News Online Today,Tethys,15,2,11,-9
+Tethys News,Abila,8,0,3,-3
+Tethys News,Kronos,3,0,5,-5
+Tethys News,Tethys,35,0,14,-14
+The Abila Post,Abila,54,2,62,-60
+The Abila Post,Kronos,37,2,53,-51
+The Abila Post,Tethys,7,0,17,-17
+The Continent,Abila,8,0,17,-17
+The Continent,Kronos,12,2,18,-16
+The Continent,Tethys,8,1,15,-14
+The Explainer,Abila,23,0,26,-26
+The Explainer,Kronos,25,0,28,-28
+The Explainer,Tethys,3,0,5,-5
+The General Post,Abila,10,8,11,-3
+The General Post,Kronos,16,9,14,-5
+The General Post,Tethys,10,0,7,-7
+The Guide,Abila,28,22,24,-2
+The Guide,Kronos,28,22,24,-2
+The Guide,Tethys,8,4,11,-7
+The Light of Truth,Abila,10,5,12,-7
+The Light of Truth,Kronos,16,7,15,-8
+The Light of Truth,Tethys,10,0,8,-8
+The Orb,Abila,20,5,3,2
+The Orb,Kronos,26,5,4,1
+The Orb,Tethys,2,0,1,-1
+The Truth,Abila,27,21,16,5
+The Truth,Kronos,27,21,16,5
+The Truth,Tethys,8,4,7,-3
+The Tulip,Abila,10,5,5,0
+The Tulip,Kronos,16,6,8,-2
+The Tulip,Tethys,10,0,4,-4
+The World,Abila,10,8,13,-5
+The World,Kronos,14,8,13,-5
+The World,Tethys,9,0,6,-6
+The Wrap,Abila,20,3,1,2
+The Wrap,Kronos,26,3,2,1
+The Wrap,Tethys,2,0,1,-1
+Who What News,Abila,9,6,7,-1
+Who What News,Kronos,13,6,9,-3
+Who What News,Tethys,7,0,2,-2
+World Journal,Abila,8,0,15,-15
+World Journal,Kronos,12,4,16,-12
+World Journal,Tethys,8,3,11,-8
+World Source,Abila,4,0,13,-13
+World Source,Kronos,6,1,13,-12
+World Source,Tethys,5,3,9,-6
+Worldwise,Abila,28,20,19,1
+Worldwise,Kronos,28,20,19,1
+Worldwise,Tethys,8,3,7,-4

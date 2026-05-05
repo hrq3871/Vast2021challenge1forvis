@@ -1,0 +1,113 @@
+source,entity,mentions,pos_words,neg_words,tone_score
+All News Today,POK,9,2,10,-8
+All News Today,GAStech,7,2,8,-6
+All News Today,Government,13,5,12,-7
+All News Today,APA,0,0,0,0
+Athena Speaks,POK,11,11,26,-15
+Athena Speaks,GAStech,15,9,24,-15
+Athena Speaks,Government,23,15,52,-37
+Athena Speaks,APA,0,0,0,0
+Central Bulletin,POK,10,5,32,-27
+Central Bulletin,GAStech,13,3,20,-17
+Central Bulletin,Government,20,6,47,-41
+Central Bulletin,APA,0,0,0,0
+Daily Pegasus,POK,13,5,11,-6
+Daily Pegasus,GAStech,11,3,10,-7
+Daily Pegasus,Government,19,6,13,-7
+Daily Pegasus,APA,0,0,0,0
+Everyday News,POK,4,0,15,-15
+Everyday News,GAStech,9,2,15,-13
+Everyday News,Government,13,2,26,-24
+Everyday News,APA,2,0,8,-8
+Homeland Illumination,POK,13,5,12,-7
+Homeland Illumination,GAStech,10,3,7,-4
+Homeland Illumination,Government,18,9,13,-4
+Homeland Illumination,APA,0,0,0,0
+International News,POK,10,6,27,-21
+International News,GAStech,8,6,11,-5
+International News,Government,16,11,29,-18
+International News,APA,0,0,0,0
+International Times,POK,4,5,11,-6
+International Times,GAStech,8,7,13,-6
+International Times,Government,10,7,20,-13
+International Times,APA,2,1,7,-6
+Kronos Star,POK,13,8,23,-15
+Kronos Star,GAStech,44,4,8,-4
+Kronos Star,Government,18,13,24,-11
+Kronos Star,APA,0,0,0,0
+Modern Rubicon,POK,0,0,0,0
+Modern Rubicon,GAStech,1,0,0,0
+Modern Rubicon,Government,0,0,0,0
+Modern Rubicon,APA,0,0,0,0
+News Desk,POK,11,4,23,-19
+News Desk,GAStech,15,2,20,-18
+News Desk,Government,20,5,41,-36
+News Desk,APA,0,0,0,0
+News Online Today,POK,33,4,29,-25
+News Online Today,GAStech,42,6,27,-21
+News Online Today,Government,50,9,41,-32
+News Online Today,APA,0,0,0,0
+Tethys News,POK,0,0,0,0
+Tethys News,GAStech,35,0,0,0
+Tethys News,Government,0,0,0,0
+Tethys News,APA,0,0,0,0
+The Abila Post,POK,11,6,28,-22
+The Abila Post,GAStech,15,5,25,-20
+The Abila Post,Government,19,6,42,-36
+The Abila Post,APA,0,0,0,0
+The Continent,POK,5,6,18,-12
+The Continent,GAStech,10,8,14,-6
+The Continent,Government,13,6,23,-17
+The Continent,APA,2,1,7,-6
+The Explainer,POK,8,1,24,-23
+The Explainer,GAStech,15,1,25,-24
+The Explainer,Government,23,2,39,-37
+The Explainer,APA,0,0,0,0
+The General Post,POK,1,0,3,-3
+The General Post,GAStech,18,10,14,-4
+The General Post,Government,16,10,14,-4
+The General Post,APA,0,0,0,0
+The Guide,POK,13,5,24,-19
+The Guide,GAStech,11,4,10,-6
+The Guide,Government,22,11,27,-16
+The Guide,APA,0,0,0,0
+The Light of Truth,POK,1,1,2,-1
+The Light of Truth,GAStech,18,12,16,-4
+The Light of Truth,Government,16,12,16,-4
+The Light of Truth,APA,0,0,0,0
+The Orb,POK,13,7,8,-1
+The Orb,GAStech,11,4,4,0
+The Orb,Government,19,9,10,-1
+The Orb,APA,0,0,0,0
+The Truth,POK,13,8,17,-9
+The Truth,GAStech,10,4,11,-7
+The Truth,Government,20,13,22,-9
+The Truth,APA,0,0,0,0
+The Tulip,POK,1,0,2,-2
+The Tulip,GAStech,17,5,7,-2
+The Tulip,Government,14,5,8,-3
+The Tulip,APA,0,0,0,0
+The World,POK,0,0,0,0
+The World,GAStech,15,9,12,-3
+The World,Government,12,8,12,-4
+The World,APA,0,0,0,0
+The Wrap,POK,13,6,17,-11
+The Wrap,GAStech,11,4,14,-10
+The Wrap,Government,19,9,20,-11
+The Wrap,APA,0,0,0,0
+Who What News,POK,1,0,1,-1
+Who What News,GAStech,14,8,6,2
+Who What News,Government,11,8,6,2
+Who What News,APA,0,0,0,0
+World Journal,POK,5,7,14,-7
+World Journal,GAStech,9,9,11,-2
+World Journal,Government,14,12,21,-9
+World Journal,APA,2,1,4,-3
+World Source,POK,3,2,9,-7
+World Source,GAStech,6,5,9,-4
+World Source,Government,7,4,13,-9
+World Source,APA,2,1,6,-5
+Worldwise,POK,14,15,23,-8
+Worldwise,GAStech,9,3,8,-5
+Worldwise,Government,23,21,24,-3
+Worldwise,APA,0,0,0,0

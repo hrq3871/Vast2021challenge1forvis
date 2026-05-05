@@ -1,0 +1,30 @@
+source,articles,unique_word_ratio,common_word_ratio,avg_word_len,punct_ratio
+Modern Rubicon,30,0.875,0.5,5.0,0.015
+Everyday News,15,0.249,0.42,4.64,0.014
+The Guide,28,0.303,0.418,4.74,0.013
+The General Post,19,0.291,0.418,4.79,0.015
+Daily Pegasus,26,0.226,0.415,4.58,0.014
+The Explainer,25,0.243,0.415,4.8,0.016
+Worldwise,28,0.3,0.391,4.83,0.014
+The Light of Truth,19,0.319,0.389,4.87,0.017
+World Journal,15,0.267,0.388,4.76,0.015
+Athena Speaks,25,0.279,0.38,4.87,0.017
+The Orb,26,0.239,0.379,4.61,0.015
+The Continent,15,0.273,0.351,4.88,0.016
+The Tulip,19,0.338,0.35,5.01,0.018
+News Desk,25,0.3,0.337,5.02,0.018
+The Truth,28,0.345,0.337,5.09,0.015
+The Wrap,26,0.237,0.331,4.83,0.016
+Kronos Star,62,0.423,0.33,5.06,0.015
+The Abila Post,54,0.343,0.326,5.06,0.018
+News Online Today,111,0.336,0.326,5.05,0.015
+The World,17,0.402,0.325,5.16,0.019
+World Source,9,0.413,0.325,5.02,0.014
+International News,20,0.385,0.325,5.13,0.016
+All News Today,18,0.345,0.323,4.96,0.016
+International Times,14,0.36,0.322,4.97,0.016
+Central Bulletin,21,0.364,0.322,5.15,0.017
+Homeland Illumination,64,0.27,0.318,4.81,0.016
+Who What News,15,0.434,0.314,5.21,0.017
+Tethys News,35,0,0,0,0
+Centrum Sentinel,36,0,0,0,0

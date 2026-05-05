@@ -1,0 +1,39 @@
+from,to,weight
+Kronos Star,News Online Today,17
+Homeland Illumination,News Online Today,15
+The World,News Online Today,10
+Kronos Star,International News,10
+International News,Kronos Star,10
+International News,News Online Today,10
+The Abila Post,News Online Today,10
+All News Today,News Online Today,9
+Homeland Illumination,All News Today,9
+The Abila Post,Central Bulletin,9
+International Times,News Online Today,8
+Central Bulletin,The Abila Post,8
+Central Bulletin,News Online Today,8
+All News Today,Homeland Illumination,8
+News Online Today,The World,7
+News Online Today,Who What News,7
+The World,Who What News,7
+International Times,World Source,5
+News Online Today,The Abila Post,5
+News Online Today,Central Bulletin,4
+News Online Today,World Source,3
+International Times,Everyday News,2
+International Times,The Continent,2
+International Times,World Journal,2
+Central Bulletin,The Explainer,2
+Daily Pegasus,The Orb,1
+The World,The Light of Truth,1
+News Online Today,International Times,1
+The Explainer,Athena Speaks,1
+News Online Today,Athena Speaks,1
+Central Bulletin,Athena Speaks,1
+All News Today,Daily Pegasus,1
+Homeland Illumination,Daily Pegasus,1
+Kronos Star,The Truth,1
+The Abila Post,The Explainer,1
+Central Bulletin,News Desk,1
+Everyday News,World Journal,1
+The Light of Truth,The General Post,1

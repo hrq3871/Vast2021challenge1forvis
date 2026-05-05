@@ -1,0 +1,88 @@
+source,event,keyword_hits,articles,bias_score
+All News Today,Economic_IPO,3,18,0.166667
+All News Today,Kidnapping_Crisis,0,18,0.0
+All News Today,Protest_Unrest,16,18,0.888889
+Athena Speaks,Economic_IPO,4,25,0.16
+Athena Speaks,Kidnapping_Crisis,6,25,0.24
+Athena Speaks,Protest_Unrest,56,25,2.24
+Central Bulletin,Economic_IPO,3,21,0.142857
+Central Bulletin,Kidnapping_Crisis,4,21,0.190476
+Central Bulletin,Protest_Unrest,54,21,2.571429
+Centrum Sentinel,Economic_IPO,0,36,0.0
+Centrum Sentinel,Kidnapping_Crisis,0,36,0.0
+Centrum Sentinel,Protest_Unrest,0,36,0.0
+Daily Pegasus,Economic_IPO,2,26,0.076923
+Daily Pegasus,Kidnapping_Crisis,0,26,0.0
+Daily Pegasus,Protest_Unrest,17,26,0.653846
+Everyday News,Economic_IPO,3,15,0.2
+Everyday News,Kidnapping_Crisis,6,15,0.4
+Everyday News,Protest_Unrest,21,15,1.4
+Homeland Illumination,Economic_IPO,0,64,0.0
+Homeland Illumination,Kidnapping_Crisis,0,64,0.0
+Homeland Illumination,Protest_Unrest,27,64,0.421875
+International News,Economic_IPO,13,20,0.65
+International News,Kidnapping_Crisis,6,20,0.3
+International News,Protest_Unrest,40,20,2.0
+International Times,Economic_IPO,2,14,0.142857
+International Times,Kidnapping_Crisis,6,14,0.428571
+International Times,Protest_Unrest,23,14,1.642857
+Kronos Star,Economic_IPO,13,62,0.209677
+Kronos Star,Kidnapping_Crisis,5,62,0.080645
+Kronos Star,Protest_Unrest,35,62,0.564516
+Modern Rubicon,Economic_IPO,0,30,0.0
+Modern Rubicon,Kidnapping_Crisis,0,30,0.0
+Modern Rubicon,Protest_Unrest,0,30,0.0
+News Desk,Economic_IPO,4,25,0.16
+News Desk,Kidnapping_Crisis,7,25,0.28
+News Desk,Protest_Unrest,49,25,1.96
+News Online Today,Economic_IPO,19,111,0.171171
+News Online Today,Kidnapping_Crisis,16,111,0.144144
+News Online Today,Protest_Unrest,65,111,0.585586
+Tethys News,Economic_IPO,0,35,0.0
+Tethys News,Kidnapping_Crisis,0,35,0.0
+Tethys News,Protest_Unrest,0,35,0.0
+The Abila Post,Economic_IPO,4,54,0.074074
+The Abila Post,Kidnapping_Crisis,7,54,0.12963
+The Abila Post,Protest_Unrest,55,54,1.018519
+The Continent,Economic_IPO,3,15,0.2
+The Continent,Kidnapping_Crisis,6,15,0.4
+The Continent,Protest_Unrest,30,15,2.0
+The Explainer,Economic_IPO,3,25,0.12
+The Explainer,Kidnapping_Crisis,7,25,0.28
+The Explainer,Protest_Unrest,30,25,1.2
+The General Post,Economic_IPO,5,19,0.263158
+The General Post,Kidnapping_Crisis,12,19,0.631579
+The General Post,Protest_Unrest,6,19,0.315789
+The Guide,Economic_IPO,13,28,0.464286
+The Guide,Kidnapping_Crisis,7,28,0.25
+The Guide,Protest_Unrest,27,28,0.964286
+The Light of Truth,Economic_IPO,10,19,0.526316
+The Light of Truth,Kidnapping_Crisis,8,19,0.421053
+The Light of Truth,Protest_Unrest,8,19,0.421053
+The Orb,Economic_IPO,0,26,0.0
+The Orb,Kidnapping_Crisis,0,26,0.0
+The Orb,Protest_Unrest,18,26,0.692308
+The Truth,Economic_IPO,12,28,0.428571
+The Truth,Kidnapping_Crisis,6,28,0.214286
+The Truth,Protest_Unrest,30,28,1.071429
+The Tulip,Economic_IPO,6,19,0.315789
+The Tulip,Kidnapping_Crisis,5,19,0.263158
+The Tulip,Protest_Unrest,7,19,0.368421
+The World,Economic_IPO,6,17,0.352941
+The World,Kidnapping_Crisis,10,17,0.588235
+The World,Protest_Unrest,7,17,0.411765
+The Wrap,Economic_IPO,1,26,0.038462
+The Wrap,Kidnapping_Crisis,0,26,0.0
+The Wrap,Protest_Unrest,34,26,1.307692
+Who What News,Economic_IPO,5,15,0.333333
+Who What News,Kidnapping_Crisis,5,15,0.333333
+Who What News,Protest_Unrest,5,15,0.333333
+World Journal,Economic_IPO,2,15,0.133333
+World Journal,Kidnapping_Crisis,1,15,0.066667
+World Journal,Protest_Unrest,25,15,1.666667
+World Source,Economic_IPO,1,9,0.111111
+World Source,Kidnapping_Crisis,3,9,0.333333
+World Source,Protest_Unrest,10,9,1.111111
+Worldwise,Economic_IPO,18,28,0.642857
+Worldwise,Kidnapping_Crisis,3,28,0.107143
+Worldwise,Protest_Unrest,37,28,1.321429

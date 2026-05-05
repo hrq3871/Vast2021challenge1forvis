@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900">
+<rect width="100%" height="100%" fill="white"/>
+<text x="700" y="38" text-anchor="middle" font-size="30" font-family="Arial" fill="#111">Time-Directed Sankey (Shared Titles)</text>
+<text x="700" y="62" text-anchor="middle" font-size="16" font-family="Arial" fill="#444">Direction inferred by earlier publication date: upstream (left) → downstream (right)</text>
+<path d="M 252,131.79439252336448 C 592,131.79439252336448 808,131.79439252336448 1148,131.79439252336448" fill="none" stroke="rgba(37,99,235,0.35)" stroke-width="103.58878504672897" stroke-linecap="round"/>
+<path d="M 252,243.28971962616822 C 592,243.28971962616822 808,229.28971962616822 1148,229.28971962616822" fill="none" stroke="rgba(5,150,105,0.35)" stroke-width="91.40186915887851" stroke-linecap="round"/>
+<path d="M 252,327.3644859813084 C 592,327.3644859813084 808,299.3644859813084 1148,299.3644859813084" fill="none" stroke="rgba(220,38,38,0.35)" stroke-width="48.74766355140187" stroke-linecap="round"/>
+<path d="M 252,357.83177570093454 C 592,357.83177570093454 808,731.3457943925234 1148,731.3457943925234" fill="none" stroke="rgba(124,58,237,0.35)" stroke-width="12.186915887850468" stroke-linecap="round"/>
+<path d="M 252,408.392523364486 C 592,408.392523364486 808,354.2056074766355 1148,354.2056074766355" fill="none" stroke="rgba(217,119,6,0.35)" stroke-width="60.93457943925234" stroke-linecap="round"/>
+<path d="M 252,483.32710280373834 C 592,483.32710280373834 808,415.1401869158879 1148,415.1401869158879" fill="none" stroke="rgba(14,165,233,0.35)" stroke-width="60.93457943925234" stroke-linecap="round"/>
+<path d="M 252,552.1682242990655 C 592,552.1682242990655 808,469.98130841121497 1148,469.98130841121497" fill="none" stroke="rgba(147,51,234,0.35)" stroke-width="48.74766355140187" stroke-linecap="round"/>
+<path d="M 252,591.7757009345795 C 592,591.7757009345795 808,696.0186915887851 1148,696.0186915887851" fill="none" stroke="rgba(22,163,74,0.35)" stroke-width="30.46728971962617" stroke-linecap="round"/>
+<path d="M 252,613.1028037383179 C 592,613.1028037383179 808,757.5327102803739 1148,757.5327102803739" fill="none" stroke="rgba(185,28,28,0.35)" stroke-width="12.186915887850468" stroke-linecap="round"/>
+<path d="M 252,625.2897196261683 C 592,625.2897196261683 808,783.7196261682243 1148,783.7196261682243" fill="none" stroke="rgba(234,88,12,0.35)" stroke-width="12.186915887850468" stroke-linecap="round"/>
+<path d="M 252,637.4766355140188 C 592,637.4766355140188 808,809.9065420560747 1148,809.9065420560747" fill="none" stroke="rgba(37,99,235,0.35)" stroke-width="12.186915887850468" stroke-linecap="round"/>
+<path d="M 252,684.9906542056076 C 592,684.9906542056076 808,521.7757009345795 1148,521.7757009345795" fill="none" stroke="rgba(5,150,105,0.35)" stroke-width="54.8411214953271" stroke-linecap="round"/>
+<path d="M 252,756.8785046728973 C 592,756.8785046728973 808,579.6635514018692 1148,579.6635514018692" fill="none" stroke="rgba(220,38,38,0.35)" stroke-width="60.93457943925234" stroke-linecap="round"/>
+<path d="M 252,808.6728971962618 C 592,808.6728971962618 808,645.4579439252336 1148,645.4579439252336" fill="none" stroke="rgba(124,58,237,0.35)" stroke-width="42.65420560747664" stroke-linecap="round"/>
+<rect x="228" y="80" width="24" height="103.58878504672896" fill="#1d4ed8" rx="3"/>
+<text x="220" y="136.79439252336448" text-anchor="end" font-size="14" font-family="Arial" fill="#111">Kronos Star (17)</text>
+<rect x="228" y="197.58878504672896" width="24" height="91.40186915887853" fill="#1d4ed8" rx="3"/>
+<text x="220" y="248.28971962616822" text-anchor="end" font-size="14" font-family="Arial" fill="#111">Homeland Illumination (15)</text>
+<rect x="228" y="302.9906542056075" width="24" height="60.93457943925233" fill="#1d4ed8" rx="3"/>
+<text x="220" y="338.4579439252336" text-anchor="end" font-size="14" font-family="Arial" fill="#111">Central Bulletin (10)</text>
+<rect x="228" y="377.9252336448598" width="24" height="60.93457943925233" fill="#1d4ed8" rx="3"/>
+<text x="220" y="413.392523364486" text-anchor="end" font-size="14" font-family="Arial" fill="#111">International News (10)</text>
+<rect x="228" y="452.85981308411215" width="24" height="60.93457943925239" fill="#1d4ed8" rx="3"/>
+<text x="220" y="488.32710280373834" text-anchor="end" font-size="14" font-family="Arial" fill="#111">The Abila Post (10)</text>
+<rect x="228" y="527.7943925233645" width="24" height="115.7757009345795" fill="#1d4ed8" rx="3"/>
+<text x="220" y="590.6822429906542" text-anchor="end" font-size="14" font-family="Arial" fill="#111">International Times (19)</text>
+<rect x="228" y="657.570093457944" width="24" height="54.841121495327116" fill="#1d4ed8" rx="3"/>
+<text x="220" y="689.9906542056076" text-anchor="end" font-size="14" font-family="Arial" fill="#111">All News Today (9)</text>
+<rect x="228" y="726.4112149532712" width="24" height="103.58878504672896" fill="#1d4ed8" rx="3"/>
+<text x="220" y="783.2056074766356" text-anchor="end" font-size="14" font-family="Arial" fill="#111">The World (17)</text>
+<rect x="1148" y="80" width="24" height="530.1308411214953" fill="#b45309" rx="3"/>
+<text x="1180" y="350.06542056074767" text-anchor="start" font-size="14" font-family="Arial" fill="#111">News Online Today (87)</text>
+<rect x="1148" y="624.1308411214953" width="24" height="42.65420560747668" fill="#b45309" rx="3"/>
+<text x="1180" y="650.4579439252336" text-anchor="start" font-size="14" font-family="Arial" fill="#111">Who What News (7)</text>
+<rect x="1148" y="680.785046728972" width="24" height="30.467289719626137" fill="#b45309" rx="3"/>
+<text x="1180" y="701.018691588785" text-anchor="start" font-size="14" font-family="Arial" fill="#111">World Source (5)</text>
+<rect x="1148" y="725.2523364485982" width="24" height="12.186915887850432" fill="#b45309" rx="3"/>
+<text x="1180" y="736.3457943925234" text-anchor="start" font-size="14" font-family="Arial" fill="#111">The Explainer (2)</text>
+<rect x="1148" y="751.4392523364486" width="24" height="12.186915887850432" fill="#b45309" rx="3"/>
+<text x="1180" y="762.5327102803737" text-anchor="start" font-size="14" font-family="Arial" fill="#111">World Journal (2)</text>
+<rect x="1148" y="777.626168224299" width="24" height="12.186915887850432" fill="#b45309" rx="3"/>
+<text x="1180" y="788.7196261682243" text-anchor="start" font-size="14" font-family="Arial" fill="#111">Everyday News (2)</text>
+<rect x="1148" y="803.8130841121495" width="24" height="12.186915887850432" fill="#b45309" rx="3"/>
+<text x="1180" y="814.9065420560746" text-anchor="start" font-size="14" font-family="Arial" fill="#111">The Continent (2)</text>
+<text x="240" y="84" text-anchor="middle" font-size="13" font-family="Arial" fill="#1d4ed8">Likely primary/upstream</text>
+<text x="1160" y="84" text-anchor="middle" font-size="13" font-family="Arial" fill="#b45309">Likely derivative/downstream</text>
+</svg>
